@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import MainBanner from './Components/MainBanner';
+import Dashboard from './Components/Dashboard';
+import FrequentlyAskedQuestions from './Components/FrequentlyAskedQuestions';
+import ScreensCarousel from './Components/ScreensCarousel';
+import Footer from './Components/Footer';
+import WhyChoose from './Components/WhyChoose';
+import Features from './Components/Features';
+import Header from "./Components/Header";
+import ContactUs from "./Components/ContactUs";
+import PricingTable from './Components/PricingTable';
+import MarqueeBlock from "./Components/MarqueeBlock";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <MainBanner/>
+      <Dashboard/>
+      <WhyChoose/>
+      <Features/>
+      <ScreensCarousel/>
+      <FrequentlyAskedQuestions/>
+      <PricingTable />
+      <MarqueeBlock />
+      <ContactUs/>
+      <Footer/>
     </div>
   );
 }

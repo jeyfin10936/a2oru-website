@@ -1,0 +1,18 @@
+/* Dashbard Image */
+.mainDashboardImg {
+    margin-top: -150px;
+    position: relative;
+    z-index: 1;
+}
+
+.mainDashboardImg img,
+.mainDashboardImg video {
+    width: 100%;
+    max-width: 1100px;
+    display: block;
+    margin: auto;
+    height: auto;
+    border-radius: var(--border-radius-3X);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 30px 0 rgb(var(--tertiary-color-rgb), 0.2);
+}

@@ -1,0 +1,104 @@
+/* Conatct Card */
+.EmailCard {
+    display: inline-block;
+    padding: clamp(1.25rem, 0.9713rem + 1.2739vw, 2.5rem); /* min: 20px - max: 40px */
+    border-radius: var(--border-radius-3X);
+    background: rgb(var(--white-color-rgb), 0.7);
+    backdrop-filter: blur(20px);
+}
+    
+.EmailCard .icon {
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+    border-radius: var(--border-radius-2X);
+    color: var(--white-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.EmailCard .icon svg {
+    width: 1em;
+    height: 1em;
+    color: inherit;
+}
+
+.EmailCard .email a {
+    text-decoration: none;
+    color: var(--head-color);
+    text-transform: none;
+}
+
+.EmailCard .email a:hover {
+    color: var(--primary-color);
+}
+
+.EmailCard p.info {
+    font-size: var(--font-size-ext);
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--primary-color);
+}
+
+.contactCard {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background: linear-gradient(90deg, rgb(var(--tertiary-color-rgb),0.08), rgb(var(--secondary-color-rgb),0.08));
+    padding: 60px;
+    border-radius: var( --border-radius-3X);
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+}
+
+.contactCard .btn-group {
+    display: inline-flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.contactCard > * {
+    position: relative;
+    z-index: 1;
+}
+
+.contactCard > .headingGroup {
+    margin-bottom: 0;
+}
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .contactCard {
+        gap: 20px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contactCard {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 50px;
+    }
+    .contactCard > .headingGroup {
+        text-align: center;
+    }
+    .contactCard .btn-group {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 479px) {
+    .contactCard {
+        padding: 40px 20px;
+    }
+}

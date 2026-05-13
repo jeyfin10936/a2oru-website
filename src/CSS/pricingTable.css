@@ -1,0 +1,237 @@
+.PricingWrapper > .toggleWrapper {
+    text-align: center;
+    margin-bottom: clamp(1.875rem, 1.457rem + 1.9108vw, 3.75rem); /* min: 30px - max: 60px */
+}
+
+.PricingWrapper > .toggleWrapper > .btnWrapper {
+    display: inline-flex;
+    justify-content: center;
+    gap: 0;
+    padding: 6px;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius-part);
+
+    position: relative;
+}
+
+.PricingWrapper > .toggleWrapper > .btnWrapper::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    height: calc(100% - 12px);
+    border-radius: var(--border-radius-part);
+    background-color: var(--primary-color);
+    transition: all 300ms cubic-bezier(.45,.05,.55,.95);
+    margin: auto 6px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.PricingWrapper > .toggleWrapper > .btnWrapper:has(.btn:nth-child(1).toggleActive)::before { transform: translateX(-100%); }
+
+.PricingWrapper > .toggleWrapper > .btnWrapper > button {
+    border: none;
+    background-color: transparent;
+    color: var(--primary-color);
+
+    cursor: pointer;
+    border-radius: 0;
+    padding: 0;
+    transition: var(--alt-transition);
+
+    font-size: var(--font-size-ext);
+    font-weight: var(--font-weight-alt);
+    line-height: var(--line-height-ext);
+    letter-spacing: var(--letter-spacing-ext);
+    text-wrap: nowrap;
+
+    min-width: 150px;
+    min-height: 50px;
+
+    z-index: 1;
+    position: relative;
+}
+
+.PricingWrapper > .toggleWrapper > .btnWrapper > button.toggleActive { color: var(--white-color); }
+
+/* content */
+.PricingWrapper > .contentWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard {
+    padding: clamp(1.875rem, 1.7357rem + 0.6369vw, 2.5rem) clamp(1.25rem, 0.9713rem + 1.2739vw, 2.5rem); /* min: 30px - max: 40px */ /* min: 20px - max: 40px */
+    background-color: rgb(var(--secondary-color-rgb), 0.06);
+    border-radius: var(--border-radius-3X);
+    position: relative;
+}
+
+/* title */
+.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .title { margin-bottom: 12px; }
+
+/* price */
+.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails { margin-bottom: 20px; }  
+
+.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails .priceGroup {
+    display: inline-flex;
+    align-items: end;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails :is(.currency, .priceAmount, .customPrice) {
+    font-family: var(--font-typo-alt);
+    line-height: 1;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-alt);
+    color: var(--primary-color);
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails .priceSuffix {
+    color: var(--head-color);
+    font-size: var(--font-size-h6);
+    margin-left: 6px;
+}
+
+
+/* seperator */
+.PricingWrapper > .contentWrapper > .pricingCard > .divider {
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-block: clamp(1.25rem, 1.1107rem + 0.6369vw, 1.875rem); /* min: 20px - max: 30px */
+    background: linear-gradient(90deg, transparent 0%, var(--primary-color) 50%, transparent 100%);
+}
+
+
+/* Features */
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li:not(:last-child) { margin-bottom: 16px; }
+
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li .listIcon { line-height: 0; }
+
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li .listIcon svg {
+    width: 1em;
+    height: 1em;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li  .listText { color: var(--head-color); }
+
+.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li.disable {
+    opacity: 0.6;
+    filter: blur(1px);
+}
+
+
+/* footer group */
+.PricingWrapper > .contentWrapper > .pricingCard > .footerGroup .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+/* Badge */
+.PricingWrapper > .contentWrapper > .pricingCard.featured > .badge {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 10px 16px 10px 30px;
+    font-weight: var(--font-weight-ext);
+    line-height: 1;
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard.featured > .badge:before {
+    content: "";
+    border-top: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #E9F0F5;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* bottom content */
+.bottomContent {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: start;
+}
+
+
+/* Offer Badge */
+.offerBadge {
+    display: block;
+    margin-top: 10px;
+}
+
+.offerBadge span {
+    color: var(--white-color);
+    background: var(--secondary-color);
+    padding: 6px 12px;
+    border-radius: var(--border-radius-1X);
+    font-size: calc(var(--font-size-ext) - 2px);
+}
+
+
+/* responsive */
+
+@media (max-width: 1280px) {
+    .PricingWrapper > .contentWrapper { gap: 20px; }
+}
+
+@media (max-width: 1024px) {
+    .PricingWrapper > .contentWrapper {
+        grid-template-columns: repeat(2,1fr);
+        gap: 30px;
+    }
+
+    .PricingWrapper > .contentWrapper > .pricingCard:last-child {
+        grid-column: 1/3;
+        margin-inline: 25%;
+    }
+}
+
+@media (max-width: 768px) {
+    .PricingWrapper > .contentWrapper { grid-template-columns: repeat(1,1fr); }
+
+    .PricingWrapper > .contentWrapper > .pricingCard:last-child {
+        grid-column: unset;
+        margin-inline: auto;
+    }
+
+    .PricingWrapper > .contentWrapper > .pricingCard {
+        max-width: 500px;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 479px) {
+    .PricingWrapper > .toggleWrapper > .btnWrapper > button { min-width: 130px; }
+
+    .PricingWrapper > .toggleWrapper > .btnWrapper::before { width: 130px; }
+}
