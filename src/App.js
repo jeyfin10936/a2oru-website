@@ -8,6 +8,7 @@ import Features from './Components/Features';
 import Header from "./Components/Header";
 import ContactUs from "./Components/ContactUs";
 import PricingTable from './Components/PricingTable';
+import DeploymentOptions from "./Components/DeploymentOptions.jsx"
 import MarqueeBlock from "./Components/MarqueeBlock";
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
       <Features/>
       <ScreensCarousel/>
       <FrequentlyAskedQuestions/>
-      <PricingTable />
+      {/* <PricingTable /> */}
+      <DeploymentOptions />
       <MarqueeBlock />
       <ContactUs/>
       <Footer/>

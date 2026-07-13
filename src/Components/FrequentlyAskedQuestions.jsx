@@ -8,43 +8,49 @@ import "../CSS/FrequentlyAskedQuestions.css";
 const FaqData = [
     {
         question: "What is A2ORU?",
-        answer: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec erat vel risus efficitur faucibus. Phasellus eu tellus ultricies, ultrices orci vel, ultrices magna. Duis nec augue enim. Etiam magna nisl, cursus vitae viverra eu, ornare eu turpis.",
+        answer: "A2ORU is an enterprise Authentication and Authorization platform that centralizes user authentication, identity management, application access, and security policy administration.",
     },
     {
-        question: "What is A2ORU?",
-        answer: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec erat vel risus efficitur faucibus. Phasellus eu tellus ultricies, ultrices orci vel, ultrices magna. Duis nec augue enim. Etiam magna nisl, cursus vitae viverra eu, ornare eu turpis.",
+        question: "How does A2ORU improve security?",
+        answer: "A2ORU strengthens security with multi-method authentication, role-based access control, configurable password policies, OTP management, eSign verification, and centralized monitoring.",
     },
     {
-        question: "What is A2ORU?",
-        answer: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec erat vel risus efficitur faucibus. Phasellus eu tellus ultricies, ultrices orci vel, ultrices magna. Duis nec augue enim. Etiam magna nisl, cursus vitae viverra eu, ornare eu turpis.",
+        question: "Can multiple organizations be managed?",
+        answer: "Yes. Administrators can create, manage, search, edit, and monitor multiple organizations through a centralized dashboard while maintaining secure administrative workflows.",
     },
     {
-        question: "What is A2ORU?",
-        answer: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec erat vel risus efficitur faucibus. Phasellus eu tellus ultricies, ultrices orci vel, ultrices magna. Duis nec augue enim. Etiam magna nisl, cursus vitae viverra eu, ornare eu turpis.",
+        question: "Does A2ORU support role-based permissions?",
+        answer: "Yes. Users can be assigned permissions through organizations, departments, groups, and applications, ensuring controlled access based on business roles.",
+    },
+    {
+        question: "Can administrators configure security policies?",
+        answer: "Yes. Password complexity, OTP settings, eSign PINs, and security question requirements can all be configured according to organizational security policies.",
     },
 ];
 
 const counterData = [
     {
-        number: 12,
-        suffix: "k+",
-        label: "Teams using Azoru"
+        number: 5,
+        prefix: 0,
+        suffix: "+",
+        label: "Authentication Methods"
     },
     {
-        number: 99.9,
+        number: 100,
         suffix: "%",
-        label: "Uptime SLA"
+        label: "Role-Based Access Control"
     },
     {
-        number: 50,
-        suffix: "M+",
-        label: "Logins secured/month"
+        number: 7,
+        prefix: 0,
+        suffix: "+",
+        label: "Security Policies"
     },
     {
-        number: 80,
-        prefix: "< ",
-        suffix: "ms",
-        label: "Avg. auth latency"
+        number: 4,
+        prefix: 0,
+        suffix: "+",
+        label: "Management Modules"
     }
 ];
 
@@ -76,7 +82,7 @@ function FrequentlyAskedQuestions() {
                 <div className="headingGroup">
                     <div className="subTitle"><span>FAQ</span></div>
                     <h2 className="title">Frequently Asked <span className="highlightTitle">Questions</span></h2>
-                    <p className="contentWrapper">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.</p>
+                    <p className="contentWrapper">Find answers to the most common questions about A2ORU, including authentication, access management, security policies, and enterprise administration.</p>
 
                     <div className="counterWrapper">
                         {counterData.map((item, index) => (

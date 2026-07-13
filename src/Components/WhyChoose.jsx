@@ -1,30 +1,36 @@
-import { ShieldCheck } from 'lucide-react';
+import { 
+    ShieldCheck,
+    LayoutDashboard,
+    UsersRound,
+    LockKeyhole
+ } from 'lucide-react';
+
 import "../CSS/WhyChoose.css";
 
 const WhyChooseData = [
     {
         id: 1,
         icon: ShieldCheck,
-        title: "Bank-grade Security",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.",
+        title: "Secure Authentication",
+        desc: "Support multiple login methods including Username, Email, Mobile Number, Google, and Okta authentication with secure password management and account recovery.",
     },
     {
         id: 2,
-        icon: ShieldCheck,
-        title: "Bank-grade Security",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.",
+        icon: LayoutDashboard,
+        title: "Centralized Administration",
+        desc: "Manage users, organizations, applications, sessions, passwords, and eSign credentials from a unified administrative dashboard.",
     },
     {
         id: 3,
-        icon: ShieldCheck,
-        title: "Bank-grade Security",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.",
+        icon: UsersRound,
+        title: "Role-Based Access Control",
+        desc: "Assign permissions using organizations, groups, departments, and user roles to ensure every user has the appropriate level of access.",
     },
     {
         id: 4,
-        icon: ShieldCheck,
-        title: "Bank-grade Security",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.",
+        icon: LockKeyhole,
+        title: "Enterprise Security Policies",
+        desc: "Configure password complexity, OTP expiration, security questions, eSign PINs, and authentication policies to meet organizational security requirements.",
     }
 ]
 
@@ -33,9 +39,10 @@ function WhyChoose () {
         <section className="WhyChooseBlock sec-top-bottom-spacing" id='ChooseUS'>
             <div className="container">
                     <div className="headingGroup text-center">
-                        <div className="subTitle"><span>Why Choose Us</span></div>
-                        <h2 className="title">Built for teams that value <span className="highlightTitle">security</span> and speed</h2>
-                        <p className="contentWrapper">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.</p>
+                        <div className="subTitle"><span>Why Choose A2ORU</span></div>
+                          
+                        <h2 className="title">Built for Organizations That <span className="highlightTitle">Prioritize</span> Security & Compliance</h2>
+                        <p className="contentWrapper">A2ORU centralizes authentication, authorization, and access management with enterprise-grade security, helping organizations protect users, applications, and sensitive business data.</p>
                     </div>
 
                     <div className="whyChooseWrapper">

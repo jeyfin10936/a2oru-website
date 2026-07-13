@@ -7,29 +7,29 @@ const FeaturesData = [
         id: 1,
         image: FeaturesImage,
         altText: "Feature-Image",
-        title: 'Multi-Factor Auth',
-        desc: 'Sed in nulla elementum, tincidunt ex nec, iaculis mi. Cras rhoncus vitae odio sed pellentesque. In hac habitasse platea dictumst. Integer egestas risus quis velit feugiat ultricies. Sed accumsan lacus vitae massa efficitur, sed ultrices sem consequat. Maecenas sit amet lacus mollis, fermentum nibh et, sollicitudin risus. Mauris at eleifend lectus, eget dapibus felis. Nullam eget vehicula est.',
+        title: 'Flexible Authentication',
+        desc: 'Support secure sign-in using Username, Email, Mobile Number, Google Login, or Okta integration. Built-in password recovery and security questions simplify user authentication while maintaining security.',
     },
     {
         id: 2,
         image: FeaturesImage,
         altText: "Feature-Image",
-        title: 'Multi-Factor Auth',
-        desc: 'Sed in nulla elementum, tincidunt ex nec, iaculis mi. Cras rhoncus vitae odio sed pellentesque. In hac habitasse platea dictumst. Integer egestas risus quis velit feugiat ultricies. Sed accumsan lacus vitae massa efficitur, sed ultrices sem consequat. Maecenas sit amet lacus mollis, fermentum nibh et, sollicitudin risus. Mauris at eleifend lectus, eget dapibus felis. Nullam eget vehicula est.',
+        title: 'Organization Management',
+        desc: 'Create, update, search, and manage organizations through a centralized interface with secure eSign confirmation for authorized administrative changes.',
     },
     {
         id: 3,
         image: FeaturesImage,
         altText: "Feature-Image",
-        title: 'Multi-Factor Auth',
-        desc: 'Sed in nulla elementum, tincidunt ex nec, iaculis mi. Cras rhoncus vitae odio sed pellentesque. In hac habitasse platea dictumst. Integer egestas risus quis velit feugiat ultricies. Sed accumsan lacus vitae massa efficitur, sed ultrices sem consequat. Maecenas sit amet lacus mollis, fermentum nibh et, sollicitudin risus. Mauris at eleifend lectus, eget dapibus felis. Nullam eget vehicula est.',
+        title: 'Application & Access Management',
+        desc: 'Manage enterprise applications with complete visibility. Add, edit, delete, search, and control application access while maintaining secure authorization workflows.',
     },
     {
         id: 4,
         image: FeaturesImage,
         altText: "Feature-Image",
-        title: 'Multi-Factor Auth',
-        desc: 'Sed in nulla elementum, tincidunt ex nec, iaculis mi. Cras rhoncus vitae odio sed pellentesque. In hac habitasse platea dictumst. Integer egestas risus quis velit feugiat ultricies. Sed accumsan lacus vitae massa efficitur, sed ultrices sem consequat. Maecenas sit amet lacus mollis, fermentum nibh et, sollicitudin risus. Mauris at eleifend lectus, eget dapibus felis. Nullam eget vehicula est.',
+        title: 'User, Group & Department Control',
+        desc: 'Organize users into departments and groups with role-based permissions. Track changes, maintain accountability, and simplify enterprise access management.',
     },
 ];
 
@@ -39,9 +39,10 @@ function Features() {
         <section className="FeaturesBlock sec-top-bottom-spacing section-alter-bg" id="Features">
             <div className="container">
                 <div className="headingGroup text-center">
-                    <div className="subTitle"><span>Powerful Features</span></div>
-                    <h2 className="title">Everything you need for <span className="highlightTitle">authentication</span></h2>
-                    <p className="contentWrapper">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.</p>
+                    <div className="subTitle"><span>Key Capabilities</span></div>
+                      
+                    <h2 className="title">Everything You Need for <span className="highlightTitle">Enterprise </span>Identity Management</h2>
+                    <p className="contentWrapper">Manage authentication, authorization, organizations, users, and applications from one secure platform designed for enterprise environments.</p>
                 </div>
 
                 <div className="FeaturesWrapper">

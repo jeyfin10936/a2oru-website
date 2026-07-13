@@ -198,6 +198,27 @@
 }
 
 
+/* Additional */
+.deploymentOptions .features h6 {
+    margin-bottom: 16px;
+}
+
+.headerGroup .addTitle h6 {
+    margin-bottom: 16px;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .title h5 {
+    color: var(--primary-color);
+}
+
+.PricingWrapper.deploymentOptions > .contentWrapper > .pricingCard.featured {
+    padding-top: 60px;
+}
+
+.PricingWrapper.deploymentOptions > .contentWrapper > .pricingCard.featured > .badge {
+    top: 20px;
+}
+
 /* responsive */
 
 @media (max-width: 1280px) {

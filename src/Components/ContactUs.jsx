@@ -12,18 +12,19 @@ function ContactUs() {
                 <div className="contactCard">
                     <div className="headingGroup">
                         <div className="subTitle"><span>Get in Touch</span></div>
-                        <h2 className="title">Let's <span className="highlightTitle">Connect</span></h2>
-                        <p className="contentWrapper">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.</p>
+                         
+                        <h2 className="title">Let's <span className="highlightTitle">Secure </span>Your Enterprise Identity Management</h2>
+                        <p className="contentWrapper">Looking for a secure and scalable identity and access management solution? Connect with our team to discover how A2ORU can simplify authentication, strengthen security, and centralize enterprise access management.</p>
 
                         <div className="btn-group">
-                            <Button link={Links.demoURL} target='_blank' text="Explore Now" />
-                            <Button link={`mailto:${Links.email}`} text="Book a Demo" />
+                            <Button link={Links.demoURL} target='_blank' text="Explore Demo" />
+                            <Button link={`mailto:${Links.email}`} text="Contact Sales" />
                         </div>
                     </div>
                     <div className="EmailCard text-center">
                             <span className="icon"><Mail/></span>
                             <h5 className="email"><a href='mailto:info@aithent.com'>info@aithent.com</a></h5>
-                            <p className="info">Our team typically respond within 24 hours</p>
+                            <p className="info">Our team typically responds within 24 hours.</p>
                     </div>
                 </div>
             </div>

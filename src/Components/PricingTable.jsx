@@ -12,41 +12,43 @@ const pricingPlanData = [
         title: "Starter",
         monthlyPrice: 0,
         yearlyPrice: 0,
-        desc: "Vivamus odio lorem, porttitor non porttitor nec, sodales in dolor. Suspendisse nunc eros, eleifend nec nulla mollis, egestas maximus erat.",
+        desc: "Perfect for individuals and small teams looking to implement secure authentication with essential identity management features.",
         cta: "Get Started Free",
         featured: false,
         url: Links.demoURL,
         target: '_blank',
 
         features: [
-            { text: "Up to 3 users", included: true },
-            { text: "MFA via email & SMS", included: true },
-            { text: "2 role levels", included: true },
-            { text: "Audit logs", included: false },
-            { text: "SSO / SAML 2.0", included: false },
-            { text: "Custom role hierarchy", included: false },
-            { text: "Priority support", included: false },
+            { text: "Up to 25 Users", included: true },
+            { text: "Username, Email & Mobile Login", included: true },
+            { text: "Password Recovery", included: true },
+            { text: "Basic Role-Based Access Control", included: true },
+            { text: "Organization Management", included: true },
+            { text: "Community Support", included: true },
+            { text: "SSO Integration", included: false },
+            { text: "Advanced Security Policies", included: false },
         ],
     },
     {
         id: "pro",
-        title: "Pro",
+        title: "Professional",
         monthlyPrice: 29,
         yearlyPrice: 23,
-        desc: "Vivamus odio lorem, porttitor non porttitor nec, sodales in dolor. Suspendisse nunc eros, eleifend nec nulla mollis, egestas maximus erat.",
-        cta: "Start free trial",
+        desc: "Designed for growing businesses that require centralized administration, advanced authentication, and stronger security controls.",
+        cta: "Start Free Trial",
         featured: true,
         url: Links.demoURL,
         target: '_blank',
 
         features: [
-            { text: "Up to 3 users", included: true },
-            { text: "MFA via email & SMS", included: true },
-            { text: "2 role levels", included: true },
-            { text: "Audit logs", included: true },
-            { text: "SSO / SAML 2.0", included: true },
-            { text: "Custom role hierarchy", included: false },
-            { text: "Priority support", included: false },
+            { text: "Unlimited Users", included: true },
+            { text: "Multi-Factor Authentication (MFA)", included: true },
+            { text: "Google & Okta Login", included: true },
+            { text: "Role-Based Access Control", included: true },
+            { text: "Organization & Application Management", included: true },
+            { text: "Group & Department Management", included: true },
+            { text: "Security Policy Configuration", included: true },
+            { text: "Priority Email Support", included: true },
         ],
     },
     {
@@ -54,20 +56,21 @@ const pricingPlanData = [
         title: "Enterprise",
         monthlyPrice: null,
         yearlyPrice: null,
-        desc: "Vivamus odio lorem, porttitor non porttitor nec, sodales in dolor. Suspendisse nunc eros, eleifend nec nulla mollis, egestas maximus erat.",
-        cta: "Contact sales",
+        desc: "Tailored for large enterprises requiring advanced identity management, compliance, custom integrations, and dedicated implementation support.",
+        cta: "Contact Sales",
         featured: false,
         url: `mailto:${Links.email}`,
         target: '_self',
 
         features: [
-            { text: "Up to 3 users", included: true },
-            { text: "MFA via email & SMS", included: true },
-            { text: "2 role levels", included: true },
-            { text: "Audit logs", included: true },
-            { text: "SSO / SAML 2.0", included: true },
-            { text: "Custom role hierarchy", included: true },
-            { text: "Priority support", included: true },
+            { text: "Everything in Professional", included: true },
+            { text: "Single Sign-On (SSO)", included: true },
+            { text: "Advanced Security Policies", included: true },
+            { text: "Custom Integrations", included: true },
+            { text: "Dedicated Account Manager", included: true },
+            { text: "Audit & Compliance Support", included: true },
+            { text: "Enterprise SLA", included: true },
+            { text: "Premium Support", included: true },
         ],
     }
 ];
@@ -87,9 +90,10 @@ function PricingTable() {
         <section className="PricingTableSection sec-top-bottom-spacing" id="pricing">
             <div className="container">
                 <div className="headingGroup text-center">
-                    <div className="subTitle"><span>Pricing Plan</span></div>
-                    <h2 className="title">Flexible <span className="highlightTitle">pricing</span> for growing teams</h2>
-                    <p className="contentWrapper">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.</p>
+                    <div className="subTitle"><span>Pricing Plans</span></div>
+                      
+                    <h2 className="title">Flexible Plans for <span className="highlightTitle">Organizations</span> of Every Size</h2>
+                    <p className="contentWrapper">Choose the plan that best fits your organization's authentication, authorization, and identity management needs. Upgrade anytime as your business grows.</p>
                 </div>
 
                 <div className="PricingWrapper">
@@ -182,7 +186,7 @@ function PricingTable() {
 
                 <div className="bottomContent text-center">
                     <ShieldCheck />
-                    <p>No credit card required · Cancel anytime · SOC 2 certified</p>
+                    <p>No credit card required • Flexible deployment options • Enterprise-grade security</p>
                 </div>
 
             </div>

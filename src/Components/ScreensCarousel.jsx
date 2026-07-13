@@ -18,23 +18,23 @@ import "../CSS/ScreensCarousel.css";
 
 const sliderData = [
     {
-        title: "Main Dashboard",
+        title: "Dashboard Overview",
         pageImage: SliderImg01
     },
     {
-        title: "Main Dashboard",
+        title: "Organization Management",
         pageImage: SliderImg01
     },
     {
-        title: "Main Dashboard",
+        title: "User Management",
         pageImage: SliderImg01
     },
     {
-        title: "Main Dashboard",
+        title: "Application Management",
         pageImage: SliderImg01
     },
     {
-        title: "Main Dashboard",
+        title: "Security Settings",
         pageImage: SliderImg01
     }
 ]
@@ -45,9 +45,10 @@ function ScreensCarousel() {
         <section className="imageCarouselSection sec-top-bottom-spacing" id="Pages">
             <div className="container">
                 <div className="headingGroup text-center">
-                    <div className="subTitle"><span>Interface Overview</span></div>
-                    <h2 className="title">A Clean <span className="highlightTitle">Dashboard</span> For Your Team</h2>
-                    <p className="contentWrapper">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci error pariatur accusantium enim obcaecati alias est culpa facere.</p>
+                    <div className="subTitle"><span>Centralized Administration</span></div>
+                      
+                    <h2 className="title">A Powerful <span className="highlightTitle">Dashboard</span> for Identity & Access Management</h2>
+                    <p className="contentWrapper">The A2ORU dashboard gives administrators complete visibility into users, organizations, applications, authentication activities, and security settings—all from a centralized interface.</p>
                 </div>
 
             </div>

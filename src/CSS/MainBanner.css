@@ -36,16 +36,16 @@
 }
 
 .mainBanner .content h1 {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
     font-size: clamp(2.25rem, 1.9156rem + 1.5287vw, 3.75rem);  /* min: 36px - max: 40px */
     margin-bottom: 20px;
 }
 
 .mainBanner .content p {
-    max-width: 650px;
+    max-width: 700px;
     margin: auto;
-    text-wrap: balance;
+    /* text-wrap: balance; */
 }
 
 .mainBanner .btn-group {

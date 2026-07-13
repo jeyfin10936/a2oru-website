@@ -2,7 +2,13 @@ import Marquee from "react-fast-marquee";
 import "../CSS/MarqueeBlock.css";
 
 const marqueeData = [
-    "SOC 2 Type II Certified", "99.9% Uptime SLA", "End-to-End Encrypted", "12,000+ Teams Worldwide", "<80ms Auth Latency", "GDPR Compliant", "50M+ Logins Secured", "ISO 27001 Certified",];
+    "Multi-Method Authentication", 
+    "Role-Based Access Control", 
+    "Organization Management", 
+    "Security Policy Engine", 
+    "Centralized Administration", 
+    "Enterprise Ready",
+];
 
 function MarqueeBlock() {
     return (

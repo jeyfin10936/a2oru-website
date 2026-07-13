@@ -17,14 +17,14 @@ function MainBanner () {
     return (
         <section className="mainBanner banner" id="home">
             <div className="container">
-
+  
                     <div className="content">
-                        <h1 className='text-center'>Lorem Ipsum Dolor Sit Amet, <span className='highlightTitle'>Consectetur</span> Adipiscing Elit.</h1>
-                        <p className='text-center'>Duis vitae varius ligula, et pretium enim. Donec nec erat vel risus efficitur faucibus. Phasellus eu tellus ultricies, ultrices orci vel, ultrices magna. Duis nec augue enim. Etiam magna nisl, cursus vitae viverra eu, ornare eu turpis.</p>
+                        <h1 className='text-center'>Secure Authentication & Authorization for <span className='highlightTitle'>Modern</span> Enterprises</h1>
+                        <p className='text-center'>Protect your applications with a centralized authentication and authorization platform. A2ORU enables secure user access, role-based permissions, organization management, and policy-driven security controls from a single administration console.</p>
                     </div>
                     <div className="btn-group">
-                        <Button link="#ChooseUS" text="Get Started" />
-                        <Button link={`mailto:${Links.email}`} text="Book a Demo" />
+                        <Button link="#ChooseUS" text="Explore Features" />
+                        <Button link={`mailto:${Links.email}`} text="Request Demo" />
                     </div>
 
             </div>
