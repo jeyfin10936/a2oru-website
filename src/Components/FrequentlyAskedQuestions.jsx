@@ -8,23 +8,23 @@ import "../CSS/FrequentlyAskedQuestions.css";
 const FaqData = [
     {
         question: "What is A2ORU?",
-        answer: "A2ORU is an enterprise Authentication and Authorization platform that centralizes user authentication, identity management, application access, and security policy administration.",
+        answer: "A2ORU is an enterprise Identity and Access Management platform that centralizes authentication, authorization, organizations, users, applications, and security policies within a unified administration system.",
     },
     {
-        question: "How does A2ORU improve security?",
-        answer: "A2ORU strengthens security with multi-method authentication, role-based access control, configurable password policies, OTP management, eSign verification, and centralized monitoring.",
+        question: "What authentication methods does A2ORU support?",
+        answer: "A2ORU supports Single Sign-On (SSO), LDAP authentication, Azure AD integration, Multi-Factor Authentication (MFA), SMS OTP, and flexible authentication policies.",
     },
     {
-        question: "Can multiple organizations be managed?",
-        answer: "Yes. Administrators can create, manage, search, edit, and monitor multiple organizations through a centralized dashboard while maintaining secure administrative workflows.",
+        question: "Can A2ORU manage multiple organizations?",
+        answer: "Yes. A2ORU supports multiple organizations, applications, projects, groups, and users within a single deployment while maintaining independent security policies.",
     },
     {
-        question: "Does A2ORU support role-based permissions?",
-        answer: "Yes. Users can be assigned permissions through organizations, departments, groups, and applications, ensuring controlled access based on business roles.",
+        question: "How does A2ORU secure enterprise data?",
+        answer: "A2ORU combines role-based permissions, module-level security, field-level access control, data-level security, service-level encryption, and eSign validation to protect enterprise information.",
     },
     {
-        question: "Can administrators configure security policies?",
-        answer: "Yes. Password complexity, OTP settings, eSign PINs, and security question requirements can all be configured according to organizational security policies.",
+        question: "Is A2ORU suitable for healthcare organizations?",
+        answer: "Yes. A2ORU is built with a HIPAA-compliant architecture and enterprise security capabilities, making it suitable for healthcare and other regulated industries.",
     },
 ];
 
@@ -36,21 +36,22 @@ const counterData = [
         label: "Authentication Methods"
     },
     {
-        number: 100,
-        suffix: "%",
-        label: "Role-Based Access Control"
-    },
-    {
-        number: 7,
+        number: 3,
         prefix: 0,
         suffix: "+",
-        label: "Security Policies"
+        label: "SSO Integrations"
     },
     {
-        number: 4,
+        number: 3,
         prefix: 0,
         suffix: "+",
-        label: "Management Modules"
+        label: "Access Control Levels"
+    },
+    {
+        number: 1,
+        prefix: 0,
+        // suffix: "+",
+        label: "Unified Platform"
     }
 ];
 

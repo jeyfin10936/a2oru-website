@@ -13,8 +13,8 @@ function ContactUs() {
                     <div className="headingGroup">
                         <div className="subTitle"><span>Get in Touch</span></div>
                          
-                        <h2 className="title">Let's <span className="highlightTitle">Secure </span>Your Enterprise Identity Management</h2>
-                        <p className="contentWrapper">Looking for a secure and scalable identity and access management solution? Connect with our team to discover how A2ORU can simplify authentication, strengthen security, and centralize enterprise access management.</p>
+                        <h2 className="title">Let's <span className="highlightTitle">Secure </span>Your Enterprise Identity</h2>
+                        <p className="contentWrapper">Looking for a scalable Identity and Access Management platform? Connect with our experts to discover how A2ORU can simplify authentication, centralize administration, and strengthen enterprise security across your organization.</p>
 
                         <div className="btn-group">
                             <Button link={Links.demoURL} target='_blank' text="Explore Demo" />

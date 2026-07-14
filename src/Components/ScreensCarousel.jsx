@@ -3,7 +3,12 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, EffectFade, Autoplay } from "swiper/modules";
 
-import SliderImg01 from "../Assets/Main-Dashboard.jpg";
+import DashboardOverview from "../Assets/dashboard-screens/Dashboard Overview.jpg"
+import OrganizationManagement from "../Assets/dashboard-screens/Organization Management.jpg"
+import UserManagement from "../Assets/dashboard-screens/User Management.jpg"
+import ApplicationManagement from "../Assets/dashboard-screens/Application Management.jpg"
+import SecuritySettings from "../Assets/dashboard-screens/Security Settings.jpg"
+import UserProfileEdit from "../Assets/dashboard-screens/User Edit Screen.jpg"
 
 import { ChevronsRight } from "lucide-react";
 import { ChevronsLeft } from "lucide-react";
@@ -19,23 +24,27 @@ import "../CSS/ScreensCarousel.css";
 const sliderData = [
     {
         title: "Dashboard Overview",
-        pageImage: SliderImg01
+        pageImage: DashboardOverview
     },
     {
         title: "Organization Management",
-        pageImage: SliderImg01
+        pageImage: OrganizationManagement
     },
     {
         title: "User Management",
-        pageImage: SliderImg01
+        pageImage: UserManagement
     },
     {
         title: "Application Management",
-        pageImage: SliderImg01
+        pageImage: ApplicationManagement
     },
     {
         title: "Security Settings",
-        pageImage: SliderImg01
+        pageImage: SecuritySettings
+    },
+    {
+        title: "User Profile Edit",
+        pageImage: UserProfileEdit
     }
 ]
 
@@ -46,9 +55,8 @@ function ScreensCarousel() {
             <div className="container">
                 <div className="headingGroup text-center">
                     <div className="subTitle"><span>Centralized Administration</span></div>
-                      
-                    <h2 className="title">A Powerful <span className="highlightTitle">Dashboard</span> for Identity & Access Management</h2>
-                    <p className="contentWrapper">The A2ORU dashboard gives administrators complete visibility into users, organizations, applications, authentication activities, and security settings—all from a centralized interface.</p>
+                    <h2 className="title">A Centralized <span className="highlightTitle">Dashboard</span> for Enterprise Identity Management</h2>
+                    <p className="contentWrapper">Manage organizations, users, applications, roles, and security policies from one intuitive dashboard designed to simplify enterprise identity and access management.</p>
                 </div>
 
             </div>
@@ -62,11 +70,11 @@ function ScreensCarousel() {
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                     }}
-                    slidesPerView={1.6}
+                    slidesPerView={2}
                     breakpoints={{
-                        350: { slidesPerView: 1.3 },
-                        768: { slidesPerView: 1.4 },
-                        1024: { slidesPerView: 1.5 },
+                        350: { slidesPerView: 1.1 },
+                        768: { slidesPerView: 1.6 },
+                        1024: { slidesPerView: 1.8 },
                     }}
                     spaceBetween={10}
                     centeredSlides={true}

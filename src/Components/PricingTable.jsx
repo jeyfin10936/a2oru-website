@@ -10,53 +10,60 @@ const pricingPlanData = [
     {
         id: "starter",
         title: "Starter",
-        monthlyPrice: 0,
-        yearlyPrice: 0,
-        desc: "Perfect for individuals and small teams looking to implement secure authentication with essential identity management features.",
-        cta: "Get Started Free",
+        addTitle: "Project Based",
+        // monthlyPrice: 0,
+        // yearlyPrice: 0,
+        price: "Project Based",
+        desc: "Best for small organizations beginning their identity management journey.",
+        cta: "Request Quote",
         featured: false,
-        url: Links.demoURL,
+        url: `mailto:${Links.email}`,
         target: '_blank',
 
         features: [
-            { text: "Up to 25 Users", included: true },
-            { text: "Username, Email & Mobile Login", included: true },
-            { text: "Password Recovery", included: true },
-            { text: "Basic Role-Based Access Control", included: true },
+            { text: "Authentication & Authorization", included: true },
             { text: "Organization Management", included: true },
-            { text: "Community Support", included: true },
-            { text: "SSO Integration", included: false },
-            { text: "Advanced Security Policies", included: false },
+            { text: "User & Group Management", included: true },
+            { text: "Role-Based Access Control", included: true },
+            { text: "Single Application Support", included: true },
+            { text: "Standard Support", included: true },
+            { text: "Multi-Application Management", included: false },
+            { text: "SSO & LDAP Integration", included: false },
         ],
     },
     {
         id: "pro",
         title: "Professional",
-        monthlyPrice: 29,
-        yearlyPrice: 23,
-        desc: "Designed for growing businesses that require centralized administration, advanced authentication, and stronger security controls.",
-        cta: "Start Free Trial",
+        addTitle:"Business License",
+        // monthlyPrice: 29,
+        // yearlyPrice: 23,
+        price: "Business License",
+        desc: "Designed for growing organizations requiring centralized identity management across multiple applications.",
+        cta: "Request Demo",
         featured: true,
-        url: Links.demoURL,
+        url: `mailto:${Links.email}`,
         target: '_blank',
 
         features: [
-            { text: "Unlimited Users", included: true },
-            { text: "Multi-Factor Authentication (MFA)", included: true },
-            { text: "Google & Okta Login", included: true },
-            { text: "Role-Based Access Control", included: true },
-            { text: "Organization & Application Management", included: true },
-            { text: "Group & Department Management", included: true },
-            { text: "Security Policy Configuration", included: true },
-            { text: "Priority Email Support", included: true },
+            { text: "Everything in Starter", included: true },
+            { text: "Multi-Application Management", included: true },
+            { text: "SSO & LDAP Integration", included: true },
+            { text: "Multi-Factor Authentication", included: true },
+            { text: "Module, Field & Data-Level Security", included: true },
+            { text: "HIPAA-Compliant Architecture", included: true },
+            { text: "Priority Support", included: true },
+            { text: "Unlimited Organizations", included: false },
+            { text: "Enterprise Integrations", included: false },
         ],
     },
     {
         id: "enterprise",
         title: "Enterprise",
-        monthlyPrice: null,
-        yearlyPrice: null,
-        desc: "Tailored for large enterprises requiring advanced identity management, compliance, custom integrations, and dedicated implementation support.",
+        addTitle: "Custom Licensing",
+        // monthlyPrice: null,
+        // yearlyPrice: null,
+        price: "Custom Licensing",
+        desc: "Tailored implementation for large enterprises with advanced security, integration, and compliance requirements.",
         cta: "Contact Sales",
         featured: false,
         url: `mailto:${Links.email}`,
@@ -64,11 +71,11 @@ const pricingPlanData = [
 
         features: [
             { text: "Everything in Professional", included: true },
-            { text: "Single Sign-On (SSO)", included: true },
-            { text: "Advanced Security Policies", included: true },
-            { text: "Custom Integrations", included: true },
-            { text: "Dedicated Account Manager", included: true },
-            { text: "Audit & Compliance Support", included: true },
+            { text: "Unlimited Organizations", included: true },
+            { text: "Enterprise Integrations", included: true },
+            { text: "Custom Security Policies", included: true },
+            { text: "Source-Level Customization", included: true },
+            { text: "Dedicated Implementation Team", included: true },
             { text: "Enterprise SLA", included: true },
             { text: "Premium Support", included: true },
         ],
@@ -78,26 +85,26 @@ const pricingPlanData = [
 
 function PricingTable() {
 
-    const [isYearly, setIsYearly] = useState(false);
+    // const [isYearly, setIsYearly] = useState(false);
 
-    const getPrice = (pricingPlan) => {
-        if(pricingPlan.monthlyPrice === null) return null;
+    // const getPrice = (pricingPlan) => {
+    //     if(pricingPlan.monthlyPrice === null) return null;
 
-        return isYearly ? pricingPlan.yearlyPrice : pricingPlan.monthlyPrice;
-    };
+    //     return isYearly ? pricingPlan.yearlyPrice : pricingPlan.monthlyPrice;
+    // };
 
     return (
         <section className="PricingTableSection sec-top-bottom-spacing" id="pricing">
             <div className="container">
                 <div className="headingGroup text-center">
                     <div className="subTitle"><span>Pricing Plans</span></div>
-                      
-                    <h2 className="title">Flexible Plans for <span className="highlightTitle">Organizations</span> of Every Size</h2>
-                    <p className="contentWrapper">Choose the plan that best fits your organization's authentication, authorization, and identity management needs. Upgrade anytime as your business grows.</p>
+                       
+                    <h2 className="title">Flexible Licensing Options for Every <span className="highlightTitle">Organization</span></h2>
+                    <p className="contentWrapper">Choose the licensing model that best fits your organization's deployment, scalability, and security requirements.</p>
                 </div>
 
                 <div className="PricingWrapper">
-                    <div className="toggleWrapper">
+                    {/* <div className="toggleWrapper">
                         <div className="btnWrapper">
                             <button
                                 className={`btn ${!isYearly ? "toggleActive" : "" }`}
@@ -119,12 +126,12 @@ function PricingTable() {
                         </div>
                         
 
-                    </div>
+                    </div> */}
 
                     <div className="contentWrapper">
                         {pricingPlanData.map((pricingPlan) => {
 
-                            const price = getPrice(pricingPlan);
+                            // const price = getPrice(pricingPlan);
 
                             return (
                                 <div
@@ -136,20 +143,25 @@ function PricingTable() {
                                     )}
 
                                     <div className="headerGroup">
-                                        <div className="title">
-                                            <h5>{pricingPlan.title}</h5>
+
+                                        <div className="subtitle">
+                                            <span>{pricingPlan.title}</span>
                                         </div>
+
+                                        <div className="title">
+                                            <h5>{pricingPlan.addTitle}</h5>
+                                        </div> 
+
                                         <div className="priceDetails">
-                                            {price === null ? (
+                                            {/* {price === null ? (
                                                 <span className="customPrice">Custom</span>
                                             ) : (
                                                 <div className="priceGroup">
                                                     <span className="currency">$</span>
                                                     <span className="priceAmount">{price}</span>
-                                                    {/* <span className="priceSuffix">/month</span> */}
                                                     <span className="priceSuffix">{isYearly ? "/year" : "/month"}</span>
                                                 </div>
-                                            )}
+                                            )} */}
                                         </div>
 
                                         <div className="description">
@@ -186,7 +198,7 @@ function PricingTable() {
 
                 <div className="bottomContent text-center">
                     <ShieldCheck />
-                    <p>No credit card required • Flexible deployment options • Enterprise-grade security</p>
+                    <p>Flexible Licensing • Project-Based Pricing • Enterprise Deployment • Custom Implementation</p>
                 </div>
 
             </div>

@@ -2,12 +2,16 @@ import Marquee from "react-fast-marquee";
 import "../CSS/MarqueeBlock.css";
 
 const marqueeData = [
+    "Centralized Administration", 
+    "Enterprise Ready", 
     "Multi-Method Authentication", 
     "Role-Based Access Control", 
     "Organization Management", 
-    "Security Policy Engine", 
-    "Centralized Administration", 
-    "Enterprise Ready",
+    "Multi-Application Support",
+    "Module, Field & Data-Level Security",
+    "HIPAA Compliant",
+    "Single Sign-On (SSO)",
+    "Multi-Factor Authentication (MFA)",
 ];
 
 function MarqueeBlock() {

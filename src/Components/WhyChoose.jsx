@@ -12,25 +12,25 @@ const WhyChooseData = [
         id: 1,
         icon: ShieldCheck,
         title: "Secure Authentication",
-        desc: "Support multiple login methods including Username, Email, Mobile Number, Google, and Okta authentication with secure password management and account recovery.",
+        desc: "Support secure authentication with Single Sign-On (SSO), LDAP integration, Multi-Factor Authentication (MFA), SMS OTP verification, and service-level encryption for enterprise-grade identity protection.",
     },
     {
         id: 2,
         icon: LayoutDashboard,
         title: "Centralized Administration",
-        desc: "Manage users, organizations, applications, sessions, passwords, and eSign credentials from a unified administrative dashboard.",
+        desc: "Manage organizations, users, groups, departments, applications, and security policies through one centralized administration platform.",
     },
     {
         id: 3,
         icon: UsersRound,
-        title: "Role-Based Access Control",
-        desc: "Assign permissions using organizations, groups, departments, and user roles to ensure every user has the appropriate level of access.",
+        title: "Granular Access Control",
+        desc: "Control access at the module, field, and data levels using configurable roles and permissions that align with your organizational structure.",
     },
     {
         id: 4,
         icon: LockKeyhole,
-        title: "Enterprise Security Policies",
-        desc: "Configure password complexity, OTP expiration, security questions, eSign PINs, and authentication policies to meet organizational security requirements.",
+        title: "Enterprise Ready",
+        desc: "Built with HIPAA-compliant architecture, service-level encryption, multi-project support, and scalable deployment for enterprise environments.",
     }
 ]
 
@@ -42,7 +42,7 @@ function WhyChoose () {
                         <div className="subTitle"><span>Why Choose A2ORU</span></div>
                           
                         <h2 className="title">Built for Organizations That <span className="highlightTitle">Prioritize</span> Security & Compliance</h2>
-                        <p className="contentWrapper">A2ORU centralizes authentication, authorization, and access management with enterprise-grade security, helping organizations protect users, applications, and sensitive business data.</p>
+                        <p className="contentWrapper">Simplify identity management with centralized administration, flexible authentication, role-based access control, and enterprise security features designed for modern organizations.</p>
                     </div>
 
                     <div className="whyChooseWrapper">

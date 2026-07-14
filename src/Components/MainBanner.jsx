@@ -19,8 +19,9 @@ function MainBanner () {
             <div className="container">
   
                     <div className="content">
-                        <h1 className='text-center'>Secure Authentication & Authorization for <span className='highlightTitle'>Modern</span> Enterprises</h1>
-                        <p className='text-center'>Protect your applications with a centralized authentication and authorization platform. A2ORU enables secure user access, role-based permissions, organization management, and policy-driven security controls from a single administration console.</p>
+                          
+                        <h1 className='text-center'>Enterprise Identity & Access <span className='highlightTitle'>Management</span> Made Simple</h1>
+                        <p className='text-center'>A2ORU is a centralized Identity & Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system.</p>
                     </div>
                     <div className="btn-group">
                         <Button link="#ChooseUS" text="Explore Features" />

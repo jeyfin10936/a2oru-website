@@ -34,7 +34,7 @@
 }
 
 .faq-wrapper > .FaqItem > .faqTitle > .titleGroup > .titleText {
-    font-weight: var(--font-weight-alt);
+    font-weight: var(--font-weight-ext);
     font-size: var(--font-size-h6);
     line-height: var(--line-height-alt);
     color: var(--head-color);

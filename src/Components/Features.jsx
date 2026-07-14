@@ -1,35 +1,38 @@
-import FeaturesImage from "../Assets/Main-Dashboard.jpg";
 import "../CSS/Features.css";
 
+import FlexibleAuthentication from "../Assets/features/Flexible Authentication.jpg"
+import OrganizationUserManagement from "../Assets/features/Organization & User Management.jpg"
+import MultiApplicationManagement from "../Assets/features/Multi-Application Management.jpg"
+import ModuleLevelSecurity from "../Assets/features/Module-Level Security.jpg"
 
 const FeaturesData = [
     {
         id: 1,
-        image: FeaturesImage,
+        image: FlexibleAuthentication,
         altText: "Feature-Image",
         title: 'Flexible Authentication',
-        desc: 'Support secure sign-in using Username, Email, Mobile Number, Google Login, or Okta integration. Built-in password recovery and security questions simplify user authentication while maintaining security.',
+        desc: 'Authenticate users using SSO, LDAP, Azure AD, MFA, SMS OTP, and enterprise authentication policies while supporting secure access across multiple applications.',
     },
     {
         id: 2,
-        image: FeaturesImage,
+        image: OrganizationUserManagement,
         altText: "Feature-Image",
-        title: 'Organization Management',
-        desc: 'Create, update, search, and manage organizations through a centralized interface with secure eSign confirmation for authorized administrative changes.',
+        title: 'Organization & User Management',
+        desc: 'Create and manage organizations, users, groups, departments, and role hierarchies through a centralized administration console.',
     },
     {
         id: 3,
-        image: FeaturesImage,
+        image: MultiApplicationManagement,
         altText: "Feature-Image",
-        title: 'Application & Access Management',
-        desc: 'Manage enterprise applications with complete visibility. Add, edit, delete, search, and control application access while maintaining secure authorization workflows.',
+        title: 'Multi-Application Management',
+        desc: 'Integrate multiple enterprise applications into a single deployment while configuring application-specific modules, permissions, and security policies.',
     },
     {
         id: 4,
-        image: FeaturesImage,
+        image: ModuleLevelSecurity,
         altText: "Feature-Image",
-        title: 'User, Group & Department Control',
-        desc: 'Organize users into departments and groups with role-based permissions. Track changes, maintain accountability, and simplify enterprise access management.',
+        title: 'Module-Level Security',
+        desc: 'Protect sensitive business information with configurable module-level, field-level, and data-level access permissions for every user role.',
     },
 ];
 

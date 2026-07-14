@@ -21,8 +21,8 @@ function App() {
       <Features/>
       <ScreensCarousel/>
       <FrequentlyAskedQuestions/>
-      {/* <PricingTable /> */}
-      <DeploymentOptions />
+      <PricingTable />
+      {/* <DeploymentOptions /> */}
       <MarqueeBlock />
       <ContactUs/>
       <Footer/>
