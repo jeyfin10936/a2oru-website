@@ -23,8 +23,8 @@ function ContactUs() {
                     </div>
                     <div className="EmailCard text-center">
                             <span className="icon"><Mail/></span>
-                            <h5 className="email"><a href='mailto:info@aithent.com'>info@aithent.com</a></h5>
-                            <p className="info">Our team typically responds within 24 hours.</p>
+                            <h5 className="email"><a href='mailto:a2oru@aithent.com'>a2oru@aithent.com</a></h5>
+                            <p className="info">Our team will contact you shortly.</p>
                     </div>
                 </div>
             </div>

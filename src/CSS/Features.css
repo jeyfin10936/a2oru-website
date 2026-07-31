@@ -96,6 +96,7 @@
     box-shadow: 0 0 20px 10px rgb(var(--primary-color-rgb), 0.06);
     position: relative;
     z-index: 1;
+    filter: blur(2px);
 }
 
 .FeaturesWrapper > .FeatureItem > .ContentGroup {
