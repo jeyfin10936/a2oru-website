@@ -27,8 +27,8 @@ const pricingPlanData = [
             { text: "Role-Based Access Control", included: true },
             { text: "Single Application Support", included: true },
             { text: "Standard Support", included: true },
-            { text: "Multi-Application Management", included: false },
-            { text: "SSO & LDAP Integration", included: false },
+            // { text: "Multi-Application Management", included: false },
+            // { text: "SSO & LDAP Integration", included: false },
         ],
     },
     {
@@ -52,8 +52,8 @@ const pricingPlanData = [
             { text: "Module, Field & Data-Level Security", included: true },
             { text: "HIPAA-Compliant Architecture", included: true },
             { text: "Priority Support", included: true },
-            { text: "Unlimited Organizations", included: false },
-            { text: "Enterprise Integrations", included: false },
+            // { text: "Unlimited Organizations", included: false },
+            // { text: "Enterprise Integrations", included: false },
         ],
     },
     {

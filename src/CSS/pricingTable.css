@@ -70,6 +70,7 @@
     background-color: rgb(var(--secondary-color-rgb), 0.06);
     border-radius: var(--border-radius-3X);
     position: relative;
+    height: fit-content;
 }
 
 /* title */

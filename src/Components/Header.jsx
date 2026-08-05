@@ -111,7 +111,7 @@ function Header () {
         },
 
         {
-            title: "Faq",
+            title: "FAQ",
             link: "#faq",
             section: "faq"
         },
