@@ -176,7 +176,8 @@
   }
 
   .FeaturesWrapper > .FeatureItem > .ContentGroup::before,
-  .FeaturesWrapper > .FeatureItem .MediaBlock .imgGroup::after { display: none; }
+  .FeaturesWrapper > .FeatureItem .MediaBlock .imgGroup::after,
+  .FeaturesWrapper > .FeatureItem .MediaBlock::after { display: none; }
 
   .FeaturesWrapper > .FeatureItem:nth-child(2n) > .ContentGroup { order: unset; }
 

@@ -39,9 +39,9 @@
 
     --border-radius-full: 50%;
     --border-radius-part: 2.5em;
-    --border-radius-1X: 6px;
-    --border-radius-2X: 10px;
-    --border-radius-3X: 20px;
+    --border-radius-1X: clamp(0.25rem, 0.2221rem + 0.1274vw, 0.375rem); /* max-6px || max-4px */
+    --border-radius-2X: clamp(0.375rem, 0.3193rem + 0.2548vw, 0.625rem); /* max-10px || max-6px */
+    --border-radius-3X: clamp(0.75rem, 0.6385rem + 0.5096vw, 1.25rem);  /* max-20px || max-12px */
 
     --btn-padding: 12px 20px;
 }

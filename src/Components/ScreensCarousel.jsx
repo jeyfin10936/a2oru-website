@@ -73,6 +73,7 @@ function ScreensCarousel() {
                     slidesPerView={2}
                     breakpoints={{
                         350: { slidesPerView: 1.1 },
+                        479: { slidesPerView: 1.4 },
                         768: { slidesPerView: 1.6 },
                         1024: { slidesPerView: 1.8 },
                     }}

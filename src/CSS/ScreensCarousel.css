@@ -16,6 +16,7 @@
 /* title */
 .carouselWrapper .swiper-wrapper .swiper-slide .slideCard .title {
     margin-top: clamp(0.625rem, 0.4857rem + 0.6369vw, 1.25rem); /* min: 10px - max: 20px */
+    padding: 0 10px;
 }
 
 /* image */

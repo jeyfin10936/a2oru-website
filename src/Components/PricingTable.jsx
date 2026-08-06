@@ -138,51 +138,54 @@ function PricingTable() {
                                     key={pricingPlan.id}
                                     className={`pricingCard ${pricingPlan.featured ? "featured" : ""}`}
                                 >
-                                    {pricingPlan.featured && (
-                                        <span className="badge">Most popular</span>
-                                    )}
+                                    <div>
+                                        {pricingPlan.featured && (
+                                            <span className="badge">Most popular</span>
+                                        )}
 
-                                    <div className="headerGroup">
+                                        <div className="headerGroup">
 
-                                        <div className="subtitle">
-                                            <span>{pricingPlan.title}</span>
+                                            <div className="subtitle">
+                                                <span>{pricingPlan.title}</span>
+                                            </div>
+
+                                            <div className="title">
+                                                <h5>{pricingPlan.addTitle}</h5>
+                                            </div> 
+
+                                            <div className="priceDetails">
+                                                {/* {price === null ? (
+                                                    <span className="customPrice">Custom</span>
+                                                ) : (
+                                                    <div className="priceGroup">
+                                                        <span className="currency">$</span>
+                                                        <span className="priceAmount">{price}</span>
+                                                        <span className="priceSuffix">{isYearly ? "/year" : "/month"}</span>
+                                                    </div>
+                                                )} */}
+                                            </div>
+
+                                            <div className="description">
+                                                <p>{pricingPlan.desc}</p>
+                                            </div>
                                         </div>
 
-                                        <div className="title">
-                                            <h5>{pricingPlan.addTitle}</h5>
-                                        </div> 
+                                        <div className="divider"></div>
 
-                                        <div className="priceDetails">
-                                            {/* {price === null ? (
-                                                <span className="customPrice">Custom</span>
-                                            ) : (
-                                                <div className="priceGroup">
-                                                    <span className="currency">$</span>
-                                                    <span className="priceAmount">{price}</span>
-                                                    <span className="priceSuffix">{isYearly ? "/year" : "/month"}</span>
-                                                </div>
-                                            )} */}
+                                        <div className="features">
+                                            <ul className="featureLists">
+                                                {pricingPlan.features.map((f,i) => (
+                                                    <li 
+                                                        key={i}
+                                                        className={`featureList ${!f.included ? "disable" : ""}`}
+                                                    >
+                                                        <span className="listIcon"> <SquareCheckBig /> </span>
+                                                        <span className="listText">{f.text}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
 
-                                        <div className="description">
-                                            <p>{pricingPlan.desc}</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="divider"></div>
-
-                                    <div className="features">
-                                        <ul className="featureLists">
-                                            {pricingPlan.features.map((f,i) => (
-                                                <li 
-                                                    key={i}
-                                                    className={`featureList ${!f.included ? "disable" : ""}`}
-                                                >
-                                                    <span className="listIcon"> <SquareCheckBig /> </span>
-                                                    <span className="listText">{f.text}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
                                     </div>
 
                                     <div className="footerGroup">
@@ -196,7 +199,7 @@ function PricingTable() {
                     
                 </div>
 
-                <div className="bottomContent text-center">
+                <div className="bottomContent">
                     <ShieldCheck />
                     <p>Flexible Licensing • Project-Based Pricing • Enterprise Deployment • Custom Implementation</p>
                 </div>

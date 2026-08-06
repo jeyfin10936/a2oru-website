@@ -70,21 +70,21 @@
     background-color: rgb(var(--secondary-color-rgb), 0.06);
     border-radius: var(--border-radius-3X);
     position: relative;
-    height: fit-content;
+    display: inline-grid;
 }
 
 /* title */
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .title { margin-bottom: 12px; }
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .title { margin-bottom: 12px; }
 
 /* price */
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails { margin-bottom: 20px; }  
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .priceDetails { margin-bottom: 20px; }  
 
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails .priceGroup {
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .priceDetails .priceGroup {
     display: inline-flex;
     align-items: end;
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails :is(.currency, .priceAmount, .customPrice) {
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .priceDetails :is(.currency, .priceAmount, .customPrice) {
     font-family: var(--font-typo-alt);
     line-height: 1;
     font-size: var(--font-size-h1);
@@ -92,7 +92,7 @@
     color: var(--primary-color);
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .priceDetails .priceSuffix {
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .priceDetails .priceSuffix {
     color: var(--head-color);
     font-size: var(--font-size-h6);
     margin-left: 6px;
@@ -100,7 +100,7 @@
 
 
 /* seperator */
-.PricingWrapper > .contentWrapper > .pricingCard > .divider {
+.PricingWrapper > .contentWrapper > .pricingCard .divider {
     display: block;
     width: 100%;
     height: 2px;
@@ -110,39 +110,43 @@
 
 
 /* Features */
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul {
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li:not(:last-child) { margin-bottom: 16px; }
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul > li:not(:last-child) { margin-bottom: 16px; }
 
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li {
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul > li {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li .listIcon { line-height: 0; }
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul > li .listIcon { line-height: 0; }
 
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li .listIcon svg {
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul > li .listIcon svg {
     width: 1em;
     height: 1em;
     font-size: 20px;
     color: var(--primary-color);
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li  .listText { color: var(--head-color); }
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul > li  .listText { color: var(--head-color); }
 
-.PricingWrapper > .contentWrapper > .pricingCard >  .features ul > li.disable {
+.PricingWrapper > .contentWrapper > .pricingCard  .features ul > li.disable {
     opacity: 0.6;
     filter: blur(1px);
 }
 
 
 /* footer group */
-.PricingWrapper > .contentWrapper > .pricingCard > .footerGroup .btn {
+.PricingWrapper > .contentWrapper > .pricingCard .footerGroup {
+    align-self: end;
+}
+
+.PricingWrapper > .contentWrapper > .pricingCard .footerGroup .btn {
     width: 100%;
     justify-content: center;
     margin-top: 30px;
@@ -150,7 +154,7 @@
 
 
 /* Badge */
-.PricingWrapper > .contentWrapper > .pricingCard.featured > .badge {
+.PricingWrapper > .contentWrapper > .pricingCard.featured .badge {
     display: inline-block;
     background-color: var(--secondary-color);
     color: var(--white-color);
@@ -162,7 +166,7 @@
     right: 0;
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard.featured > .badge:before {
+.PricingWrapper > .contentWrapper > .pricingCard.featured .badge:before {
     content: "";
     border-top: 20px solid transparent;
     border-right: 20px solid transparent;
@@ -176,11 +180,25 @@
 /* bottom content */
 .bottomContent {
     margin-top: 30px;
-    text-align: center;
+    width: fit-content;
+    margin-inline: auto;
     display: flex;
     justify-content: center;
     gap: 10px;
     align-items: start;
+}
+
+.bottomContent svg {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+    line-height: 1;
+    position: relative;
+    top: 2px
+}
+
+.bottomContent p {
+    flex: 1;
 }
 
 
@@ -208,11 +226,11 @@
     margin-bottom: 16px;
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .title h5 {
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .title h5 {
     color: var(--primary-color);
 }
 
-.PricingWrapper > .contentWrapper > .pricingCard > .headerGroup .subtitle span {
+.PricingWrapper > .contentWrapper > .pricingCard .headerGroup .subtitle span {
     color: var(--primary-color);
     font-size: calc(var(--font-size-ext) - 2px);
     font-weight: var(--font-weight-alt);
@@ -231,7 +249,7 @@
     padding-top: 60px;
 }
 
-.PricingWrapper.deploymentOptions > .contentWrapper > .pricingCard.featured > .badge {
+.PricingWrapper.deploymentOptions > .contentWrapper > .pricingCard.featured .badge {
     top: 20px;
 }
 
