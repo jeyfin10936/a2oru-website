@@ -1,4 +1,9 @@
-.faqSection .headingGroup { margin-bottom: 0; }
+.faqSection .headingGroup { 
+    margin-bottom: 0; 
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
 
 .faq-wrapper > .FaqItem:not(:last-child) { margin-bottom: 20px; }
 
@@ -124,7 +129,7 @@
 
     .faqSection .counterWrapper { grid-template-columns: repeat(4,1fr); }
 
-    .faqSection .headingGroup { text-align: center; }
+    .faqSection .headingGroup { text-align: center; position: relative; top: 0; }
 }
 
 @media (max-width: 768px) {

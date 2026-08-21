@@ -7,24 +7,48 @@ import "../CSS/FrequentlyAskedQuestions.css";
 
 const FaqData = [
     {
-        question: "What is A2ORU?",
-        answer: "A2ORU is an enterprise Identity and Access Management platform that centralizes authentication, authorization, organizations, users, applications, and security policies within a unified administration system.",
+        question: "Does A2ORU support OIDC and SAML for third-party application integration?",
+        answer: 'Yes. A2ORU supports both OIDC and SAML protocols, enabling seamless "Login with A2ORU" integration for third-party applications and allowing enterprises to extend centralized identity management across their entire application ecosystem.',
     },
     {
-        question: "What authentication methods does A2ORU support?",
-        answer: "A2ORU supports Single Sign-On (SSO), LDAP authentication, Azure AD integration, Multi-Factor Authentication (MFA), SMS OTP, and flexible authentication policies.",
+        question: "Can A2ORU integrate with our existing LDAP/Active Directory setup?",
+        answer: "Yes. A2ORU integrates directly with your existing LDAP and Active Directory infrastructure, enabling synchronized user profiles and streamlined authentication without disrupting your current directory services.",
     },
     {
-        question: "Can A2ORU manage multiple organizations?",
-        answer: "Yes. A2ORU supports multiple organizations, applications, projects, groups, and users within a single deployment while maintaining independent security policies.",
+        question: "Does A2ORU support multi-factor authentication (MFA)?",
+        answer: "Yes. A2ORU supports multi-factor authentication to add an additional layer of security beyond standard credentials, helping safeguard access to sensitive systems and data.",
     },
     {
-        question: "How does A2ORU secure enterprise data?",
-        answer: "A2ORU combines role-based permissions, module-level security, field-level access control, data-level security, service-level encryption, and eSign validation to protect enterprise information.",
+        question: "Can we customize password policies and expiration rules?",
+        answer: "Yes. A2ORU allows administrators to configure custom password policies, including  expiration schedules, tailored to your organization's security standards.",
     },
     {
-        question: "Is A2ORU suitable for healthcare organizations?",
-        answer: "Yes. A2ORU is built with a HIPAA-compliant architecture and enterprise security capabilities, making it suitable for healthcare and other regulated industries.",
+        question: "Does A2ORU support Single Sign-On (SSO) across multiple products?",
+        answer: "Yes. A2ORU provides SSO capabilities that let users authenticate once and gain seamless access across multiple connected products and applications.",
+    },
+    {
+        question: "What role-based access control (RBAC) capabilities does A2ORU offer?",
+        answer: "A2ORU offers a fully configurable role-based access control system. Access is governed by a defined role hierarchy — users are assigned roles with specific permission levels, and the system enforces strict hierarchical boundaries so that users cannot modify or edit roles positioned above their own in the hierarchy. This ensures access control remains consistent, auditable, and secure across the organization.",
+    },
+    {
+        question: "How does A2ORU handle audit logging and compliance reporting?",
+        answer: "A2ORU maintains a dedicated, separate audit log that records system and user activity independently of operational data. This ensures a reliable, tamper-resistant trail for compliance reporting and security review.",
+    },
+    {
+        question: "Can A2ORU scale to support thousands of users across multiple business units?",
+        answer: "Yes. A2ORU is built to scale — one of our existing enterprise customers currently runs over 30,000 active users on the platform, demonstrating its readiness for large, multi-business-unit deployments.",
+    },
+    {
+        question: "Is there a free trial or demo available?",
+        answer: "Yes. Help videos are available to help you explore A2ORU's capabilities, and a live demo can be scheduled directly through our Request a Demo option.",
+    },
+    {
+        question: "Can we migrate existing user data from another IAM system into A2ORU?",
+        answer: "Yes. A2ORU includes a dedicated migration module that enables organizations to securely migrate existing user data from other IAM systems into A2ORU with minimal disruption.",
+    },
+    {
+        question: "What training or documentation is provided during onboarding?",
+        answer: "Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules — giving your team everything needed for a smooth, self-sufficient rollout.",
     },
 ];
 

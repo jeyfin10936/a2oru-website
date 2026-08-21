@@ -2,10 +2,12 @@
 
 /* card */
 .carouselWrapper .swiper-wrapper .swiper-slide .slideCard {
-    padding: 0 0 clamp(0.625rem, 0.4857rem + 0.6369vw, 1.25rem); /* min: 10px - max: 20px */
+    display: grid;
+    align-items: end;
     background: var(--white-color);
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-3X);
+    overflow: hidden;
     transition: var(--alt-transition);
 }
 
@@ -13,20 +15,69 @@
     border-color: var(--primary-color);
 }
 
+.carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div {
+    grid-area: 1/-1;
+}
+
+/* Media Group */
+
+.carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div.mediaGroup {
+    line-height: 0;
+    position: relative;
+}
+
+
+/* Content Group */
+
+.carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div.contentGroup {
+    padding: 12px;
+    z-index: 1;
+    color: var(--white-color);
+    background-color: rgb(var(--primary-color-rgb),0.9);
+
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    border-radius: var(--border-radius-2X) 0 0 0;
+
+    opacity: 0;
+    transform: translateX(20px);
+    transition: var(--alt-transition);
+}
+
+.carouselWrapper .swiper-wrapper .swiper-slide.swiper-slide-active .slideCard > div.contentGroup {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 300ms;
+}
+
+/* List */
+.carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div.contentGroup ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: calc(var(--font-size-ext) - 2px);
+}
+
+.carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div.contentGroup ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div.contentGroup ul li .icon {
+    position: relative;
+    top: 3px;
+    margin-right: 4px;
+}
+
 /* title */
 .carouselWrapper .swiper-wrapper .swiper-slide .slideCard .title {
-    margin-top: clamp(0.625rem, 0.4857rem + 0.6369vw, 1.25rem); /* min: 10px - max: 20px */
-    padding: 0 10px;
+    margin-bottom: 10px;
+    color: var(--white-color);
+    font-size: var(--font-size-base);
 }
 
 /* image */
 .carouselWrapper .swiper-wrapper .swiper-slide { cursor: grab; }
-.carouselWrapper .swiper-wrapper .swiper-slide .slideCard img {
-    border-radius: var(--border-radius-3X) var(--border-radius-3X) 0 0;
-    border-bottom: 1px solid var(--border-color);
-    transition: var(--alt-transition);
-    filter: blur(2px);
-}
 
 /* pagination */
 .carouselWrapper > .paginationWrapper {
@@ -73,49 +124,3 @@
 
 /* arrow pagination */
 .carouselWrapper { position: relative; }
-
-.paginationWrapper >.arrowPagination > button {
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    border: none;
-    border-radius: var(--border-radius-full);
-    cursor: pointer;
-    pointer-events: all;
-    line-height: 0;
-    transition: var(--alt-transition);
-}
-
-.paginationWrapper >.arrowPagination > button:hover {
-    background-color: var(--secondary-color);
-}
-
-.paginationWrapper >.arrowPagination > button.swiper-button-disabled { cursor: not-allowed; }
-
-.paginationWrapper >.arrowPagination > button svg {
-    width: 1em;
-    height: 1em;
-    font-size: 30px;
-    color: inherit;
-    transform: translateX(0);
-    transition: var(--alt-transition);
-}
-
-.paginationWrapper >.arrowPagination > button.prevArrow:not(.swiper-button-disabled):hover svg { transform: translateX(-4px); }
-
-.paginationWrapper >.arrowPagination > button.nextArrow:not(.swiper-button-disabled):hover svg { transform: translateX(4px); }
-
-.paginationWrapper >.arrowPagination {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    height: fit-content;
-    margin: auto;
-    width: 100%;
-    z-index: 1;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-}

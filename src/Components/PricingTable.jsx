@@ -1,5 +1,5 @@
-import React from 'react';
-import {useState} from 'react';
+// import React from 'react';
+// import {useState} from 'react';
 import { SquareCheckBig, ShieldCheck } from 'lucide-react';
 import "../CSS/pricingTable.css";
 import Button from "../Components/Common/Button";
@@ -10,10 +10,10 @@ const pricingPlanData = [
     {
         id: "starter",
         title: "Starter",
-        addTitle: "Project Based",
+        addTitle: "Project Licensing",
         // monthlyPrice: 0,
         // yearlyPrice: 0,
-        price: "Project Based",
+        price: "Project Licensing",
         desc: "Best for small organizations beginning their identity management journey.",
         cta: "Request Quote",
         featured: false,
@@ -49,8 +49,6 @@ const pricingPlanData = [
             { text: "Multi-Application Management", included: true },
             { text: "SSO & LDAP Integration", included: true },
             { text: "Multi-Factor Authentication", included: true },
-            { text: "Module, Field & Data-Level Security", included: true },
-            { text: "HIPAA-Compliant Architecture", included: true },
             { text: "Priority Support", included: true },
             // { text: "Unlimited Organizations", included: false },
             // { text: "Enterprise Integrations", included: false },
@@ -76,6 +74,7 @@ const pricingPlanData = [
             { text: "Custom Security Policies", included: true },
             { text: "Source-Level Customization", included: true },
             { text: "Dedicated Implementation Team", included: true },
+            { text: "Module, Field & Data-Level Security", included: true },
             { text: "Enterprise SLA", included: true },
             { text: "Premium Support", included: true },
         ],

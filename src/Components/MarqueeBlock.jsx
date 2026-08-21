@@ -17,7 +17,7 @@ const marqueeData = [
 function MarqueeBlock() {
     return (
         <section className="marqueeBlock">
-            <Marquee speed={60} gradient={true}>
+            <Marquee speed={60} gradient={true} pauseOnHover={true}>
                 {marqueeData.map((item, index) => (
                     <span key={index} className="marqueeItem">
                         <span className="text">{item}</span>

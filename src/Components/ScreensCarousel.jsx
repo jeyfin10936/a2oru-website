@@ -1,7 +1,5 @@
-import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, EffectFade, Autoplay } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 import DashboardOverview from "../Assets/dashboard-screens/Dashboard Overview.jpg"
 import OrganizationManagement from "../Assets/dashboard-screens/Organization Management.jpg"
@@ -10,43 +8,74 @@ import ApplicationManagement from "../Assets/dashboard-screens/Application Manag
 import SecuritySettings from "../Assets/dashboard-screens/Security Settings.jpg"
 import UserProfileEdit from "../Assets/dashboard-screens/User Edit Screen.jpg"
 
-import { ChevronsRight } from "lucide-react";
-import { ChevronsLeft } from "lucide-react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 import "../CSS/ScreensCarousel.css";
+import { ChevronsRight } from "lucide-react";
 
 
 const sliderData = [
-    {
-        title: "Dashboard Overview",
-        pageImage: DashboardOverview
-    },
-    {
-        title: "Organization Management",
-        pageImage: OrganizationManagement
-    },
-    {
-        title: "User Management",
-        pageImage: UserManagement
-    },
-    {
-        title: "Application Management",
-        pageImage: ApplicationManagement
-    },
-    {
-        title: "Security Settings",
-        pageImage: SecuritySettings
-    },
-    {
-        title: "User Profile Edit",
-        pageImage: UserProfileEdit
-    }
-]
+  {
+    title: "Dashboard Overview",
+    pageImage: DashboardOverview,
+    points: [
+      "Monitor users information",
+      "Provide administrators with operational visibility",
+      "Give administrators a quick overview of the environment",
+    ],
+  },
+  {
+    title: "Organization Management",
+    pageImage: OrganizationManagement,
+    points: [
+      "Manage multiple organizations from a centralized platform",
+      "Maintain organization-specific users, roles, and applications",
+      "Control access within the appropriate organizational context",
+    ],
+  },
+  {
+    title: "User Management",
+    pageImage: UserManagement,
+    points: [
+      "Create and manage enterprise users",
+      "Maintain user profiles and account information",
+      "Assign and manage roles",
+      "Manage user lifecycle status",
+    ],
+  },
+  {
+    title: "Application Management",
+    pageImage: ApplicationManagement,
+    points: [
+      "Manage multiple applications from one administration console",
+      "Configure application-specific access",
+      "Associate users and roles with applications",
+      "Manage application modules and permissions",
+    ],
+  },
+  {
+    title: "Security Settings",
+    pageImage: SecuritySettings,
+    points: [
+      "Configure authentication security policies",
+      "Control failed-login attempts and account lockout behavior",
+      "Configure OTP expiration and security settings",
+      "Manage concurrent-session restrictions",
+    ],
+  },
+  {
+    title: "User Profile Edit",
+    pageImage: UserProfileEdit,
+    points: [
+      "Update and maintain user profile information",
+      "Manage account details from a centralized interface",
+      "Maintain accurate user information",
+    ],
+  },
+];
 
 function ScreensCarousel() {
 
@@ -75,7 +104,8 @@ function ScreensCarousel() {
                         350: { slidesPerView: 1.1 },
                         479: { slidesPerView: 1.4 },
                         768: { slidesPerView: 1.6 },
-                        1024: { slidesPerView: 1.8 },
+                        1024: { slidesPerView: 2.3 },
+                        1280: { slidesPerView: 2.5 },
                     }}
                     spaceBetween={10}
                     centeredSlides={true}
@@ -83,28 +113,53 @@ function ScreensCarousel() {
                     pagination={{ el: ".dotsPagination", clickable: true, }}
                     // navigation={{ prevEl: ".prevArrow", nextEl: ".nextArrow", }}
                 >
-                    {sliderData.map((slide, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="slideCard">
-                        <img src={slide.pageImage} alt={`slide-${index}`} />
-                        <h6 className="text-center title">{slide.title}</h6>
-                        </div>
-                    </SwiperSlide>
-                    ))}
+                    {
+                        sliderData.map((slide, index) => (
+                            <SwiperSlide key={index}>
+
+                                <div className="slideCard">
+
+                                    <div className="mediaGroup">
+
+                                        <img src={slide.pageImage} alt={`slide-${index}`} />
+
+                                    </div>
+
+                                    <div className="contentGroup">
+
+                                        <h6 className="title">{slide.title}</h6>
+
+                                        <ul className="overlayList">
+
+                                            {
+                                                slide.points.map((point, idx) => (
+
+                                                <li key={idx}>
+
+                                                    <span className="icon">
+
+                                                        <ChevronsRight className="featureIcon" size={15} strokeWidth={2} />
+
+                                                    </span>
+
+                                                    <span>{point}</span>
+                                                </li>
+
+                                                ))
+                                            }
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
 
                 <div className="paginationWrapper">
                     <div className="dotsPagination"></div>
-                    {/* <div className="arrowPagination">
-                        <button className="prevArrow">
-                            <ChevronsLeft/>
-                        </button>
-
-                        <button className="nextArrow">
-                            <ChevronsRight/>
-                        </button>
-                    </div> */}
-
                 </div>
             </div>
         </section>
@@ -112,5 +167,6 @@ function ScreensCarousel() {
 
     )
 }
+
 
 export default ScreensCarousel;
