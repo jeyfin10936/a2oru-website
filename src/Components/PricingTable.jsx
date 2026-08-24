@@ -17,8 +17,8 @@ const pricingPlanData = [
         desc: "Best for small organizations beginning their identity management journey.",
         cta: "Request Quote",
         featured: false,
-        url: `mailto:${Links.email}`,
-        target: '_blank',
+        url: "#Contact",
+        // target: '_blank',
 
         features: [
             { text: "Authentication & Authorization", included: true },
@@ -41,8 +41,8 @@ const pricingPlanData = [
         desc: "Designed for growing organizations requiring centralized identity management across multiple applications.",
         cta: "Request Demo",
         featured: true,
-        url: `mailto:${Links.email}`,
-        target: '_blank',
+        url: "#Contact",
+        // target: '_blank',
 
         features: [
             { text: "Everything in Starter", included: true },

@@ -57,7 +57,7 @@ function ContactBlock() {
                 <div className="contactGridBlock">
 
 
-                    <div className="">
+                    <div className="processBlockMain">
 
                         <div className="contactProcess">
 

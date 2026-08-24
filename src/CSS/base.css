@@ -8,6 +8,9 @@
     --text-color: #4A4A4A;
     --border-color: #E0E0E0;   
 
+    --success-color: #188038;
+    --error-color: #d93025;
+
     --primary-color-rgb: 18, 61, 148;
     --secondary-color-rgb: 0,137,211;
     --tertiary-color-rgb: 110,165,179;

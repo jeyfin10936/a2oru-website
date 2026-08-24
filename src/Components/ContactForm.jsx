@@ -537,7 +537,7 @@ function ContactForm() {
                     {ContactFromOptions.map(
                         (item) => (
 
-                            <div key={item.id}>
+                            <div key={item.id} className="checkBoxItem">
 
                                 <input
                                     type="checkbox"
@@ -584,7 +584,7 @@ function ContactForm() {
 
             {/* Submit */}
 
-            <div className="btnGroup">
+            <div className="btnGroup fullWidth">
 
                 <button
                     type="submit"
@@ -619,17 +619,15 @@ function ContactForm() {
 
             {submitMessage && (
 
-                <p
-                    className={
-                        submitStatus === "success"
-                            ? "successMessage"
-                            : "errorMessage"
-                    }
+                <div
+                    className={ `${submitStatus === "success" ? "successMessage" : "errorMessage"} notificationMessage fullWidth` }
                 >
 
-                    {submitMessage}
+                    <p>{submitMessage}</p>
 
-                </p>
+                    
+
+                </div>
 
             )}
 

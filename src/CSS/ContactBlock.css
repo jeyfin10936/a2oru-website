@@ -20,13 +20,12 @@
     color: var(--white-color);
     font-weight: var(--font-weight-alt);
     line-height: var(--line-height-ext);
-    width: 70px;
-    /* height: 100%; */
-    aspect-ratio: 1/1;
+    width: clamp(3.125rem, 2.8463rem + 1.2739vw, 4.375rem); /* 70px - 50px */
     background-color: var(--primary-color);
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 auto;
 }
 
 /* Process Item */
@@ -42,7 +41,7 @@
 }
 
 .processBlock > .processItem {
-    padding: 16px 20px;
+    padding: 16px clamp(0.875rem, 0.7914rem + 0.3822vw, 1.25rem);  /* 20 - 14 */
 }
 
 .processBlock > .processItem .title {
@@ -51,7 +50,14 @@
 }
 
 .processBlock > .processItem .content {
-    font-size: var(--font-size-ext);
+    font-size: clamp(0.75rem, 0.7221rem + 0.1274vw, 0.875rem); /* 14 - 12 */
+}
+
+/* Process Block Main */
+.contactGridBlock > .processBlockMain {
+    height: fit-content;
+    position: sticky;
+    top: 0;
 }
 
 /* Contact From Block */
@@ -77,7 +83,7 @@
 }
 
 .btnGroup button {
-    max-width: 600px;
+    max-width: 300px;
     width: 100%;
     justify-content: space-between;
 }
@@ -102,6 +108,10 @@
 .checkBoxBlockLabel {
     margin-bottom: 20px;
     font-size: var(--font-size-base);
+}
+
+.checkBoxBlock > .checkBoxItem label {
+    cursor: pointer;
 }
 
 .inputGroup {
@@ -133,21 +143,63 @@ input:focus ~ .errorMessage {
 /* Form Error message */
 
 .successMessage {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #188038;
+    /* margin-top: 15px;
+    font-size: 14px; */
+    color: var(--success-color);
+    border-color: var(--success-color);
 }
 
 .errorMessage {
-    display: block;
+    /* display: block;
     margin-top: 6px;
-    font-size: 13px;
-    color: #d93025;
+    font-size: 13px; */
+    color: var(--error-color);
+    border-color: var(--error-color);
 }
 
 .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+
+/* Submission Notification */
+.notificationMessage {
+    display: block;
+    padding: 12px 20px;
+    border-radius: var(--border-radius-2X);
+    /* margin-top: 20px; */
+    border-style: solid;
+    border-width: 1px;
+    font-size: var(--font-size-base);
+    text-align: left;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+    .contactGridBlock {
+        grid-template-columns: 1fr;
+    }
+    .contactGridBlock > .processBlockMain {
+        position: relative;
+    }
+}
+
+@media (max-width: 600px) {
+    .contactFormBlock form {
+        grid-template-columns: 1fr;
+    }
+    .contactFormBlock form > .fullWidth {
+        grid-column: unset;
+    }
+}
+
+@media (max-width: 479px) {
+    .contactFormBlock {
+        padding-inline: 20px;
+    }
 }
 
 

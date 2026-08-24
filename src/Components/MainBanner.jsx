@@ -25,7 +25,7 @@ function MainBanner () {
                     </div>
                     <div className="btn-group">
                         <Button link="#ChooseUS" text="Explore Features" />
-                        <Button link={`mailto:${Links.email}`} text="Request Demo" />
+                        <Button link="#Contact" text="Request Demo" />
                     </div>
 
             </div>
