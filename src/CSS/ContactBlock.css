@@ -1,0 +1,160 @@
+/* contactGridBlock */
+.contactGridBlock {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 30px;
+}
+
+/* main title */
+.processBlockMainTitle {
+    margin-bottom: 20px;
+}
+
+/* Process Block */
+.processBlock  {
+    display: flex;
+    align-items: stretch;
+}
+.processBlock .counterItem {
+    font-size: var(--font-size-h3);
+    color: var(--white-color);
+    font-weight: var(--font-weight-alt);
+    line-height: var(--line-height-ext);
+    width: 70px;
+    /* height: 100%; */
+    aspect-ratio: 1/1;
+    background-color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Process Item */
+.processBlock {
+    background-color: rgb(var(--secondary-color-rgb), 0.06);
+    border-radius: var(--border-radius-2X);
+    width: 100%;
+    overflow: hidden;
+}
+
+.processBlock:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.processBlock > .processItem {
+    padding: 16px 20px;
+}
+
+.processBlock > .processItem .title {
+    font-size: var(--font-size-base);
+    margin-bottom: 8px;
+}
+
+.processBlock > .processItem .content {
+    font-size: var(--font-size-ext);
+}
+
+/* Contact From Block */
+.contactFormBlock {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-3X);
+    padding: 30px;
+}
+
+/* form */
+.contactFormBlock form {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.contactFormBlock form > .fullWidth {
+    grid-column: span 2;
+}
+
+.btnGroup {
+    margin-top: 10px;
+}
+
+.btnGroup button {
+    max-width: 600px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* check box */
+.contactFormBlock form .checkBoxBlock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+}
+
+.contactFormBlock form .checkBoxBlock > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contactFormBlock form .checkBoxBlock > div > label {
+    margin-bottom: 0;
+}
+
+.checkBoxBlockLabel {
+    margin-bottom: 20px;
+    font-size: var(--font-size-base);
+}
+
+.inputGroup {
+    position: relative;
+}
+
+.errorMessage {
+    position: absolute;
+    right: 6px;
+    bottom: 4px;
+    font-size: calc(var(--font-size-ext) - 4px);
+    line-height: var(--line-height-ext);
+    color: #FF0000;
+    opacity: 1;
+    transition: opacity 200ms ease-in-out;
+}
+
+input:focus ~ .errorMessage {
+    opacity: 0;
+}
+
+.checkBoxBlock > .errorMessage {
+    left: 0;
+    bottom: -20px;
+    right: auto;
+}
+
+
+/* Form Error message */
+
+.successMessage {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #188038;
+}
+
+.errorMessage {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #d93025;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* Section top spacing */
+.sec-top-spacing { padding-top: 150px; }
+@media (max-width: 1540px) { .sec-top-spacing { padding-top: 120px; } }
+@media (max-width: 1280px) { .sec-top-spacing { padding-top: 100px; } }
+@media (max-width: 1024px) { .sec-top-spacing { padding-top: 80px; } }
+@media (max-width: 768px) { .sec-top-spacing { padding-top: 60px; } }
+@media (max-width: 479px) { .sec-top-spacing { padding-top: 50px; } }

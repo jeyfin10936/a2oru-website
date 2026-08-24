@@ -7,7 +7,7 @@ import "../CSS/ContactUs.css";
 
 function ContactUs() {
     return (
-        <section className="ContactBlock sec-top-bottom-spacing" id='Contact'>
+        <section className="ContactBlock sec-top-bottom-spacing">
             <div className="container">
                 <div className="contactCard">
                     <div className="headingGroup">

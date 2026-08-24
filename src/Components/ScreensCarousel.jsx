@@ -1,12 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-import DashboardOverview from "../Assets/dashboard-screens/Dashboard Overview.jpg"
-import OrganizationManagement from "../Assets/dashboard-screens/Organization Management.jpg"
-import UserManagement from "../Assets/dashboard-screens/User Management.jpg"
-import ApplicationManagement from "../Assets/dashboard-screens/Application Management.jpg"
-import SecuritySettings from "../Assets/dashboard-screens/Security Settings.jpg"
-import UserProfileEdit from "../Assets/dashboard-screens/User Edit Screen.jpg"
+import DashboardOverview from "../Assets/dashboard-screens/dashboard-overview.webp"
+import OrganizationManagement from "../Assets/dashboard-screens/organization-management.webp"
+import UserManagement from "../Assets/dashboard-screens/user-management.webp"
+import ApplicationManagement from "../Assets/dashboard-screens/application-management.webp"
+import SecuritySettings from "../Assets/dashboard-screens/security-settings.webp"
+import UserProfileEdit from "../Assets/dashboard-screens/user-edit-screen.webp"
 
 import "swiper/css";
 import "swiper/css/navigation";
