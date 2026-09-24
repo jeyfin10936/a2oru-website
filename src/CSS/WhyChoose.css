@@ -51,7 +51,10 @@
     filter: drop-shadow(0 0 10px rgb(var(--primary-color-rgb), 0.8));
 }
 
-.whyChooseWrapper .item > .title { margin-bottom: 10px; }
+.whyChooseWrapper .item > .title { 
+    margin-bottom: 10px; 
+    font-size: var(--font-size-h6);
+}
 
 .WhyChooseBlock { position: relative; }
 

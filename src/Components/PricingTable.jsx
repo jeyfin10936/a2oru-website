@@ -149,7 +149,7 @@ function PricingTable() {
                                             </div>
 
                                             <div className="title">
-                                                <h5>{pricingPlan.addTitle}</h5>
+                                                <h3>{pricingPlan.addTitle}</h3>
                                             </div> 
 
                                             <div className="priceDetails">

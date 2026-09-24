@@ -171,6 +171,7 @@ function Header () {
 
                             <button 
                                 className="mobileMenuBtn"
+                                aria-label="Open menu"
                                 onClick={() => setMobileMenu(!mobileMenu)}
                             >
                                 {mobileMenu ? <X /> : <Menu />}

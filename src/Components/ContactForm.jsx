@@ -1,5 +1,5 @@
-import { ChevronsRight } from "lucide-react";
-import { useState } from "react";
+import { ChevronsRight, CircleCheck, CircleX  } from "lucide-react";
+import { useState, useEffect } from "react";
 
 function ContactForm() {
 
@@ -320,6 +320,17 @@ function ContactForm() {
 
     };
 
+    useEffect(() => {
+        if (!submitMessage) return;
+
+        const timer = setTimeout(() => {
+            setSubmitStatus("");
+            setSubmitMessage("");
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [submitMessage]);
+
 
     return (
 
@@ -623,9 +634,9 @@ function ContactForm() {
                     className={ `${submitStatus === "success" ? "successMessage" : "errorMessage"} notificationMessage fullWidth` }
                 >
 
-                    <p>{submitMessage}</p>
+                    { submitStatus === "success" ? ( <CircleCheck /> ) : ( <CircleX /> ) }
 
-                    
+                    <p>{submitMessage}</p>
 
                 </div>
 

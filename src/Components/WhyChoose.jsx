@@ -52,7 +52,7 @@ function WhyChoose () {
                                     <span className="iconGroup">
                                     <item.icon className="icon" />
                                     </span>
-                                    <h6 className="title">{item.title}</h6>
+                                    <h3 className="title">{item.title}</h3>
                                     <p className="description">{item.desc}</p>
                                 </div>
                             );

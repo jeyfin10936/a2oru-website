@@ -46,9 +46,18 @@ const personalEmailDomains = [
 // Middleware
 // --------------------------------------------------
 
+const allowedOrigins = [
+    "http://localhost:3001",
+    "http://192.168.193.1:3001"
+];
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL
+    origin: allowedOrigins
 }));
+
+// app.use(cors({
+//     origin: process.env.FRONTEND_URL
+// }));
 
 app.use(express.json({
     limit: "50kb"

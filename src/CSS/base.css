@@ -307,6 +307,7 @@ textarea {
     border-radius: var(--border-radius-1X);
     padding: var(--input-padding);
     color: var(--head-color);
+    font-family: var(--font-typo-base);
     transition: var(--alt-transition);
 }
 

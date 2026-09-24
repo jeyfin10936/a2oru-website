@@ -74,7 +74,7 @@ function ContactBlock() {
 
                                         <div className="processItem">
 
-                                            <h6 className="title">{item.title}</h6>
+                                            <h3 className="title">{item.title}</h3>
 
                                             <p className="content">{item.content}</p>
 

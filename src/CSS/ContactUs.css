@@ -74,6 +74,11 @@
     margin-bottom: 0;
 }
 
+/* Email Card */
+.contactCard > .EmailCard > .email {
+    font-size: var(--font-size-h5);
+}
+
 
 /* Responsive */
 @media (max-width: 1024px) {

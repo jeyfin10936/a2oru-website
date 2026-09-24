@@ -121,13 +121,13 @@ function ScreensCarousel() {
 
                                     <div className="mediaGroup">
 
-                                        <img src={slide.pageImage} alt={`slide-${index}`} />
+                                        <img src={slide.pageImage} alt={slide.title} width="438" height="223" loading="lazy" />
 
                                     </div>
 
                                     <div className="contentGroup">
 
-                                        <h6 className="title">{slide.title}</h6>
+                                        <h3 className="title">{slide.title}</h3>
 
                                         <ul className="overlayList">
 

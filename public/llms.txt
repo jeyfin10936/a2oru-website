@@ -1,0 +1,11 @@
+# A2ORU
+
+> A2ORU is an enterprise identity and access management platform providing secure authentication, access control, and centralized identity management.
+
+## Website
+
+- [Home](https://www.aithent.com/azoru/): A2ORU product overview and platform information.
+- [Features](https://www.aithent.com/azoru/#features): Explore A2ORU platform features.
+- [Benefits](https://www.aithent.com/azoru/#benefits): Learn about the benefits of A2ORU.
+- [FAQ](https://www.aithent.com/azoru/#faq): Frequently asked questions about A2ORU.
+- [Contact](https://www.aithent.com/azoru/#contact): Contact A2ORU for more information or a demo.

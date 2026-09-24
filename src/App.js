@@ -15,19 +15,27 @@ import ContactBlock from './Components/ContactBlock';
 function App() {
   return (
     <div className="App">
+
       <Header/>
-      <MainBanner/>
-      <Dashboard/>
-      <WhyChoose/>
-      <Features/>
-      <ScreensCarousel/>
-      <FrequentlyAskedQuestions/>
-      <PricingTable />
-      {/* <DeploymentOptions /> */}
-      <MarqueeBlock />
-      <ContactBlock />
-      <ContactUs/>
+
+      <main>
+
+        <MainBanner/>
+        <Dashboard/>
+        <WhyChoose/>
+        <Features/>
+        <ScreensCarousel/>
+        <FrequentlyAskedQuestions/>
+        <PricingTable />
+        {/* <DeploymentOptions /> */}
+        <MarqueeBlock />
+        <ContactBlock />
+        <ContactUs/>
+
+      </main>
+
       <Footer/>
+      
     </div>
   );
 }

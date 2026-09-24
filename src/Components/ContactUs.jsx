@@ -23,7 +23,7 @@ function ContactUs() {
                     </div>
                     <div className="EmailCard text-center">
                             <span className="icon"><Mail/></span>
-                            <h5 className="email"><a href='mailto:a2oru@aithent.com'>a2oru@aithent.com</a></h5>
+                            <h3 className="email"><a href={`mailto:${Links.email}`}>{Links.email}</a></h3>
                             <p className="info">Our team will contact you shortly.</p>
                     </div>
                 </div>
