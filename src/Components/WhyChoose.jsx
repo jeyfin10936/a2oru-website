@@ -12,13 +12,13 @@ const WhyChooseData = [
         id: 1,
         icon: ShieldCheck,
         title: "Secure Authentication",
-        desc: "Support secure authentication with Single Sign-On (SSO), LDAP integration, Multi-Factor Authentication (MFA), SMS OTP verification, and service-level encryption for enterprise-grade identity protection.",
+        desc: " Support secure authentication with Single Sign-On (SSO), LDAP integration, Multi-Factor Authentication (MFA), SMS OTP verification, and service-level authorization for enterprise-grade identity protection.",
     },
     {
         id: 2,
         icon: LayoutDashboard,
         title: "Centralized Administration",
-        desc: "Manage organizations, users, groups, departments, applications, and security policies through one centralized administration platform.",
+        desc: "Manage organizations, users, roles, departments, applications, and security policies through one centralized administration platform.",
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ const WhyChooseData = [
         id: 4,
         icon: LockKeyhole,
         title: "Enterprise Ready",
-        desc: "Built with HIPAA-compliant architecture, service-level encryption, multi-project support, and scalable deployment for enterprise environments.",
+        desc: "Built in alignment with HIPAA security requirements, with service-level authentication, multi-project support, and scalable deployment for enterprise environments.",
     }
 ]
 

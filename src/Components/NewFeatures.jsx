@@ -33,19 +33,19 @@ const FeaturesData = [
         id: 2,
         mockup: OrganizationUserManagementMockup,
         title: 'Organization & User Management',
-        desc: 'Create and manage organizations, users, groups, departments, and role hierarchies through a centralized administration console.',
+        desc: 'Create and manage organizations, users, applications, and role hierarchies through a centralized administration console.',
     },
     {
         id: 3,
         mockup: MultiApplicationManagementMockup,
         title: 'Multi-Application Management',
-        desc: 'Integrate multiple enterprise applications into a single deployment while configuring application-specific modules, permissions, and security policies.',
+        desc: 'Integrate multiple enterprise applications into a single deployment while configuring application-specific modules.',
     },
     {
         id: 4,
         mockup: ModuleLevelSecurityMockup,
         title: 'Module-Level Security',
-        desc: 'Protect sensitive business information with configurable module-level, field-level, and data-level access permissions for every user role.',
+        desc: 'Protect sensitive business information with configurable module-level access permissions for users across every organization.',
     },
     {
         id: 5,
@@ -98,10 +98,7 @@ function NewFeatures() {
                     </h2>
 
                     <p className="contentWrapper">
-                        Manage authentication, authorization,
-                        organizations, users, and applications
-                        from one secure platform designed for
-                        enterprise environments.
+                         Manage authentication, authorization, organizations, users, roles, and applications from one secure platform designed for enterprise environments.
                     </p>
 
                 </div>

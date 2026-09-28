@@ -8,7 +8,7 @@ import "../CSS/FrequentlyAskedQuestions.css";
 const FaqData = [
     {
         question: "Does A2ORU support OIDC and SAML for third-party application integration?",
-        answer: 'Yes. A2ORU supports both OIDC and SAML protocols, enabling seamless "Login with A2ORU" integration for third-party applications and allowing enterprises to extend centralized identity management across their entire application ecosystem.',
+        answer: ' Yes. A2ORU supports both OIDC and SAML, enabling seamless third-party application integration and extending centralized identity management across your entire application ecosystem.',
     },
     {
         question: "Can A2ORU integrate with our existing LDAP/Active Directory setup?",
@@ -48,7 +48,7 @@ const FaqData = [
     },
     {
         question: "What training or documentation is provided during onboarding?",
-        answer: "Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules — giving your team everything needed for a smooth, self-sufficient rollout.",
+        answer: " Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules, giving your team everything needed for a smooth, self-sufficient rollout.",
     },
 ];
 
