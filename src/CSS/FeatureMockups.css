@@ -1,0 +1,2503 @@
+/* =========================================================
+   FEATURE MOCKUPS
+========================================================= */
+
+.FeatureMockup {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #f7f9fb;
+
+    border: 1px solid #dfe7ed;
+
+    border-radius: var(--border-radius-3X);
+
+    color: var(--text-color);
+
+    font-family: var(--font-typo-base);
+
+    box-shadow:
+        0 15px 40px rgba(var(--primary-color-rgb), 0.08);
+}
+
+.FeatureMockup *,
+.FeatureMockup *::before,
+.FeatureMockup *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.fm-topbar {
+    height: 11%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 16px;
+
+    background: var(--white-color);
+
+    border-bottom: 1px solid #e3e9ee;
+}
+
+
+/* Logo */
+
+.fm-brand {
+    width: 65px;
+
+    flex-shrink: 0;
+
+    color: var(--primary-color);
+
+    font-family: var(--font-typo-alt);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -0.5px;
+}
+
+.fm-brand span {
+    color: var(--secondary-color);
+}
+
+
+/* Search */
+
+.fm-search {
+    width: 30%;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 0 8px;
+
+    border: 1px solid #e0e6eb;
+
+    border-radius: 5px;
+
+    background: #fafcfd;
+}
+
+.fm-search-icon {
+    color: var(--primary-color);
+
+    font-size: 12px;
+
+    line-height: 1;
+}
+
+.fm-placeholder {
+    color: #aebbc5;
+
+    font-size: 7px;
+
+    white-space: nowrap;
+}
+
+
+/* Top actions */
+
+.fm-top-actions {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.fm-top-item {
+    min-width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    border: 1px solid #e0e6eb;
+
+    border-radius: 5px;
+
+    background: var(--white-color);
+
+    color: var(--primary-color);
+
+    font-size: 7px;
+
+    font-weight: 600;
+}
+
+.fm-avatar {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--primary-color);
+
+    color: var(--white-color);
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.fm-body {
+    height: 89%;
+
+    display: flex;
+
+    min-height: 0;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.fm-sidebar {
+    width: 7%;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-top: 18px;
+
+    background: var(--white-color);
+
+    border-right: 1px solid #e3e9ee;
+}
+
+.fm-sidebar-item {
+    width: 18px;
+    height: 18px;
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    border-radius: 4px;
+
+    background: #d7e0e6;
+}
+
+.fm-sidebar-item::before {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    right: 4px;
+
+    top: 6px;
+
+    height: 2px;
+
+    border-radius: 4px;
+
+    background: var(--white-color);
+}
+
+.fm-sidebar-item.active {
+    background: var(--primary-color);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.fm-content {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    padding: 18px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.fm-page-title {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 4px;
+
+    color: var(--head-color);
+
+    font-family: var(--font-typo-alt);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.fm-page-title::before {
+    content: "";
+
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    border-radius: 5px;
+
+    background: rgba(var(--primary-color-rgb), 0.12);
+}
+
+.fm-page-description {
+    margin-bottom: 14px;
+
+    color: #8797a4;
+
+    font-size: 7px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SKELETON
+========================================================= */
+
+.fm-skeleton {
+    display: block;
+
+    height: 5px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #cbd6de 0%,
+            #dce5ea 50%,
+            #cbd6de 100%
+        );
+
+    background-size: 200% 100%;
+
+    animation: fmSkeleton 2.5s ease-in-out infinite;
+}
+
+.fm-skeleton.xs {
+    width: 20%;
+}
+
+.fm-skeleton.sm {
+    width: 35%;
+}
+
+.fm-skeleton.md {
+    width: 55%;
+}
+
+.fm-skeleton.lg {
+    width: 75%;
+}
+
+@keyframes fmSkeleton {
+
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.fm-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #596a78;
+
+    font-size: 7px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   GENERIC TEXT
+========================================================= */
+
+.fm-text {
+    color: #536574;
+
+    font-size: 7px;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   GENERIC INPUT
+========================================================= */
+
+.fm-input-group {
+    margin-bottom: 9px;
+}
+
+.fm-input {
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0 8px;
+
+    border: 1px solid #dce4e9;
+
+    border-radius: 5px;
+
+    background: var(--white-color);
+}
+
+.fm-input-placeholder {
+    width: 48%;
+
+    height: 5px;
+
+    border-radius: 10px;
+
+    background: #cbd6de;
+}
+
+
+/* =========================================================
+   INPUT ICONS
+========================================================= */
+
+.fm-input-icon {
+    width: 10px;
+    height: 10px;
+
+    position: relative;
+
+    flex: 0 0 10px;
+
+    border: 1.5px solid #b7c6d0;
+
+    border-radius: 50%;
+}
+
+.fm-input-icon.user::after {
+    content: "";
+
+    position: absolute;
+
+    left: -3px;
+    right: -3px;
+
+    bottom: -5px;
+
+    height: 5px;
+
+    border: 1.5px solid #b7c6d0;
+
+    border-bottom: 0;
+
+    border-radius: 7px 7px 0 0;
+}
+
+.fm-input-icon.lock {
+    border-radius: 2px;
+
+    margin-top: 3px;
+}
+
+.fm-input-icon.lock::before {
+    content: "";
+
+    position: absolute;
+
+    left: 1px;
+    right: 1px;
+
+    top: -5px;
+
+    height: 6px;
+
+    border: 1.5px solid #b7c6d0;
+
+    border-bottom: 0;
+
+    border-radius: 6px 6px 0 0;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.fm-button {
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 13px;
+
+    border: 0;
+
+    border-radius: 5px;
+
+    background: var(--primary-color);
+
+    color: var(--white-color);
+
+    font-size: 7px;
+
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+.fm-button.light {
+    background: rgba(var(--primary-color-rgb), 0.08);
+
+    color: var(--primary-color);
+}
+
+
+/* =========================================================
+   FLEXIBLE AUTHENTICATION
+========================================================= */
+
+.fm-auth-content {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.fm-auth-card {
+    width: 58%;
+
+    max-height: 97%;
+
+    overflow: hidden;
+
+    padding: 18px 20px;
+
+    border: 1px solid #dfe7ec;
+
+    border-radius: 10px;
+
+    background: var(--white-color);
+
+    box-shadow:
+        0 10px 30px rgba(var(--primary-color-rgb), 0.08);
+}
+
+
+/* Logo */
+
+.fm-auth-brand {
+    margin-bottom: 7px;
+
+    color: var(--primary-color);
+
+    font-family: var(--font-typo-alt);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    text-align: center;
+}
+
+
+/* Login title */
+
+.fm-auth-title {
+    margin-bottom: 14px;
+
+    color: var(--head-color);
+
+    font-family: var(--font-typo-alt);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+/* Forgot password */
+
+.fm-forgot {
+    margin: 0 0 9px;
+
+    color: var(--secondary-color);
+
+    font-size: 6px;
+
+    font-weight: 600;
+}
+
+
+/* Login button */
+
+.fm-auth-button {
+    width: 100%;
+
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 11px;
+
+    border-radius: 5px;
+
+    background: var(--primary-color);
+
+    color: var(--white-color);
+
+    font-size: 7px;
+
+    font-weight: 600;
+}
+
+
+/* Divider */
+
+.fm-divider {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    color: #98a7b2;
+
+    font-size: 6px;
+
+    white-space: nowrap;
+}
+
+.fm-divider::before,
+.fm-divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #e2e8ec;
+}
+
+
+/* =========================================================
+   GOOGLE / OKTA
+========================================================= */
+
+.fm-social-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+}
+
+.fm-social-button {
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border: 1px solid #cbd8e1;
+
+    border-radius: 5px;
+
+    background: var(--white-color);
+
+    color: #344452;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* Google */
+
+.fm-google-button {
+    border-color: #d5dfe6;
+}
+
+.fm-google-icon {
+    width: 13px;
+    height: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #4285f4;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* Okta */
+
+.fm-okta-button {
+    border-color: #d5dfe6;
+}
+
+.fm-okta-icon {
+    width: 13px;
+    height: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #111111;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   AUTH OPTIONS
+========================================================= */
+
+.fm-auth-options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 7px;
+
+    margin-bottom: 0;
+}
+
+.fm-auth-option {
+    min-height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 5px;
+
+    background: #fbfcfd;
+
+    color: var(--secondary-color);
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* OTP */
+
+.fm-otp-option {
+    border-color:
+        rgba(var(--secondary-color-rgb), 0.35);
+
+    background:
+        rgba(var(--secondary-color-rgb), 0.07);
+
+    color: var(--primary-color);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(var(--secondary-color-rgb), 0.05);
+}
+
+
+/* Forgot username */
+
+.fm-forgot-user-option {
+    color: #667785;
+}
+
+.fm-option-icon {
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   SECURITY MESSAGE
+========================================================= */
+
+.fm-security-note {
+    width: 100%;
+
+    min-height: 32px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 8px;
+
+    border: 1px solid
+        rgba(var(--primary-color-rgb), 0.08);
+
+    border-radius: 5px;
+
+    background:
+        rgba(var(--primary-color-rgb), 0.045);
+
+    overflow: hidden;
+}
+
+
+/* Security icon */
+
+.fm-security-icon {
+    width: 15px;
+    height: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 15px;
+
+    border: 1px solid var(--primary-color);
+
+    border-radius: 50%;
+
+    color: var(--primary-color);
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* Text wrapper */
+
+.fm-security-note-lines {
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    overflow: hidden;
+}
+
+
+/* Main security text */
+
+.fm-auth-security-text {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #566775;
+
+    font-size: 6px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* Secondary text */
+
+.fm-auth-security-subtext {
+    display: block;
+
+    width: 75%;
+
+    height: auto;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #9aaab5;
+
+    font-size: 5px;
+
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.fm-table {
+    width: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid #dce4e9;
+
+    border-radius: 7px;
+
+    background: var(--white-color);
+}
+
+.fm-table-header,
+.fm-table-row {
+    display: grid;
+
+    align-items: center;
+
+    min-height: 27px;
+
+    padding: 0 9px;
+
+    gap: 7px;
+}
+
+.fm-table-header {
+    background: var(--primary-color);
+}
+
+.fm-table-row {
+    border-top: 1px solid #edf1f4;
+}
+
+.fm-table-cell {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   TABLE HEADER SKELETON
+========================================================= */
+
+.fm-header-skeleton {
+    display: block;
+
+    height: 5px;
+
+    margin: auto;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.fm-header-skeleton.xs {
+    width: 20px;
+}
+
+.fm-header-skeleton.sm {
+    width: 35px;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.fm-check {
+    width: 11px;
+    height: 11px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 3px;
+
+    background: var(--secondary-color);
+
+    color: var(--white-color);
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.fm-check.empty {
+    background: #e1e8ed;
+
+    color: transparent;
+}
+
+
+/* =========================================================
+   ORGANIZATION & USER MANAGEMENT
+========================================================= */
+
+.fm-org-layout {
+    display: grid;
+
+    grid-template-columns: 31% 1fr;
+
+    gap: 12px;
+}
+
+.fm-org-tree,
+.fm-org-users {
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 8px;
+
+    background: var(--white-color);
+}
+
+.fm-org-title {
+    min-height: 8px;
+
+    margin-bottom: 10px;
+}
+
+.fm-org-root {
+    min-height: 30px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 8px;
+
+    border-radius: 5px;
+
+    background: rgba(var(--primary-color-rgb), 0.08);
+}
+
+.fm-org-child {
+    margin: 10px 0 0 12px;
+
+    padding-left: 10px;
+
+    border-left: 1px solid #cbd7df;
+}
+
+.fm-org-child-item {
+    min-height: 10px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+}
+
+.fm-user-cards {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+}
+
+.fm-user-card {
+    min-width: 0;
+
+    min-height: 76px;
+
+    padding: 9px;
+
+    border: 1px solid #e0e7ec;
+
+    border-radius: 7px;
+
+    background: var(--white-color);
+}
+
+.fm-user-avatar {
+    width: 20px;
+    height: 20px;
+
+    margin-bottom: 7px;
+
+    border-radius: 50%;
+
+    background: rgba(var(--secondary-color-rgb), 0.15);
+}
+
+
+/* =========================================================
+   MULTI-APPLICATION MANAGEMENT
+========================================================= */
+
+.fm-app-tabs {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 10px;
+
+    padding-bottom: 8px;
+
+    overflow: hidden;
+
+    border-bottom: 1px solid #e0e6eb;
+}
+
+.fm-app-tab {
+    min-width: 0;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 2px 7px;
+
+    margin-bottom: -9px;
+}
+
+
+/* Abstract tab bars */
+
+.fm-tab-skeleton {
+    display: block;
+
+    height: 5px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #cbd6de 0%,
+            #dce5ea 50%,
+            #cbd6de 100%
+        );
+
+    background-size: 200% 100%;
+
+    animation: fmSkeleton 2.5s ease-in-out infinite;
+}
+
+.fm-tab-skeleton.xs {
+    width: 22px;
+}
+
+.fm-tab-skeleton.sm {
+    width: 32px;
+}
+
+.fm-tab-skeleton.md {
+    width: 45px;
+}
+
+.fm-tab-skeleton.lg {
+    width: 58px;
+}
+
+
+/* Active tab */
+
+.fm-app-tab:first-child {
+    border-bottom: 2px solid var(--primary-color);
+}
+
+
+/* Application cards */
+
+.fm-app-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+}
+
+.fm-app-card {
+    min-width: 0;
+
+    padding: 10px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 7px;
+
+    background: var(--white-color);
+}
+
+.fm-app-icon {
+    width: 22px;
+    height: 22px;
+
+    margin-bottom: 7px;
+
+    border-radius: 5px;
+
+    background: rgba(var(--secondary-color-rgb), 0.13);
+}
+
+
+/* =========================================================
+   APPLICATION DETAILS
+========================================================= */
+
+.fm-app-layout {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.fm-app-details {
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 8px;
+
+    background: var(--white-color);
+}
+
+.fm-app-details-title {
+    margin-bottom: 10px;
+
+    color: var(--head-color);
+
+    font-size: 8px;
+
+    font-weight: 700;
+}
+
+.fm-chart {
+    height: 100px;
+
+    position: relative;
+
+    border-left: 1px solid #dce5eb;
+
+    border-bottom: 1px solid #dce5eb;
+}
+
+.fm-chart-line {
+    position: absolute;
+
+    left: 8%;
+    right: 5%;
+    top: 48%;
+
+    height: 2px;
+
+    background: var(--secondary-color);
+
+    transform: rotate(-8deg);
+}
+
+
+/* =========================================================
+   MODULE LEVEL SECURITY
+========================================================= */
+
+.fm-security-table .fm-table-header,
+.fm-security-table .fm-table-row {
+    grid-template-columns:
+        1.6fr
+        repeat(4, 0.55fr);
+}
+
+.fm-security-table .fm-table-row .fm-table-cell {
+    display: flex;
+
+    align-items: center;
+}
+
+.fm-security-table
+.fm-table-row
+.fm-table-cell:first-child {
+    justify-content: flex-start;
+}
+
+.fm-security-table
+.fm-table-row
+.fm-table-cell:not(:first-child) {
+    justify-content: center;
+}
+
+
+/* =========================================================
+   MIGRATION MODULE
+========================================================= */
+
+.fm-migration-cards {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 9px;
+}
+
+.fm-migration-card {
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 8px;
+
+    background: var(--white-color);
+}
+
+.fm-step {
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 8px;
+
+    border-radius: 50%;
+
+    background: var(--primary-color);
+
+    color: var(--white-color);
+
+    font-size: 7px;
+
+    font-weight: 700;
+}
+
+.fm-step-title {
+    min-height: 8px;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+.fm-file-box {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 8px;
+
+    border: 1px dashed #b9c8d2;
+
+    border-radius: 5px;
+
+    background: #fbfcfd;
+}
+
+.fm-progress {
+    height: 6px;
+
+    margin-top: 13px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #e5edf2;
+}
+
+.fm-progress::before {
+    content: "";
+
+    display: block;
+
+    width: 78%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: var(--secondary-color);
+}
+
+
+/* =========================================================
+   POLICY MODULE
+========================================================= */
+
+.fm-policy-card {
+    padding: 13px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 8px;
+
+    background: var(--white-color);
+}
+
+.fm-policy-header {
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
+
+    margin-bottom: 12px;
+
+    border-radius: 5px;
+
+    background: var(--primary-color);
+}
+
+.fm-policy-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.fm-policy-field {
+    min-width: 0;
+}
+
+.fm-policy-input {
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 8px;
+
+    border: 1px solid #dce4e9;
+
+    border-radius: 5px;
+
+    background: var(--white-color);
+}
+
+.fm-toggle {
+    width: 24px;
+    height: 13px;
+
+    margin-left: auto;
+
+    padding: 2px;
+
+    border-radius: 10px;
+
+    background: var(--secondary-color);
+}
+
+.fm-toggle::before {
+    content: "";
+
+    display: block;
+
+    width: 9px;
+    height: 9px;
+
+    margin-left: auto;
+
+    border-radius: 50%;
+
+    background: var(--white-color);
+}
+
+
+/* =========================================================
+   GROUP MODULE
+========================================================= */
+
+.fm-group-layout {
+    display: grid;
+
+    grid-template-columns: 27% 1fr;
+
+    gap: 10px;
+}
+
+.fm-group-list {
+    min-width: 0;
+
+    padding: 10px;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 8px;
+
+    background: var(--white-color);
+}
+
+.fm-group-title {
+    min-height: 8px;
+
+    margin-bottom: 9px;
+}
+
+.fm-group-item {
+    min-height: 27px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 7px;
+
+    margin-bottom: 5px;
+
+    border-radius: 5px;
+}
+
+.fm-group-item.active {
+    background: rgba(var(--primary-color-rgb), 0.08);
+}
+
+.fm-permission-table {
+    min-width: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #dce5eb;
+
+    border-radius: 8px;
+
+    background: var(--white-color);
+}
+
+.fm-permission-table .fm-table-header,
+.fm-permission-table .fm-table-row {
+    grid-template-columns:
+        1.5fr
+        repeat(4, 0.55fr);
+}
+
+.fm-permission-table .fm-table-row .fm-table-cell {
+    display: flex;
+
+    align-items: center;
+}
+
+.fm-permission-table
+.fm-table-row
+.fm-table-cell:first-child {
+    justify-content: flex-start;
+}
+
+.fm-permission-table
+.fm-table-row
+.fm-table-cell:not(:first-child) {
+    justify-content: center;
+}
+
+
+/* =========================================================
+   1540px
+========================================================= */
+
+@media (max-width: 1540px) {
+
+    .fm-content {
+        padding: 16px;
+    }
+
+    .fm-topbar {
+        padding: 0 14px;
+    }
+
+}
+
+
+/* =========================================================
+   1280px
+========================================================= */
+
+@media (max-width: 1280px) {
+
+    .fm-topbar {
+        padding: 0 12px;
+
+        gap: 9px;
+    }
+
+    .fm-content {
+        padding: 13px;
+    }
+
+    .fm-sidebar {
+        gap: 12px;
+
+        padding-top: 15px;
+    }
+
+    .fm-sidebar-item {
+        width: 17px;
+        height: 17px;
+    }
+
+    .fm-auth-card {
+        width: 62%;
+    }
+
+    .fm-app-tabs {
+        gap: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   1024px
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .FeatureMockup {
+        aspect-ratio: 16 / 10;
+    }
+
+
+    /* Top */
+
+    .fm-topbar {
+        height: 10%;
+
+        padding: 0 10px;
+
+        gap: 8px;
+    }
+
+    .fm-body {
+        height: 90%;
+    }
+
+
+    /* Sidebar */
+
+    .fm-sidebar {
+        width: 8%;
+
+        gap: 10px;
+
+        padding-top: 13px;
+    }
+
+    .fm-sidebar-item {
+        width: 16px;
+        height: 16px;
+    }
+
+
+    /* Content */
+
+    .fm-content {
+        padding: 10px;
+    }
+
+
+    /* Page */
+
+    .fm-page-title {
+        font-size: 11px;
+    }
+
+    .fm-page-description {
+        margin-bottom: 10px;
+
+        font-size: 6px;
+    }
+
+
+    /* Organization */
+
+    .fm-org-layout {
+        grid-template-columns: 35% 1fr;
+
+        gap: 8px;
+    }
+
+    .fm-org-tree,
+    .fm-org-users {
+        padding: 9px;
+    }
+
+
+    /* Application */
+
+    .fm-app-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .fm-app-details {
+        display: none;
+    }
+
+
+    /* Application tabs */
+
+    .fm-app-tabs {
+        gap: 11px;
+
+        margin-bottom: 9px;
+
+        padding-bottom: 7px;
+    }
+
+    .fm-tab-skeleton.lg {
+        width: 50px;
+    }
+
+    .fm-tab-skeleton.md {
+        width: 38px;
+    }
+
+    .fm-tab-skeleton.sm {
+        width: 28px;
+    }
+
+
+    /* Authentication */
+
+    .fm-auth-card {
+        width: 64%;
+        max-height: 94%;
+
+        padding: 14px;
+    }
+
+
+    /* Migration */
+
+    .fm-migration-cards {
+        gap: 6px;
+    }
+
+    .fm-migration-card {
+        padding: 9px;
+    }
+
+
+    /* Policy */
+
+    .fm-policy-card {
+        padding: 9px;
+    }
+
+    .fm-policy-grid {
+        gap: 7px;
+    }
+
+}
+
+
+/* =========================================================
+   768px
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .FeatureMockup {
+        aspect-ratio: 16 / 10;
+    }
+
+
+    /* Top */
+
+    .fm-topbar {
+        height: 40px;
+
+        padding: 0 8px;
+    }
+
+    .fm-body {
+        height: calc(100% - 40px);
+    }
+
+
+    /* Sidebar */
+
+    .fm-sidebar {
+        width: 34px;
+
+        gap: 9px;
+
+        padding-top: 12px;
+    }
+
+    .fm-sidebar-item {
+        width: 16px;
+        height: 16px;
+    }
+
+
+    /* Content */
+
+    .fm-content {
+        padding: 9px;
+    }
+
+
+    /* Header */
+
+    .fm-brand {
+        width: 50px;
+
+        font-size: 9px;
+    }
+
+    .fm-search {
+        width: 34%;
+
+        height: 22px;
+    }
+
+    .fm-top-item {
+        min-width: 20px;
+
+        height: 20px;
+    }
+
+    .fm-avatar {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    /* Page */
+
+    .fm-page-title {
+        font-size: 10px;
+    }
+
+    .fm-page-title::before {
+        width: 15px;
+        height: 15px;
+    }
+
+    .fm-page-description {
+        font-size: 5.5px;
+    }
+
+
+    /* Authentication */
+
+    .fm-auth-card {
+        width: 72%;
+        max-height: 94%;
+
+        padding: 12px;
+    }
+
+    .fm-auth-brand {
+        font-size: 10px;
+    }
+
+    .fm-auth-title {
+        font-size: 11px;
+    }
+
+    .fm-input {
+        height: 24px;
+    }
+
+    .fm-social-button {
+        height: 25px;
+    }
+
+    .fm-auth-option {
+        min-height: 25px;
+    }
+
+
+    /* Organization */
+
+    .fm-org-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .fm-org-tree {
+        display: none;
+    }
+
+
+    /* Multi Application */
+
+    .fm-app-tabs {
+        gap: 8px;
+
+        margin-bottom: 8px;
+
+        padding-bottom: 7px;
+    }
+
+    .fm-tab-skeleton.lg {
+        width: 42px;
+    }
+
+    .fm-tab-skeleton.md {
+        width: 32px;
+    }
+
+    .fm-tab-skeleton.sm {
+        width: 24px;
+    }
+
+
+    /* Groups */
+
+    .fm-group-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .fm-group-list {
+        display: none;
+    }
+
+
+    /* Migration */
+
+    .fm-migration-card {
+        padding: 7px;
+    }
+
+    .fm-step {
+        width: 18px;
+        height: 18px;
+
+        font-size: 6px;
+    }
+
+
+    /* Policy */
+
+    .fm-policy-grid {
+        gap: 6px;
+    }
+
+
+    /* Table */
+
+    .fm-table-header,
+    .fm-table-row {
+        min-height: 24px;
+
+        padding: 0 6px;
+
+        gap: 5px;
+    }
+
+    .fm-check {
+        width: 9px;
+        height: 9px;
+
+        font-size: 6px;
+    }
+
+    .fm-header-skeleton.xs {
+        width: 16px;
+    }
+
+    .fm-header-skeleton.sm {
+        width: 27px;
+    }
+
+}
+
+
+/* =========================================================
+   479px
+========================================================= */
+
+@media (max-width: 479px) {
+
+    .FeatureMockup {
+        aspect-ratio: 16 / 11;
+
+        border-radius: 10px;
+    }
+
+
+    /* Top */
+
+    .fm-topbar {
+        height: 34px;
+
+        padding: 0 7px;
+
+        gap: 6px;
+    }
+
+    .fm-body {
+        height: calc(100% - 34px);
+    }
+
+
+    /* Header */
+
+    .fm-brand {
+        width: 43px;
+
+        font-size: 8px;
+    }
+
+    .fm-search {
+        width: 32%;
+
+        height: 18px;
+
+        padding: 0 5px;
+    }
+
+    .fm-placeholder {
+        font-size: 5px;
+    }
+
+    .fm-search-icon {
+        font-size: 8px;
+    }
+
+    .fm-top-actions {
+        gap: 4px;
+    }
+
+    .fm-top-item {
+        min-width: 18px;
+        height: 18px;
+
+        padding: 0 3px;
+
+        font-size: 5px;
+    }
+
+    .fm-avatar {
+        width: 18px;
+        height: 18px;
+
+        font-size: 5px;
+    }
+
+
+    /* Sidebar */
+
+    .fm-sidebar {
+        width: 27px;
+
+        gap: 7px;
+
+        padding-top: 9px;
+    }
+
+    .fm-sidebar-item {
+        width: 13px;
+        height: 13px;
+    }
+
+    .fm-sidebar-item::before {
+        left: 3px;
+        right: 3px;
+
+        top: 5px;
+
+        height: 2px;
+    }
+
+
+    /* Content */
+
+    .fm-content {
+        padding: 7px;
+    }
+
+
+    /* Page */
+
+    .fm-page-title {
+        gap: 5px;
+
+        margin-bottom: 3px;
+
+        font-size: 8px;
+    }
+
+    .fm-page-title::before {
+        width: 11px;
+        height: 11px;
+
+        border-radius: 3px;
+    }
+
+    .fm-page-description {
+        margin-bottom: 7px;
+
+        font-size: 4.5px;
+    }
+
+
+    /* Skeleton */
+
+    .fm-skeleton {
+        height: 4px;
+    }
+
+
+    /* =====================================================
+       FLEXIBLE AUTHENTICATION
+    ===================================================== */
+
+    .fm-auth-card {
+        width: 84%;
+        max-height: 95%;
+
+        padding: 10px;
+    }
+
+    .fm-auth-brand {
+        margin-bottom: 5px;
+
+        font-size: 8px;
+    }
+
+    .fm-auth-title {
+        margin-bottom: 9px;
+
+        font-size: 10px;
+    }
+
+    .fm-label {
+        margin-bottom: 3px;
+
+        font-size: 5px;
+    }
+
+    .fm-input-group {
+        margin-bottom: 6px;
+    }
+
+    .fm-input {
+        height: 21px;
+
+        padding: 0 6px;
+
+        gap: 5px;
+    }
+
+    .fm-input-placeholder {
+        height: 4px;
+    }
+
+    .fm-input-icon {
+        width: 8px;
+        height: 8px;
+
+        flex-basis: 8px;
+    }
+
+    .fm-forgot {
+        margin-bottom: 6px;
+
+        font-size: 5px;
+    }
+
+    .fm-auth-button {
+        height: 21px;
+
+        margin-bottom: 7px;
+
+        font-size: 5px;
+    }
+
+    .fm-divider {
+        gap: 5px;
+
+        margin-bottom: 7px;
+
+        font-size: 5px;
+    }
+
+    .fm-social-buttons {
+        gap: 5px;
+
+        margin-bottom: 7px;
+    }
+
+    .fm-social-button {
+        height: 21px;
+
+        gap: 3px;
+
+        font-size: 5px;
+    }
+
+    .fm-google-icon,
+    .fm-okta-icon {
+        width: 9px;
+        height: 9px;
+
+        font-size: 7px;
+    }
+
+    .fm-auth-options {
+        gap: 5px;
+
+        margin-bottom: 7px;
+    }
+
+    .fm-auth-option {
+        min-height: 21px;
+
+        gap: 3px;
+
+        font-size: 4.5px;
+    }
+
+    .fm-option-icon {
+        font-size: 6px;
+    }
+
+    .fm-security-note {
+        min-height: 27px;
+
+        gap: 5px;
+
+        padding: 5px 6px;
+    }
+
+    .fm-security-icon {
+        width: 11px;
+        height: 11px;
+
+        flex-basis: 11px;
+
+        font-size: 5px;
+    }
+
+    .fm-auth-security-text {
+        width: 100%;
+
+        height: auto;
+
+        font-size: 4.5px;
+
+        line-height: 1.2;
+    }
+
+    .fm-auth-security-subtext {
+        width: 70%;
+
+        height: auto;
+
+        font-size: 4px;
+
+        line-height: 1.2;
+    }
+
+
+    /* =====================================================
+       ORGANIZATION
+    ===================================================== */
+
+    .fm-org-users {
+        padding: 7px;
+    }
+
+    .fm-user-cards {
+        gap: 5px;
+    }
+
+    .fm-user-card {
+        min-height: 58px;
+
+        padding: 6px;
+    }
+
+    .fm-user-avatar {
+        width: 15px;
+        height: 15px;
+
+        margin-bottom: 5px;
+    }
+
+
+    /* =====================================================
+       MULTI APPLICATION
+    ===================================================== */
+
+    .fm-app-tabs {
+        gap: 6px;
+
+        margin-bottom: 6px;
+
+        padding-bottom: 5px;
+    }
+
+    .fm-app-tab {
+        padding-bottom: 5px;
+
+        margin-bottom: -7px;
+    }
+
+    .fm-tab-skeleton {
+        height: 4px;
+    }
+
+    .fm-tab-skeleton.lg {
+        width: 34px;
+    }
+
+    .fm-tab-skeleton.md {
+        width: 27px;
+    }
+
+    .fm-tab-skeleton.sm {
+        width: 20px;
+    }
+
+    .fm-tab-skeleton.xs {
+        width: 15px;
+    }
+
+    .fm-app-tab:first-child {
+        border-bottom-width: 1px;
+    }
+
+
+    /* Application cards */
+
+    .fm-app-grid {
+        gap: 5px;
+    }
+
+    .fm-app-card {
+        padding: 7px;
+    }
+
+    .fm-app-icon {
+        width: 17px;
+        height: 17px;
+
+        margin-bottom: 5px;
+    }
+
+
+    /* =====================================================
+       TABLE
+    ===================================================== */
+
+    .fm-table-header,
+    .fm-table-row {
+        min-height: 21px;
+
+        padding: 0 5px;
+
+        gap: 4px;
+    }
+
+    .fm-header-skeleton {
+        height: 3px;
+    }
+
+    .fm-header-skeleton.xs {
+        width: 12px;
+    }
+
+    .fm-header-skeleton.sm {
+        width: 22px;
+    }
+
+    .fm-check {
+        width: 8px;
+        height: 8px;
+
+        border-radius: 2px;
+
+        font-size: 5px;
+    }
+
+
+    /* =====================================================
+       MIGRATION
+    ===================================================== */
+
+    .fm-migration-cards {
+        gap: 5px;
+    }
+
+    .fm-migration-card {
+        padding: 6px;
+    }
+
+    .fm-step {
+        width: 16px;
+        height: 16px;
+
+        margin-bottom: 5px;
+
+        font-size: 5px;
+    }
+
+    .fm-file-box {
+        height: 30px;
+
+        margin-bottom: 5px;
+    }
+
+    .fm-progress {
+        height: 4px;
+
+        margin-top: 8px;
+    }
+
+
+    /* =====================================================
+       POLICY
+    ===================================================== */
+
+    .fm-policy-card {
+        padding: 7px;
+    }
+
+    .fm-policy-header {
+        height: 21px;
+
+        padding: 0 7px;
+
+        margin-bottom: 7px;
+    }
+
+    .fm-policy-grid {
+        gap: 5px;
+    }
+
+    .fm-policy-input {
+        height: 21px;
+
+        padding: 0 5px;
+    }
+
+    .fm-toggle {
+        width: 18px;
+        height: 10px;
+
+        padding: 2px;
+    }
+
+    .fm-toggle::before {
+        width: 6px;
+        height: 6px;
+    }
+
+
+    /* =====================================================
+       GROUP
+    ===================================================== */
+
+    .fm-permission-table .fm-table-header,
+    .fm-permission-table .fm-table-row,
+    .fm-security-table .fm-table-header,
+    .fm-security-table .fm-table-row {
+        gap: 4px;
+    }
+
+}

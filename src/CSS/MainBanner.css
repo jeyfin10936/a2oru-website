@@ -24,8 +24,9 @@
 
 .mainBanner > svg {
     position: absolute;
-    bottom: -20px;
+    bottom: 0;
     width: 100%;
+    height: auto;
     color: var(--body-bg-color);
     z-index: 0;
 }

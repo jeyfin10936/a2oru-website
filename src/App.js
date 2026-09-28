@@ -4,7 +4,8 @@ import FrequentlyAskedQuestions from './Components/FrequentlyAskedQuestions';
 import ScreensCarousel from './Components/ScreensCarousel';
 import Footer from './Components/Footer';
 import WhyChoose from './Components/WhyChoose';
-import Features from './Components/Features';
+// import Features from './Components/Features';
+import NewFeatures from './Components/NewFeatures';
 import Header from "./Components/Header";
 import ContactUs from "./Components/ContactUs";
 import PricingTable from './Components/PricingTable';
@@ -23,7 +24,8 @@ function App() {
         <MainBanner/>
         <Dashboard/>
         <WhyChoose/>
-        <Features/>
+        {/* <Features/> */}
+        <NewFeatures/>
         <ScreensCarousel/>
         <FrequentlyAskedQuestions/>
         <PricingTable />

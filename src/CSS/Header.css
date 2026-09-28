@@ -37,6 +37,7 @@ header .site-logo { line-height: 0; }
 header .site-logo img {
     width: 150px;
     height: auto;
+    outline: none
 }
 
 /* naviagtion */
