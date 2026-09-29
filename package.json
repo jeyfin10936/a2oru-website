@@ -2,6 +2,7 @@
   "name": "a2oru-website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/a2oru",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

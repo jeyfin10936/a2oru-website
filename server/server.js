@@ -3,25 +3,43 @@
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const rateLimit = require("express-rate-limit");
+// const rateLimit = require("express-rate-limit");
+const { rateLimit, ipKeyGenerator } = require("express-rate-limit");
 require("dotenv").config();
 
 
 const app = express();
 
-const PORT = 5000;
+app.set("trust proxy", 1);
+
+const PORT = process.env.PORT || 5000;
 
 const currentYear = new Date().getFullYear();
 
+// const contactLimiter = rateLimit({
+//     windowMs: 15 * 60 * 1000,
+
+//     max: 5,
+
+//     message: {
+//         success: false,
+//         message: "Too many submissions. Please try again later."
+//     }
+// });
+
 const contactLimiter = rateLimit({
+
     windowMs: 15 * 60 * 1000,
 
     max: 5,
+
+    keyGenerator: (req) => ipKeyGenerator(req.ip),
 
     message: {
         success: false,
         message: "Too many submissions. Please try again later."
     }
+
 });
 
 const personalEmailDomains = [
@@ -48,7 +66,8 @@ const personalEmailDomains = [
 
 const allowedOrigins = [
     "http://localhost:3001",
-    "http://192.168.193.1:3001"
+    "http://192.168.193.1:3001",
+    "https://uatweb.aithent.com"
 ];
 
 app.use(cors({
@@ -201,6 +220,8 @@ app.post(
             from: process.env.EMAIL_FROM,
 
             to: process.env.ADMIN_EMAIL,
+
+            cc: process.env.ADMIN_CC,
 
             replyTo: normalizedEmail,
 

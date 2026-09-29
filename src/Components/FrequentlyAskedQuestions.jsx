@@ -1,6 +1,4 @@
-import React from 'react';
 import {useState, useRef} from 'react';
-import faqImage from "../Assets/faqImage.jpg";
 import Counter from "../Components/Common/Counter";
 import "../CSS/FrequentlyAskedQuestions.css";
 
@@ -74,7 +72,6 @@ const counterData = [
     {
         number: 1,
         prefix: 0,
-        // suffix: "+",
         label: "Unified Platform"
     }
 ];

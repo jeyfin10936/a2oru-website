@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-
 import Button from "../Components/Common/Button";
-import Links from "../Components/Common/Link";
 
 import "../CSS/MainBanner.css";
 

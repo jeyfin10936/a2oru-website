@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import Logo from '../Assets/A2ORU_Logo.png';
+import Logo from '../Assets/a2oru-logo.webp';
 import Button from "../Components/Common/Button";
-import Links from "../Components/Common/Link";
 import "../CSS/Header.css";
 import {Menu, X} from "lucide-react";
 
@@ -188,7 +187,7 @@ function Header () {
 
                         </div>
                         <div className="header-btn">
-                            <Button link={Links.demoURL} target="_blank" text="Explore Now" />
+                            <Button link="#Contact" text="Request Demo" />
                         </div>
                     </header>
                 </div>

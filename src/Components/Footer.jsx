@@ -1,4 +1,3 @@
-import Logo from '../Assets/A2ORU_Logo.png';
 import "../CSS/Footer.css";
 
 function Footer () {

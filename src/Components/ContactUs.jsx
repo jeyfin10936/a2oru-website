@@ -16,10 +16,10 @@ function ContactUs() {
                         <h2 className="title">Let's <span className="highlightTitle">Secure </span>Your Enterprise Identity</h2>
                         <p className="contentWrapper">Looking for a scalable Identity and Access Management platform? Connect with our experts to discover how A2ORU can simplify authentication, centralize administration, and strengthen enterprise security across your organization.</p>
 
-                        <div className="btn-group">
+                        {/* <div className="btn-group">
                             <Button link={Links.demoURL} target='_blank' text="Explore Demo" />
                             <Button link={`mailto:${Links.email}`} text="Contact Sales" />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="EmailCard text-center">
                             <span className="icon"><Mail/></span>

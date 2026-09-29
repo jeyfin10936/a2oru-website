@@ -1,12 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-import DashboardOverview from "../Assets/dashboard-screens/dashboard-overview.webp"
-import OrganizationManagement from "../Assets/dashboard-screens/organization-management.webp"
-import UserManagement from "../Assets/dashboard-screens/user-management.webp"
-import ApplicationManagement from "../Assets/dashboard-screens/application-management.webp"
-import SecuritySettings from "../Assets/dashboard-screens/security-settings.webp"
-import UserProfileEdit from "../Assets/dashboard-screens/user-edit-screen.webp"
+import OverlayImg from "../Assets/overlay-img.webp"
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -20,7 +15,7 @@ import { ChevronsRight } from "lucide-react";
 const sliderData = [
   {
     title: "Dashboard Overview",
-    pageImage: DashboardOverview,
+
     points: [
       "Monitor users information",
       "Provide administrators with operational visibility",
@@ -29,7 +24,7 @@ const sliderData = [
   },
   {
     title: "Organization Management",
-    pageImage: OrganizationManagement,
+
     points: [
       "Manage multiple organizations from a centralized platform",
       "Maintain organization-specific users, roles, and applications",
@@ -38,7 +33,7 @@ const sliderData = [
   },
   {
     title: "User Management",
-    pageImage: UserManagement,
+  
     points: [
       "Create and manage enterprise users",
       "Maintain user profiles and account information",
@@ -48,7 +43,7 @@ const sliderData = [
   },
   {
     title: "Application Management",
-    pageImage: ApplicationManagement,
+
     points: [
       "Manage multiple applications from one administration console",
       "Configure application-specific access",
@@ -58,7 +53,7 @@ const sliderData = [
   },
   {
     title: "Security Settings",
-    pageImage: SecuritySettings,
+  
     points: [
       "Configure authentication security policies",
       "Control failed-login attempts and account lockout behavior",
@@ -68,7 +63,7 @@ const sliderData = [
   },
   {
     title: "User Profile Edit",
-    pageImage: UserProfileEdit,
+  
     points: [
       "Update and maintain user profile information",
       "Manage account details from a centralized interface",
@@ -111,7 +106,6 @@ function ScreensCarousel() {
                     centeredSlides={true}
                     loop={true}
                     pagination={{ el: ".dotsPagination", clickable: true, }}
-                    // navigation={{ prevEl: ".prevArrow", nextEl: ".nextArrow", }}
                 >
                     {
                         sliderData.map((slide, index) => (
@@ -121,7 +115,7 @@ function ScreensCarousel() {
 
                                     <div className="mediaGroup">
 
-                                        <img src={slide.pageImage} alt={slide.title} width="438" height="223" loading="lazy" />
+                                        <img src={OverlayImg} alt="Overlay" width="438" height="223" loading="lazy" />
 
                                     </div>
 
@@ -138,7 +132,7 @@ function ScreensCarousel() {
 
                                                     <span className="icon">
 
-                                                        <ChevronsRight className="featureIcon" size={15} strokeWidth={2} />
+                                                        <ChevronsRight className="featureIcon" size={18} strokeWidth={2} />
 
                                                     </span>
 
