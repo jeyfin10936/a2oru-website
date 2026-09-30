@@ -4,8 +4,10 @@
 
 ## Website
 
-- [Home](https://www.aithent.com/azoru/): A2ORU product overview and platform information.
-- [Features](https://www.aithent.com/azoru/#features): Explore A2ORU platform features.
-- [Benefits](https://www.aithent.com/azoru/#benefits): Learn about the benefits of A2ORU.
-- [FAQ](https://www.aithent.com/azoru/#faq): Frequently asked questions about A2ORU.
-- [Contact](https://www.aithent.com/azoru/#contact): Contact A2ORU for more information or a demo.
+- [Home](https://www.aithent.com/a2oru/): A2ORU product overview and platform information.
+- [Benefits](https://www.aithent.com/a2oru/#ChooseUS): Learn about the benefits of A2ORU.
+- [Features](https://www.aithent.com/a2oru/#Features): Explore A2ORU platform features.
+- [Pages](https://www.aithent.com/a2oru/#Pages): Product screens and interface overview.
+- [FAQ](https://www.aithent.com/a2oru/#faq): Frequently asked questions about A2ORU.
+- [Pricing](https://www.aithent.com/a2oru/#pricing): A2ORU pricing and licensing options.
+- [Contact](https://www.aithent.com/a2oru/#Contact): Contact A2ORU for more information or a demo.

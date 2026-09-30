@@ -251,13 +251,34 @@ function ContactForm() {
             );
 
 
-            const result = await response.json();
+            const contentType =
+                response.headers.get("content-type") || "";
+
+            let result = null;
+
+            if (contentType.includes("application/json")) {
+
+                result = await response.json();
+
+            } else if (!response.ok) {
+
+                const gatewayError =
+                    response.status >= 502 &&
+                    response.status <= 504;
+
+                throw new Error(
+                    gatewayError
+                        ? "Unable to send your message. Please try again later."
+                        : "Something went wrong. Please try again."
+                );
+
+            }
 
 
             if (!response.ok) {
 
                 throw new Error(
-                    result.message ||
+                    result?.message ||
                     "Unable to submit the form."
                 );
 
@@ -271,7 +292,7 @@ function ContactForm() {
             setSubmitStatus("success");
 
             setSubmitMessage(
-                result.message ||
+                result?.message ||
                 "Your message has been sent successfully."
             );
 

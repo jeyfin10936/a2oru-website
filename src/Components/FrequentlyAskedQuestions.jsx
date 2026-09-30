@@ -6,7 +6,7 @@ import "../CSS/FrequentlyAskedQuestions.css";
 const FaqData = [
     {
         question: "Does A2ORU support OIDC and SAML for third-party application integration?",
-        answer: ' Yes. A2ORU supports both OIDC and SAML, enabling seamless third-party application integration and extending centralized identity management across your entire application ecosystem.',
+        answer: "Yes. A2ORU supports both OIDC and SAML, enabling seamless third-party application integration and extending centralized identity management across your entire application ecosystem.",
     },
     {
         question: "Can A2ORU integrate with our existing LDAP/Active Directory setup?",
@@ -18,7 +18,7 @@ const FaqData = [
     },
     {
         question: "Can we customize password policies and expiration rules?",
-        answer: "Yes. A2ORU allows administrators to configure custom password policies, including  expiration schedules, tailored to your organization's security standards.",
+        answer: "Yes. A2ORU allows administrators to configure custom password policies, including expiration schedules, tailored to your organization's security standards.",
     },
     {
         question: "Does A2ORU support Single Sign-On (SSO) across multiple products?",
@@ -46,7 +46,7 @@ const FaqData = [
     },
     {
         question: "What training or documentation is provided during onboarding?",
-        answer: " Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules, giving your team everything needed for a smooth, self-sufficient rollout.",
+        answer: "Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules, giving your team everything needed for a smooth, self-sufficient rollout.",
     },
 ];
 
@@ -124,26 +124,46 @@ function FrequentlyAskedQuestions() {
                 </div>
 
                 <div className="faq-wrapper">
-                    {FaqData.map((item, index) => (
-                        <div key={index} className={`FaqItem ${activeIndex === index ? 'active' : ''}`} onClick={() => toggleItem(index)}>
-                            <button className="faqTitle ">
+                    {FaqData.map((item, index) => {
+                        const isOpen = activeIndex === index;
+                        const questionId = `faq-question-${index}`;
+                        const answerId = `faq-answer-${index}`;
+
+                        return (
+                        <div
+                            key={index}
+                            className={`FaqItem ${isOpen ? 'active' : ''}`}
+                            onClick={() => toggleItem(index)}
+                        >
+                            <button
+                                type="button"
+                                className="faqTitle "
+                                id={questionId}
+                                aria-expanded={isOpen}
+                                aria-controls={answerId}
+                            >
                                 <div className="titleGroup">
                                     <span className="titleIcon"><TitleIcon/></span>
                                     <span className="titleText">{item.question}</span>
                                 </div>
                                 <span className="toggleIcon"><DefaultArrow/></span>
                             </button>
-                            <div className="faqAnswer"
+                            <div
+                                className="faqAnswer"
+                                id={answerId}
+                                role="region"
+                                aria-labelledby={questionId}
                                 style={{
-                                    maxHeight: activeIndex === index ? `${contentRefs[index]?.scrollHeight}px` : "0px",
-                                    opacity: activeIndex === index ? 1 : 0,
+                                    maxHeight: isOpen ? `${contentRefs[index]?.scrollHeight}px` : "0px",
+                                    opacity: isOpen ? 1 : 0,
                                 }}
                                 ref={(el) => (contentRefs[index] = el)}
                                 >
                                 <p>{item.answer}</p>
                             </div>
                         </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

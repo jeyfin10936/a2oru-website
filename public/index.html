@@ -4,40 +4,144 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#123D94" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="A2ORU is a centralized Identity &amp; Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <link rel="canonical" href="https://www.aithent.com/a2oru/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.aithent.com/a2oru/" />
+    <meta
+      property="og:title"
+      content="A2ORU | Enterprise Identity &amp; Access Management Made Simple"
+    />
+    <meta
+      property="og:description"
+      content="A2ORU is a centralized Identity &amp; Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system."
+    />
+    <meta
+      property="og:image"
+      content="https://www.aithent.com/a2oru/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="A2ORU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="A2ORU | Enterprise Identity &amp; Access Management Made Simple"
+    />
+    <meta
+      name="twitter:description"
+      content="A2ORU is a centralized Identity &amp; Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.aithent.com/a2oru/og-image.jpg"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>A2ORU</title>
+    <title>A2ORU | Enterprise Identity &amp; Access Management</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does A2ORU support OIDC and SAML for third-party application integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU supports both OIDC and SAML, enabling seamless third-party application integration and extending centralized identity management across your entire application ecosystem."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can A2ORU integrate with our existing LDAP/Active Directory setup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU integrates directly with your existing LDAP and Active Directory infrastructure, enabling synchronized user profiles and streamlined authentication without disrupting your current directory services."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does A2ORU support multi-factor authentication (MFA)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU supports multi-factor authentication to add an additional layer of security beyond standard credentials, helping safeguard access to sensitive systems and data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we customize password policies and expiration rules?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU allows administrators to configure custom password policies, including expiration schedules, tailored to your organization's security standards."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does A2ORU support Single Sign-On (SSO) across multiple products?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU provides SSO capabilities that let users authenticate once and gain seamless access across multiple connected products and applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What role-based access control (RBAC) capabilities does A2ORU offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A2ORU offers a fully configurable role-based access control system. Access is governed by a defined role hierarchy — users are assigned roles with specific permission levels, and the system enforces strict hierarchical boundaries so that users cannot modify or edit roles positioned above their own in the hierarchy. This ensures access control remains consistent, auditable, and secure across the organization."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does A2ORU handle audit logging and compliance reporting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A2ORU maintains a dedicated, separate audit log that records system and user activity independently of operational data. This ensures a reliable, tamper-resistant trail for compliance reporting and security review."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can A2ORU scale to support thousands of users across multiple business units?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU is built to scale — one of our existing enterprise customers currently runs over 30,000 active users on the platform, demonstrating its readiness for large, multi-business-unit deployments."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a free trial or demo available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Help videos are available to help you explore A2ORU's capabilities, and a live demo can be scheduled directly through our Request a Demo option."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we migrate existing user data from another IAM system into A2ORU?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A2ORU includes a dedicated migration module that enables organizations to securely migrate existing user data from other IAM systems into A2ORU with minimal disruption."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What training or documentation is provided during onboarding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules, giving your team everything needed for a smooth, self-sufficient rollout."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

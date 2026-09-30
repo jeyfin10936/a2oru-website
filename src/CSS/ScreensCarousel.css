@@ -46,7 +46,7 @@
 .carouselWrapper .swiper-wrapper .swiper-slide .slideCard > div.contentGroup {
     padding: 30px;
     z-index: 1;
-    color: rgb(var(--white-color-rgb),0.2);
+    color: rgb(var(--white-color-rgb),1);
     background-color: rgb(var(--primary-color-rgb),1);
 
     width: 100%;
@@ -80,7 +80,7 @@
 /* title */
 .carouselWrapper .swiper-wrapper .swiper-slide .slideCard .title {
     margin-bottom: 20px;
-    color: rgb(var(--white-color-rgb),0.3);
+    color: rgb(var(--white-color-rgb),1);
     font-size: var(--font-size-h5);
     transition: var(--alt-transition);
 }

@@ -182,6 +182,23 @@ app.post(
     }
 
         // ------------------------------------------
+        // Required field validation
+        // ------------------------------------------
+
+        if (!name || !email || !company) {
+
+            return res.status(400).json({
+
+                success: false,
+
+                message:
+                    "Name, email and company are required."
+
+            });
+
+        }
+
+        // ------------------------------------------
         // Email validation
         // ------------------------------------------
 
@@ -207,24 +224,6 @@ app.post(
             return res.status(400).json({
                 success: false,
                 message: "Please use your work email address."
-            });
-
-        }
-
-
-        // ------------------------------------------
-        // Required field validation
-        // ------------------------------------------
-
-        if (!name || !email || !company) {
-
-            return res.status(400).json({
-
-                success: false,
-
-                message:
-                    "Name, email and company are required."
-
             });
 
         }

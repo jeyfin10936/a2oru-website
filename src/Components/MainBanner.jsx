@@ -21,7 +21,7 @@ function MainBanner () {
                         <p className='text-center'>A2ORU is a centralized Identity & Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system.</p>
                     </div>
                     <div className="btn-group">
-                        <Button link="#ChooseUS" text="Explore Features" />
+                        <Button link="#Features" text="Explore Features" />
                         <Button link="#Contact" text="Request Demo" />
                     </div>
 

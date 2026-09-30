@@ -147,7 +147,14 @@ function Header () {
             <div className="container">
                 <div ref={headerRef} className={isSticky ? "headerWrapper active" : "headerWrapper"}>
                     <header>
-                        <div className="site-logo"><a href="#"><img src={Logo} alt="Logo" /></a></div>
+                        <div className="site-logo">
+                            <a
+                                href="#home"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                <img src={Logo} alt="Logo" />
+                            </a>
+                        </div>
                         <div className={`site-nav ${mobileMenu ? 'active' : ''}`}>
                             <nav>
                                 <ul>
