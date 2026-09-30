@@ -1,0 +1,7 @@
+{
+  "directoryListing": false,
+  "rewrites": [
+    { "source": "/a2oru", "destination": "/a2oru/index.html" },
+    { "source": "/a2oru/", "destination": "/a2oru/index.html" }
+  ]
+}

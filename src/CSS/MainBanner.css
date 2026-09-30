@@ -1,3 +1,7 @@
+:root {
+    --header-height : 84px;
+}
+
 /* Main Banner Content */
 .mainBanner {
     background-color: transparent;
@@ -59,10 +63,22 @@
 }
 
 
+
+
 /* Responisve */
 @media (max-width: 1540px) { .mainBanner { padding-top: calc(var(--header-height) + 70px); } }
 
-@media (max-width: 1280px) { .mainBanner { padding-top: calc(var(--header-height) + 60px); } }
+@media (max-width: 1280px) { 
+
+    :root {
+        --header-height : 76px;
+    }
+    
+    .mainBanner { 
+        padding-top: calc(var(--header-height) + 60px); 
+    } 
+
+}
 
 @media (max-width: 1024px) { .mainBanner { padding-top: calc(var(--header-height) + 50px); } }
 

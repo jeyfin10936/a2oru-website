@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from '../Assets/a2oru-logo.webp';
 import Button from "../Components/Common/Button";
 import "../CSS/Header.css";
@@ -23,20 +23,20 @@ function Header () {
 
 
     // header height calculation
-    const headerRef = useRef(null);
+    // const headerRef = useRef(null);
 
-    useEffect(() => {
-        const updateHeaderHeight = () => {
+    // useEffect(() => {
+    //     const updateHeaderHeight = () => {
 
-            if (headerRef.current) {
-                document.documentElement.style.setProperty(
-                    "--header-height",
-                    `${headerRef.current.offsetHeight}px`
-                );
-            }
-        };
-        updateHeaderHeight();
-    }, []);
+    //         if (headerRef.current) {
+    //             document.documentElement.style.setProperty(
+    //                 "--header-height",
+    //                 `${headerRef.current.offsetHeight}px`
+    //             );
+    //         }
+    //     };
+    //     updateHeaderHeight();
+    // }, []);
 
     const [activeSection, setActiveSection] = useState("home");
     
@@ -145,7 +145,7 @@ function Header () {
     return (
         <header className="Header">
             <div className="container">
-                <div ref={headerRef} className={isSticky ? "headerWrapper active" : "headerWrapper"}>
+                <div className={isSticky ? "headerWrapper active" : "headerWrapper"}>
                     <header>
                         <div className="site-logo">
                             <a

@@ -6,7 +6,6 @@ import OverlayImg from "../Assets/overlay-img.webp"
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 
 import "../CSS/ScreensCarousel.css";
 import { ChevronsRight } from "lucide-react";

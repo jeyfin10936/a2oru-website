@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-import dashBoardVideo from "../Assets/A2ORU_Video_new.mp4";
 import "../CSS/Dashboard.css";
+
+// const dashboardVideoSrc = `${process.env.PUBLIC_URL}/A2ORU_Video_new.mp4`;
+
+const dashboardVideoSrc = `${process.env.PUBLIC_URL}/A2ORU_Motion.mp4`;
 
 function Dashboard() {
 
@@ -13,6 +16,9 @@ function Dashboard() {
         const video = videoRef.current;
 
         if (!video) return;
+
+        const isMobileViewport =
+            window.matchMedia("(max-width: 768px)").matches;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -26,7 +32,7 @@ function Dashboard() {
 
             },
             {
-                rootMargin: "300px",
+                rootMargin: isMobileViewport ? "0px" : "300px",
             }
         );
 
@@ -53,7 +59,7 @@ function Dashboard() {
                 >
                     {shouldLoadVideo && (
                         <source
-                            src={dashBoardVideo}
+                            src={dashboardVideoSrc}
                             type="video/mp4"
                         />
                     )}

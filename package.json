@@ -19,6 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "preview": "powershell -ExecutionPolicy Bypass -File scripts/serve-preview.ps1",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

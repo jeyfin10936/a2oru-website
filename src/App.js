@@ -1,17 +1,17 @@
+import { lazy, Suspense } from 'react';
 import MainBanner from './Components/MainBanner';
 import Dashboard from './Components/Dashboard';
 import FrequentlyAskedQuestions from './Components/FrequentlyAskedQuestions';
-import ScreensCarousel from './Components/ScreensCarousel';
 import Footer from './Components/Footer';
 import WhyChoose from './Components/WhyChoose';
-// import Features from './Components/Features';
-import NewFeatures from './Components/NewFeatures';
 import Header from "./Components/Header";
 import ContactUs from "./Components/ContactUs";
 import PricingTable from './Components/PricingTable';
-// import DeploymentOptions from "./Components/DeploymentOptions.jsx"
-import MarqueeBlock from "./Components/MarqueeBlock";
 import ContactBlock from './Components/ContactBlock';
+
+const NewFeatures = lazy(() => import('./Components/NewFeatures'));
+const ScreensCarousel = lazy(() => import('./Components/ScreensCarousel'));
+const MarqueeBlock = lazy(() => import('./Components/MarqueeBlock'));
 
 function App() {
   return (
@@ -24,13 +24,17 @@ function App() {
         <MainBanner/>
         <Dashboard/>
         <WhyChoose/>
-        {/* <Features/> */}
-        <NewFeatures/>
-        <ScreensCarousel/>
+        <Suspense fallback={null}>
+          <NewFeatures/>
+        </Suspense>
+        <Suspense fallback={null}>
+          <ScreensCarousel/>
+        </Suspense>
         <FrequentlyAskedQuestions/>
         <PricingTable />
-        {/* <DeploymentOptions /> */}
-        <MarqueeBlock />
+        <Suspense fallback={null}>
+          <MarqueeBlock />
+        </Suspense>
         <ContactBlock />
         <ContactUs/>
 
