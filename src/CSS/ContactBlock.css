@@ -178,6 +178,15 @@ input:focus ~ .errorMessage {
     height: fit-content;
 }
 
+/* Honeypot */
+.contactFormBlock .honeypotField {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: -9999px;
+    overflow: hidden;
+}
+
 
 /* Responsive */
 

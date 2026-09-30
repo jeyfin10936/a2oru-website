@@ -2,6 +2,7 @@
 
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
 const nodemailer = require("nodemailer");
 // const rateLimit = require("express-rate-limit");
 const { rateLimit, ipKeyGenerator } = require("express-rate-limit");
@@ -11,6 +12,8 @@ require("dotenv").config();
 const app = express();
 
 app.set("trust proxy", 1);
+
+app.use(helmet());
 
 const PORT = process.env.PORT || 5000;
 
@@ -70,6 +73,19 @@ const allowedOrigins = [
     "https://uatweb.aithent.com"
 ];
 
+function validateOrigin(req, res, next) {
+    const origin = req.get("origin");
+
+    if (!origin || !allowedOrigins.includes(origin)) {
+        return res.status(403).json({
+            success: false,
+            message: "Invalid request origin."
+        });
+    }
+
+    next();
+}
+
 app.use(cors({
     origin: allowedOrigins
 }));
@@ -125,12 +141,24 @@ transporter.verify((error) => {
 });
 
 
+// Escapr HTMl
+function escapeHtml(value = "") {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
 // --------------------------------------------------
 // Contact Form API
 // --------------------------------------------------
 
 app.post(
     "/api/contact",
+    validateOrigin,
     contactLimiter,
     async (req, res) => {
 
@@ -142,8 +170,16 @@ app.post(
             company,
             phone,
             message,
-            interestedIn
+            interestedIn,
+            website
         } = req.body;
+
+        if (website) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid submission."
+        });
+    }
 
         // ------------------------------------------
         // Email validation
@@ -193,22 +229,72 @@ app.post(
 
         }
 
+        // ------------------------------------------
+        // Field length validation
+        // ------------------------------------------
+
+        if (name.length > 100) {
+            return res.status(400).json({
+                success: false,
+                message: "Name is too long."
+            });
+        }
+
+        if (email.length > 254) {
+            return res.status(400).json({
+                success: false,
+                message: "Email address is too long."
+            });
+        }
+
+        if (company.length > 150) {
+            return res.status(400).json({
+                success: false,
+                message: "Company name is too long."
+            });
+        }
+
+        if (phone && phone.length > 30) {
+            return res.status(400).json({
+                success: false,
+                message: "Phone number is too long."
+            });
+        }
+
+        if (message && message.length > 3000) {
+            return res.status(400).json({
+                success: false,
+                message: "Message is too long."
+            });
+        }
+
 
         if (
             !Array.isArray(interestedIn) ||
-            interestedIn.length === 0
+            interestedIn.length === 0 ||
+            interestedIn.length > 10
         ) {
-
             return res.status(400).json({
-
                 success: false,
-
-                message:
-                    "Please select at least one option."
-
+                message: "Please select valid options."
             });
-
         }
+
+        if (interestedIn.some(item => String(item).length > 100)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid selection."
+            });
+        }
+
+        const safeName = escapeHtml(name);
+        const safeCompany = escapeHtml(company);
+        const safePhone = escapeHtml(phone || "Not provided");
+        const safeMessage = escapeHtml(message || "Not provided");
+
+        const safeInterestedIn = interestedIn
+            .map(item => escapeHtml(item))
+            .join(", ");
 
 
         // ------------------------------------------
@@ -221,7 +307,7 @@ app.post(
 
             to: process.env.ADMIN_EMAIL,
 
-            cc: process.env.ADMIN_CC,
+            // cc: process.env.ADMIN_CC,
 
             replyTo: normalizedEmail,
 
@@ -359,7 +445,7 @@ app.post(
                                             vertical-align: top;
                                         "
                                     >
-                                        ${name}
+                                        ${safeName}
                                     </td>
 
                                 </tr>
@@ -433,7 +519,7 @@ app.post(
                                             vertical-align: top;
                                         "
                                     >
-                                        ${company}
+                                        ${safeCompany}
                                     </td>
 
                                 </tr>
@@ -463,7 +549,7 @@ app.post(
                                             vertical-align: top;
                                         "
                                     >
-                                        ${phone || "Not provided"}
+                                        ${safePhone || "Not provided"}
                                     </td>
 
                                 </tr>
@@ -475,7 +561,7 @@ app.post(
 
                             <h3
                                 style="
-                                    margin: 28px 0 14px;
+                                    margin: 20px 0 14px;
                                     color: #1A1A1A;
                                     font-size: 17px;
                                     line-height: 1.4;
@@ -493,9 +579,10 @@ app.post(
                                     border-radius: 6px;
                                     color: #4A4A4A;
                                     line-height: 1.5;
+                                    font-size: 14px;
                                 "
                             >
-                                ${interestedIn.join(", ")}
+                                ${safeInterestedIn}
                             </div>
 
 
@@ -503,7 +590,7 @@ app.post(
 
                             <h3
                                 style="
-                                    margin: 28px 0 14px;
+                                    margin: 20px 0 14px;
                                     color: #1A1A1A;
                                     font-size: 17px;
                                     line-height: 1.4;
@@ -521,10 +608,11 @@ app.post(
                                     border-radius: 6px;
                                     color: #4A4A4A;
                                     line-height: 1.6;
+                                    font-size: 14px;
                                     white-space: pre-line;
                                 "
                             >
-                                ${message || "Not provided"}
+                                ${safeMessage || "Not provided"}
                             </div>
 
                         </div>
