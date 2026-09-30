@@ -1,5 +1,12 @@
-import { ChevronsRight, CircleCheck, CircleX  } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ChevronsRight, CircleCheck, CircleX, X } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
+
+const SUCCESS_BODY_FALLBACK =
+    "We've received your enquiry. Our team will contact you shortly.";
+
+const MODAL_TRANSITION_MS = 320;
+const MODAL_AUTO_CLOSE_MS = 3000;
 
 function ContactForm() {
 
@@ -60,6 +67,71 @@ function ContactForm() {
     const [submitStatus, setSubmitStatus] = useState("");
 
     const [submitMessage, setSubmitMessage] = useState("");
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const lockedScrollY = useRef(0);
+    const isScrollLocked = useRef(false);
+    const closeTimerRef = useRef(null);
+    const autoCloseTimerRef = useRef(null);
+
+    const clearModalTimers = () => {
+        if (closeTimerRef.current) {
+            clearTimeout(closeTimerRef.current);
+            closeTimerRef.current = null;
+        }
+        if (autoCloseTimerRef.current) {
+            clearTimeout(autoCloseTimerRef.current);
+            autoCloseTimerRef.current = null;
+        }
+    };
+
+    const lockPageScroll = () => {
+        lockedScrollY.current = window.scrollY;
+        const body = document.body;
+
+        body.style.position = "fixed";
+        body.style.top = `-${lockedScrollY.current}px`;
+        body.style.left = "0";
+        body.style.right = "0";
+        body.style.width = "100%";
+
+        isScrollLocked.current = true;
+    };
+
+    const unlockPageScroll = () => {
+        if (!isScrollLocked.current) {
+            return;
+        }
+
+        const body = document.body;
+        const scrollY = lockedScrollY.current;
+
+        body.style.position = "";
+        body.style.top = "";
+        body.style.left = "";
+        body.style.right = "";
+        body.style.width = "";
+
+        window.scrollTo({
+            top: scrollY,
+            left: 0,
+            behavior: "instant",
+        });
+        isScrollLocked.current = false;
+    };
+
+    const dismissNotification = useCallback(() => {
+        setModalVisible(false);
+        clearModalTimers();
+
+        closeTimerRef.current = setTimeout(() => {
+            setSubmitStatus("");
+            setSubmitMessage("");
+            unlockPageScroll();
+            closeTimerRef.current = null;
+        }, MODAL_TRANSITION_MS);
+    }, []);
 
 
     const handleChange = (e) => {
@@ -343,19 +415,43 @@ function ContactForm() {
     };
 
     useEffect(() => {
-        if (!submitMessage) return;
+        if (!submitMessage) {
+            setModalVisible(false);
+            return;
+        }
 
-        const timer = setTimeout(() => {
-            setSubmitStatus("");
-            setSubmitMessage("");
-        }, 2000);
+        setModalVisible(false);
+        lockPageScroll();
 
-        return () => clearTimeout(timer);
-    }, [submitMessage]);
+        const openFrame = requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                setModalVisible(true);
+            });
+        });
+
+        const onKeyDown = (event) => {
+            if (event.key === "Escape") {
+                dismissNotification();
+            }
+        };
+
+        window.addEventListener("keydown", onKeyDown);
+
+        autoCloseTimerRef.current = setTimeout(
+            dismissNotification,
+            MODAL_AUTO_CLOSE_MS
+        );
+
+        return () => {
+            cancelAnimationFrame(openFrame);
+            window.removeEventListener("keydown", onKeyDown);
+            clearModalTimers();
+        };
+    }, [submitMessage, dismissNotification]);
 
 
     return (
-
+        <>
         <form
             onSubmit={handleSubmit}
             noValidate
@@ -662,24 +758,66 @@ function ContactForm() {
             </div>
 
 
-            {/* Submission Message */}
-
-            {submitMessage && (
-
-                <div
-                    className={ `${submitStatus === "success" ? "successMessage" : "errorMessage"} notificationMessage fullWidth` }
-                >
-
-                    { submitStatus === "success" ? ( <CircleCheck /> ) : ( <CircleX /> ) }
-
-                    <p>{submitMessage}</p>
-
-                </div>
-
-            )}
-
         </form>
 
+            {submitMessage &&
+                createPortal(
+                    <div
+                        className={
+                            modalVisible
+                                ? "formFeedbackOverlay is-visible"
+                                : "formFeedbackOverlay"
+                        }
+                        onClick={dismissNotification}
+                        role="presentation"
+                    >
+                        <div
+                            className={
+                                submitStatus === "success"
+                                    ? "formFeedbackModal formFeedbackModal--success"
+                                    : "formFeedbackModal formFeedbackModal--error"
+                            }
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="formFeedbackTitle"
+                            onClick={(event) => event.stopPropagation()}
+                        >
+                            <button
+                                type="button"
+                                className="formFeedbackModal__close"
+                                onClick={dismissNotification}
+                                aria-label="Close"
+                            >
+                                <X aria-hidden="true" />
+                            </button>
+
+                            <div className="formFeedbackModal__icon">
+                                {submitStatus === "success" ? (
+                                    <CircleCheck aria-hidden="true" />
+                                ) : (
+                                    <CircleX aria-hidden="true" />
+                                )}
+                            </div>
+
+                            <h3
+                                id="formFeedbackTitle"
+                                className="formFeedbackModal__title"
+                            >
+                                {submitStatus === "success"
+                                    ? "Thank you"
+                                    : "Something went wrong"}
+                            </h3>
+
+                            <p className="formFeedbackModal__body">
+                                {submitStatus === "success"
+                                    ? submitMessage || SUCCESS_BODY_FALLBACK
+                                    : submitMessage}
+                            </p>
+                        </div>
+                    </div>,
+                    document.body
+                )}
+        </>
     );
 
 }

@@ -79,7 +79,10 @@ a {
 
  ::selection { background-color: var(--primary-color); color: var(--white-color); }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+}
 
 body {
     margin: 0;
