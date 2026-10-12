@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import MainBanner from './Components/MainBanner';
-import Dashboard from './Components/Dashboard';
+// import VideoBanner from './Components/VideoBanner';
 import FrequentlyAskedQuestions from './Components/FrequentlyAskedQuestions';
 import Footer from './Components/Footer';
 import WhyChoose from './Components/WhyChoose';
@@ -22,7 +22,7 @@ function App() {
       <main>
 
         <MainBanner/>
-        <Dashboard/>
+        {/* <VideoBanner/> */}
         <WhyChoose/>
         <Suspense fallback={null}>
           <NewFeatures/>

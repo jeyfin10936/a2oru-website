@@ -1,3 +1,7 @@
+.WhyChooseBlock {
+    margin-top: -4%;
+}
+
 .whyChooseWrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -61,5 +65,7 @@
 
 /* responisve */
 @media (max-width: 1024px) { .whyChooseWrapper { grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 768px) { .WhyChooseBlock { margin-top: 0; } }
 
 @media (max-width: 600px) { .whyChooseWrapper { grid-template-columns: repeat(1, 1fr); } }

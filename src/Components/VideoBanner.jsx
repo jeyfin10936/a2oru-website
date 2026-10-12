@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-import "../CSS/Dashboard.css";
+import "../CSS/VideoBanner.css";
 
 // const dashboardVideoSrc = `${process.env.PUBLIC_URL}/A2ORU_Video_new.mp4`;
 
 const dashboardVideoSrc = `${process.env.PUBLIC_URL}/A2ORU_Motion.mp4`;
 
-function Dashboard() {
+function VideoBanner() {
 
     const videoRef = useRef(null);
     const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -43,9 +43,9 @@ function Dashboard() {
     }, []);
 
     return (
-        <section className="mainDashboardImg">
+        // <section className="mainDashboardImg">
 
-            <div className="container">
+            <div className="videoWrapper">
 
                 <video
                     ref={videoRef}
@@ -67,8 +67,8 @@ function Dashboard() {
 
             </div>
 
-        </section>
+        // </section>
     );
 }
 
-export default Dashboard;
+export default VideoBanner;

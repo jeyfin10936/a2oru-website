@@ -7,7 +7,7 @@ function MultiApplicationManagementMockup() {
         <FeatureMockupFrame active={3}>
 
             <div className="fm-page-title">
-                Edit Application
+                Applications
             </div>
 
             <div className="fm-page-description">
@@ -44,7 +44,7 @@ function MultiApplicationManagementMockup() {
                 className="fm-button light"
                 style={{
                     width: "65px",
-                    marginBottom: "8px"
+                    marginBottom: "8px",
                 }}
             >
                 + Add New
@@ -67,14 +67,14 @@ function MultiApplicationManagementMockup() {
                         <span
                             className="fm-skeleton sm"
                             style={{
-                                marginTop: "6px"
+                                marginTop: "6px",
                             }}
                         />
 
                         <span
                             className="fm-skeleton xs"
                             style={{
-                                marginTop: "6px"
+                                marginTop: "6px",
                             }}
                         />
 

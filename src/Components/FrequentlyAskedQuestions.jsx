@@ -1,5 +1,5 @@
-import {useState, useRef} from 'react';
-import Counter from "../Components/Common/Counter";
+import { useLayoutEffect, useRef, useState } from "react";
+
 import "../CSS/FrequentlyAskedQuestions.css";
 
 
@@ -48,33 +48,15 @@ const FaqData = [
         question: "What training or documentation is provided during onboarding?",
         answer: "Onboarding includes comprehensive documentation covering installation, A2ORU platform configuration, and API and UI configuration modules, giving your team everything needed for a smooth, self-sufficient rollout.",
     },
+    {
+        question: "Can a user hold multiple roles?",
+        answer: "Yes. A2ORU supports assigning multiple roles to a user, and effective rights are resolved through policy-based configuration.",
+    },
 ];
 
-const counterData = [
-    {
-        number: 5,
-        prefix: 0,
-        suffix: "+",
-        label: "Authentication Methods"
-    },
-    {
-        number: 3,
-        prefix: 0,
-        suffix: "+",
-        label: "SSO Integrations"
-    },
-    {
-        number: 3,
-        prefix: 0,
-        suffix: "+",
-        label: "Access Control Levels"
-    },
-    {
-        number: 1,
-        prefix: 0,
-        label: "Unified Platform"
-    }
-];
+const INITIAL_FAQ_VISIBLE = 5;
+
+const FAQ_SCROLL_OFFSET = 150;
 
 const TitleIcon = () => (
     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,89 +67,232 @@ const TitleIcon = () => (
 const DefaultArrow = () => (
     <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 5L8 11L6.25 9.5M1 5L3.333 7M1 1L8 7L9.75 5.5M15 1L12.667 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
+    </svg>
 );
 
 function FrequentlyAskedQuestions() {
 
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [openIndex, setOpenIndex] = useState(0);
 
-    const toggleItem = (index) => {
-        setActiveIndex(activeIndex === index ? null : index);
-    };
+    const [showAllFaqs, setShowAllFaqs] = useState(false);
 
     const contentRefs = useRef([]);
 
-    return(
-        <section className="faqSection sec-top-bottom-spacing section-alter-bg" id="faq">
+    const faqListRef = useRef(null);
+
+    const scrollToFaqAfterCollapse = useRef(false);
+
+    const [answerHeightsReady, setAnswerHeightsReady] = useState(0);
+
+    const hasMoreFaqs = FaqData.length > INITIAL_FAQ_VISIBLE;
+
+    useLayoutEffect(() => {
+
+        setAnswerHeightsReady((tick) => tick + 1);
+
+    }, [openIndex, showAllFaqs]);
+
+    useLayoutEffect(() => {
+
+        if (showAllFaqs || !scrollToFaqAfterCollapse.current) {
+            return;
+        }
+
+        scrollToFaqAfterCollapse.current = false;
+
+        const anchor = faqListRef.current ?? document.getElementById("faq");
+
+        if (!anchor) {
+            return;
+        }
+
+        const top = anchor.getBoundingClientRect().top
+            + window.scrollY
+            - FAQ_SCROLL_OFFSET;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: "smooth",
+        });
+
+    }, [showAllFaqs]);
+
+    const toggleShowAllFaqs = () => {
+
+        if (showAllFaqs) {
+            scrollToFaqAfterCollapse.current = true;
+
+            if (openIndex !== null && openIndex >= INITIAL_FAQ_VISIBLE) {
+                setOpenIndex(0);
+            }
+        }
+
+        setShowAllFaqs((previous) => !previous);
+
+    };
+
+    const toggleItem = (index) => {
+
+        setOpenIndex((previous) => (previous === index ? null : index));
+
+    };
+
+    const openAnswerHeight = (index) => {
+
+        void answerHeightsReady;
+
+        const node = contentRefs.current[index];
+
+        return node?.scrollHeight ?? 0;
+
+    };
+
+    return (
+
+        <section
+            className="faqSection sec-top-bottom-spacing section-alter-bg"
+            id="faq"
+        >
+
             <div className="container">
-                <div className="headingGroup">
-                    <div className="subTitle"><span>FAQ</span></div>
-                    <h2 className="title">Frequently Asked <span className="highlightTitle">Questions</span></h2>
-                    <p className="contentWrapper">Find answers to the most common questions about A2ORU, including authentication, access management, security policies, and enterprise administration.</p>
 
-                    <div className="counterWrapper">
-                        {counterData.map((item, index) => (
-                            <div className="counterList" key={index}>
-                                <h3 className='counter'>
-                                    <Counter
-                                        end={item.number}
-                                        prefix={item.prefix}
-                                        suffix={item.suffix}
-                                    />
-                                </h3>
+                <div className="headingGroup text-center">
 
-                                <p className='conterTitle'>{item.label}</p>
-                            </div>
-                        ))}
+                    <div className="subTitle text-center">
+                        <span>FAQ</span>
                     </div>
+
+                    <h2 className="title text-center">
+                        Frequently Asked{" "}
+
+                        <span className="highlightTitle">
+                            Questions
+                        </span>
+                    </h2>
+
+                    <p className="contentWrapper text-center">
+                        Find answers to the most common questions about A2ORU, including authentication, access management, security policies, and enterprise administration.
+                    </p>
+
                 </div>
 
-                <div className="faq-wrapper">
+
+                <div className="faqListBlock" ref={faqListRef}>
+
+                    <div className="faq-wrapper">
+
                     {FaqData.map((item, index) => {
-                        const isOpen = activeIndex === index;
+
+                        if (!showAllFaqs && index >= INITIAL_FAQ_VISIBLE) {
+                            return null;
+                        }
+
+                        const isOpen = openIndex === index;
                         const questionId = `faq-question-${index}`;
                         const answerId = `faq-answer-${index}`;
 
                         return (
-                        <div
-                            key={index}
-                            className={`FaqItem ${isOpen ? 'active' : ''}`}
-                            onClick={() => toggleItem(index)}
-                        >
-                            <button
-                                type="button"
-                                className="faqTitle "
+
+                            <div
+                                className={`FaqItem ${isOpen ? "active" : ""}`}
+                                key={item.question}
                                 id={questionId}
+                                role="button"
+                                tabIndex={0}
                                 aria-expanded={isOpen}
                                 aria-controls={answerId}
-                            >
-                                <div className="titleGroup">
-                                    <span className="titleIcon"><TitleIcon/></span>
-                                    <span className="titleText">{item.question}</span>
-                                </div>
-                                <span className="toggleIcon"><DefaultArrow/></span>
-                            </button>
-                            <div
-                                className="faqAnswer"
-                                id={answerId}
-                                role="region"
-                                aria-labelledby={questionId}
-                                style={{
-                                    maxHeight: isOpen ? `${contentRefs[index]?.scrollHeight}px` : "0px",
-                                    opacity: isOpen ? 1 : 0,
+                                onClick={() => toggleItem(index)}
+                                onKeyDown={(event) => {
+
+                                    if (
+                                        event.key === "Enter"
+                                        || event.key === " "
+                                    ) {
+                                        event.preventDefault();
+                                        toggleItem(index);
+                                    }
+
                                 }}
-                                ref={(el) => (contentRefs[index] = el)}
+                            >
+
+                                <div className="faqTitle">
+
+                                    <div className="titleGroup">
+
+                                        <span className="titleIcon">
+                                            <TitleIcon />
+                                        </span>
+
+                                        <span className="titleText">
+                                            {item.question}
+                                        </span>
+
+                                    </div>
+
+                                    <span className="toggleIcon">
+                                        <DefaultArrow />
+                                    </span>
+
+                                </div>
+
+
+                                <div
+                                    className="faqAnswer"
+                                    id={answerId}
+                                    role="region"
+                                    aria-labelledby={questionId}
+                                    style={{
+                                        maxHeight: isOpen
+                                            ? `${openAnswerHeight(index)}px`
+                                            : "0px",
+                                        opacity: isOpen ? 1 : 0,
+                                    }}
+                                    ref={(element) => {
+                                        contentRefs.current[index] = element;
+                                    }}
                                 >
-                                <p>{item.answer}</p>
+
+                                    <p>{item.answer}</p>
+
+                                </div>
+
                             </div>
-                        </div>
+
                         );
+
                     })}
+
+                    </div>
+
+                    {hasMoreFaqs && (
+
+                        <div className="faqToggleWrap">
+
+                            <button
+                                type="button"
+                                className="btn faqToggleBtn"
+                                aria-expanded={showAllFaqs}
+                                onClick={toggleShowAllFaqs}
+                            >
+
+                                <span className="btn-txt">
+                                    {showAllFaqs ? "View less" : "View all FAQs"}
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    )}
+
                 </div>
+
             </div>
+
         </section>
-    )
+
+    );
+
 }
 
 export default FrequentlyAskedQuestions;

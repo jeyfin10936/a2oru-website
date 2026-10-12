@@ -1,164 +1,364 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { useEffect, useRef, useState } from "react";
 
-import OverlayImg from "../Assets/overlay-img.webp"
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import tabDecor from "../Assets/tab-decor.webp";
 
 import "../CSS/ScreensCarousel.css";
-import { ChevronsRight } from "lucide-react";
+
+import {
+    Activity,
+    AppWindow,
+    Building2,
+    ChevronDown,
+    ChevronRight,
+    Eye,
+    FileText,
+    KeyRound,
+    LayoutDashboard,
+    LayoutGrid,
+    Link2,
+    Lock,
+    Monitor,
+    Network,
+    RefreshCw,
+    Shield,
+    ShieldCheck,
+    Timer,
+    UserCog,
+    UserPlus,
+    Users,
+    UserPen,
+} from "lucide-react";
 
 
 const sliderData = [
-  {
-    title: "Dashboard Overview",
-
-    points: [
-      "Monitor users information",
-      "Provide administrators with operational visibility",
-      "Give administrators a quick overview of the environment",
-    ],
-  },
-  {
-    title: "Organization Management",
-
-    points: [
-      "Manage multiple organizations from a centralized platform",
-      "Maintain organization-specific users, roles, and applications",
-      "Control access within the appropriate organizational context",
-    ],
-  },
-  {
-    title: "User Management",
-  
-    points: [
-      "Create and manage enterprise users",
-      "Maintain user profiles and account information",
-      "Assign and manage roles",
-      "Manage user lifecycle status",
-    ],
-  },
-  {
-    title: "Application Management",
-
-    points: [
-      "Manage multiple applications from one administration console",
-      "Configure application-specific access",
-      "Associate users and roles with applications",
-      "Manage application modules and permissions",
-    ],
-  },
-  {
-    title: "Security Settings",
-  
-    points: [
-      "Configure authentication security policies",
-      "Control failed-login attempts and account lockout behavior",
-      "Configure OTP expiration and security settings",
-      "Manage concurrent-session restrictions",
-    ],
-  },
-  {
-    title: "User Profile Edit",
-  
-    points: [
-      "Update and maintain user profile information",
-      "Manage account details from a centralized interface",
-      "Maintain accurate user information",
-    ],
-  },
+    {
+        title: "Dashboard Overview",
+        tabIcon: LayoutDashboard,
+        points: [
+            { text: "Monitor users information", icon: Activity },
+            { text: "Provide administrators with operational visibility", icon: Eye },
+            { text: "Give administrators a quick overview of the environment", icon: Monitor },
+        ],
+    },
+    {
+        title: "Organization Management",
+        tabIcon: Network,
+        points: [
+            { text: "Manage multiple organizations from a centralized platform", icon: Building2 },
+            { text: "Maintain organization-specific users, roles, and applications", icon: Users },
+            { text: "Control access within the appropriate organizational context", icon: ShieldCheck },
+        ],
+    },
+    {
+        title: "User Management",
+        tabIcon: Users,
+        points: [
+            { text: "Create and manage enterprise users", icon: UserPlus },
+            { text: "Maintain user profiles and account information", icon: FileText },
+            { text: "Assign and manage roles", icon: Users },
+            { text: "Manage user lifecycle status", icon: RefreshCw },
+        ],
+    },
+    {
+        title: "Application Management",
+        tabIcon: LayoutGrid,
+        points: [
+            { text: "Manage multiple applications from one administration console", icon: AppWindow },
+            { text: "Configure application-specific access", icon: KeyRound },
+            { text: "Associate users and roles with applications", icon: Link2 },
+            { text: "Manage application modules and permissions", icon: LayoutGrid },
+        ],
+    },
+    {
+        title: "Security Settings",
+        tabIcon: Shield,
+        points: [
+            { text: "Configure authentication security policies", icon: ShieldCheck },
+            { text: "Control failed-login attempts and account lockout behavior", icon: Lock },
+            { text: "Configure OTP expiration and security settings", icon: Timer },
+            { text: "Manage concurrent-session restrictions", icon: Monitor },
+        ],
+    },
+    {
+        title: "User Profile Edit",
+        tabIcon: UserCog,
+        points: [
+            { text: "Update and maintain user profile information", icon: UserPen },
+            { text: "Manage account details from a centralized interface", icon: FileText },
+            { text: "Maintain accurate user information", icon: ShieldCheck },
+        ],
+    },
 ];
+
 
 function ScreensCarousel() {
 
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const tabNavRef = useRef(null);
+
+    const activeSlide = sliderData[activeIndex];
+    const ActiveTabIcon = activeSlide.tabIcon;
+
+    const panelId = `dashboard-tab-panel-${activeIndex}`;
+
+    useEffect(() => {
+
+        if (!dropdownOpen) {
+            return undefined;
+        }
+
+        const closeOnOutsideClick = (event) => {
+
+            if (
+                tabNavRef.current
+                && !tabNavRef.current.contains(event.target)
+            ) {
+                setDropdownOpen(false);
+            }
+
+        };
+
+        document.addEventListener("mousedown", closeOnOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", closeOnOutsideClick);
+        };
+
+    }, [dropdownOpen]);
+
+    const selectTab = (index) => {
+        setActiveIndex(index);
+        setDropdownOpen(false);
+    };
+
+
     return (
-        <section className="imageCarouselSection sec-top-bottom-spacing" id="Pages">
+
+        <section
+            className="imageCarouselSection sec-top-bottom-spacing"
+            id="modules"
+        >
+
             <div className="container">
+
                 <div className="headingGroup text-center">
-                    <div className="subTitle"><span>Centralized Administration</span></div>
-                    <h2 className="title">A Centralized <span className="highlightTitle">Dashboard</span> for Enterprise Identity Management</h2>
-                    <p className="contentWrapper">Manage organizations, users, applications, roles, and security policies from one intuitive dashboard designed to simplify enterprise identity and access management.</p>
+
+                    <div className="subTitle">
+                        <span>Core Modules</span>
+                    </div>
+
+                    <h2 className="title">
+                    Everything You Need to{" "}
+
+                        <span className="highlightTitle">
+                        Manage
+                        </span>{" "}
+
+                        Identity and Access
+                    </h2>
+
+                    <p className="contentWrapper">
+                    Explore A2ORU’s modules for managing organizations, users, applications, and security policies, each built to give administrators complete control.
+                    </p>
+
                 </div>
 
-            </div>
 
-            <div className="carouselWrapper">
-                <Swiper
-                    modules={[Pagination, Navigation, Autoplay]}
-                    speed={1200}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true,
-                    }}
-                    slidesPerView={2}
-                    breakpoints={{
-                        350: { slidesPerView: 1.1 },
-                        479: { slidesPerView: 1.4 },
-                        768: { slidesPerView: 1.6 },
-                        1024: { slidesPerView: 2.3 },
-                        1280: { slidesPerView: 2.5 },
-                    }}
-                    spaceBetween={10}
-                    centeredSlides={true}
-                    loop={true}
-                    pagination={{ el: ".dotsPagination", clickable: true, }}
-                >
-                    {
-                        sliderData.map((slide, index) => (
-                            <SwiperSlide key={index}>
+                <div className="dashboardTabsLayout">
 
-                                <div className="slideCard">
+                    <nav
+                        className={`dashboardTabNav ${
+                            dropdownOpen ? "is-open" : ""
+                        }`}
+                        ref={tabNavRef}
+                    >
 
-                                    <div className="mediaGroup">
+                        <button
+                            type="button"
+                            className="dashboardTabDropdownTrigger"
+                            aria-expanded={dropdownOpen}
+                            aria-controls="dashboard-tab-menu"
+                            onClick={() => setDropdownOpen((open) => !open)}
+                        >
 
-                                        <img src={OverlayImg} alt="Overlay" width="438" height="223" loading="lazy" />
+                            <span className="dashboardTabIcon">
 
-                                    </div>
+                                <ActiveTabIcon
+                                    size={20}
+                                    strokeWidth={2}
+                                    aria-hidden
+                                />
 
-                                    <div className="contentGroup">
+                            </span>
 
-                                        <h3 className="title">{slide.title}</h3>
+                            <span className="dashboardTabLabel">
+                                {activeSlide.title}
+                            </span>
 
-                                        <ul className="overlayList">
+                            <ChevronDown
+                                className="dashboardTabDropdownChevron"
+                                size={20}
+                                strokeWidth={2}
+                                aria-hidden
+                            />
 
-                                            {
-                                                slide.points.map((point, idx) => (
+                        </button>
 
-                                                <li key={idx}>
 
-                                                    <span className="icon">
+                        <ul
+                            className="dashboardTabList"
+                            id="dashboard-tab-menu"
+                            role="tablist"
+                            aria-label="Dashboard capabilities"
+                        >
 
-                                                        <ChevronsRight className="featureIcon" size={18} strokeWidth={2} />
+                        {sliderData.map((slide, index) => {
 
-                                                    </span>
+                            const isActive = index === activeIndex;
+                            const tabId = `dashboard-tab-${index}`;
+                            const TabIcon = slide.tabIcon;
 
-                                                    <span>{point}</span>
-                                                </li>
+                            return (
 
-                                                ))
-                                            }
-                                        </ul>
+                                <li key={slide.title}>
 
-                                    </div>
+                                    <button
+                                        type="button"
+                                        id={tabId}
+                                        className={`dashboardTabBtn ${
+                                            isActive ? "active" : ""
+                                        }`}
+                                        role="tab"
+                                        aria-selected={isActive}
+                                        aria-controls={panelId}
+                                        tabIndex={isActive ? 0 : -1}
+                                        onClick={() => selectTab(index)}
+                                    >
+
+                                        <span className="dashboardTabIcon">
+                                            <TabIcon
+                                                size={20}
+                                                strokeWidth={2}
+                                                aria-hidden
+                                            />
+                                        </span>
+
+                                        <span className="dashboardTabLabel">
+                                            {slide.title}
+                                        </span>
+
+                                        {isActive && (
+                                            <ChevronRight
+                                                className="dashboardTabChevron"
+                                                size={20}
+                                                strokeWidth={2}
+                                                aria-hidden
+                                            />
+                                        )}
+
+                                    </button>
+
+                                </li>
+
+                            );
+
+                        })}
+
+                        </ul>
+
+                    </nav>
+
+
+                    <div
+                        className="dashboardTabPanel"
+                        role="tabpanel"
+                        id={panelId}
+                        aria-labelledby={`dashboard-tab-${activeIndex}`}
+                    >
+
+                        <div className="dashboardContentCard">
+
+                            <h3 className="dashboardContentTitle">
+                                {activeSlide.title}
+                            </h3>
+
+
+                            <div className="dashboardContentBody">
+
+                                <ul className="dashboardFeatureList">
+
+                                    {activeSlide.points.map((point) => {
+
+                                        const PointIcon = point.icon;
+
+                                        return (
+
+                                            <li
+                                                className="dashboardFeatureRow"
+                                                key={point.text}
+                                            >
+
+                                                <span className="dashboardFeatureIconWrap">
+
+                                                    <PointIcon
+                                                        size={20}
+                                                        strokeWidth={2}
+                                                        aria-hidden
+                                                    />
+
+                                                </span>
+
+                                                <span className="dashboardFeatureText">
+                                                    {point.text}
+                                                </span>
+
+                                                {/* <ChevronRight
+                                                    className="dashboardFeatureChevron"
+                                                    size={18}
+                                                    strokeWidth={2}
+                                                    aria-hidden
+                                                /> */}
+
+                                            </li>
+
+                                        );
+
+                                    })}
+
+                                </ul>
+
+
+                                <div
+                                    className="dashboardContentDecor"
+                                    aria-hidden="true"
+                                >
+
+                                    <img
+                                        src={tabDecor}
+                                        alt=""
+                                        width="600"
+                                        height="490"
+                                        loading="lazy"
+                                    />
 
                                 </div>
 
-                            </SwiperSlide>
-                        ))
-                    }
-                </Swiper>
+                            </div>
 
-                <div className="paginationWrapper">
-                    <div className="dotsPagination"></div>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </section>
 
+    );
 
-    )
 }
 
 

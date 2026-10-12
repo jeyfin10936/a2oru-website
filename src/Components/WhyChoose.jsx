@@ -12,7 +12,7 @@ const WhyChooseData = [
         id: 1,
         icon: ShieldCheck,
         title: "Secure Authentication",
-        desc: " Support secure authentication with Single Sign-On (SSO), LDAP integration, Multi-Factor Authentication (MFA), SMS OTP verification, and service-level authorization for enterprise-grade identity protection.",
+        desc: "Protect user identities and sensitive information with robust security controls, configurable password policies, account lockout mechanisms, and automatic session management to reduce unauthorized access and strengthen enterprise security.",
     },
     {
         id: 2,

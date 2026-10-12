@@ -1,5 +1,7 @@
 import Button from "../Components/Common/Button";
 
+import VideoBanner from "./VideoBanner";
+
 import "../CSS/MainBanner.css";
 
 
@@ -15,15 +17,21 @@ function MainBanner () {
         <section className="mainBanner banner" id="home">
             <div className="container">
   
-                    <div className="content">
-                          
-                        <h1 className='text-center'>Enterprise Identity & Access <span className='highlightTitle'>Management</span> Made Simple</h1>
-                        <p className='text-center'>A2ORU is a centralized Identity & Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system.</p>
-                    </div>
+                <div className="content">
+                        
+                    <h1 className=''>Enterprise Identity & Access <span className='highlightTitle'>Management</span> Made Simple</h1>
+
+                    <p className=''>A2ORU is a centralized Identity & Access Management platform that helps organizations securely manage users, applications, roles, and security policies from one unified system.</p>
+
                     <div className="btn-group">
                         <Button link="#Features" text="Explore Features" />
                         <Button link="#Contact" text="Request Demo" />
                     </div>
+                </div>
+
+                <div className="videoBlock">
+                    <VideoBanner />
+                </div>
 
             </div>
             <CurveMask/>

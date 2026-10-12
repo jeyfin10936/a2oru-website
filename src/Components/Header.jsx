@@ -4,6 +4,65 @@ import Button from "../Components/Common/Button";
 import "../CSS/Header.css";
 import {Menu, X} from "lucide-react";
 
+const SCROLL_SPY_OFFSET = 150;
+
+const menuItems = [
+
+    {
+        title: "Home",
+        link: "#home",
+        section: "home",
+    },
+
+    {
+        title: "Benefits",
+        link: "#ChooseUS",
+        section: "ChooseUS",
+    },
+
+    {
+        title: "Features",
+        link: "#Features",
+        section: "Features",
+    },
+
+    {
+        title: "Modules",
+        link: "#modules",
+        section: "modules",
+    },
+
+    {
+        title: "FAQ",
+        link: "#faq",
+        section: "faq",
+    },
+
+    {
+        title: "Pricing",
+        link: "#pricing",
+        section: "pricing",
+    },
+
+    {
+        title: "Contact",
+        link: "#Contact",
+        section: "Contact",
+    },
+];
+
+const NAV_SECTION_IDS = new Set(
+    menuItems.map((item) => item.section)
+);
+
+const getSectionDocumentTop = (section) => {
+
+    const rect = section.getBoundingClientRect();
+
+    return rect.top + window.scrollY;
+
+};
+
 function Header () {
 
     // sticky header
@@ -39,41 +98,67 @@ function Header () {
     // }, []);
 
     const [activeSection, setActiveSection] = useState("home");
-    
+
     useEffect(() => {
-        const sections = document.querySelectorAll("section");
 
-        const handleScroll = () => {
-            const top = window.scrollY;
+        const getTrackedSections = () => (
+            [...document.querySelectorAll("section[id]")].filter((section) => {
+                const id = section.getAttribute("id");
 
-            /* Home Active at Top */
-            if (top < 100) {
-                setActiveSection("home");
+                return id && NAV_SECTION_IDS.has(id);
+            })
+        );
+
+        const updateActiveSection = () => {
+
+            const sections = getTrackedSections();
+
+            if (!sections.length) {
                 return;
             }
 
+            const scrollPosition = window.scrollY + SCROLL_SPY_OFFSET;
+
+            let current = menuItems[0].section;
+
             sections.forEach((section) => {
-                const offset = section.offsetTop - 150;
-                const height = section.offsetHeight;
+
                 const id = section.getAttribute("id");
+
                 if (
-                    top >= offset &&
-                    top < offset + height
+                    id
+                    && scrollPosition >= getSectionDocumentTop(section)
                 ) {
-                    setActiveSection(id);
+                    current = id;
                 }
+
             });
+
+            setActiveSection(current);
+
         };
 
-        window.addEventListener(
-            "scroll",
-            handleScroll
-        );
+        updateActiveSection();
+
+        window.addEventListener("scroll", updateActiveSection, { passive: true });
+        window.addEventListener("resize", updateActiveSection);
+
+        const main = document.querySelector("main");
+
+        const domObserver = main
+            ? new MutationObserver(updateActiveSection)
+            : null;
+
+        if (main && domObserver) {
+            domObserver.observe(main, { childList: true, subtree: true });
+        }
+
         return () => {
-            window.removeEventListener(
-                "scroll",
-                handleScroll
-            );
+
+            window.removeEventListener("scroll", updateActiveSection);
+            window.removeEventListener("resize", updateActiveSection);
+            domObserver?.disconnect();
+
         };
 
     }, []);
@@ -81,52 +166,6 @@ function Header () {
     // mobile menu
     const [mobileMenu, setMobileMenu] = useState(false);
 
-
-    // Menu list
-    const menuItems = [
-
-        {
-            title: "Home",
-            link: "#home",
-            section: "home"
-        },
-
-        {
-            title: "Benefits",
-            link: "#ChooseUS",
-            section: "ChooseUS"
-        },
-
-        {
-            title: "Features",
-            link: "#Features",
-            section: "Features"
-        },
-
-        {
-            title: "Pages",
-            link: "#Pages",
-            section: "Pages"
-        },
-
-        {
-            title: "FAQ",
-            link: "#faq",
-            section: "faq"
-        },
-
-        {
-            title: "Pricing",
-            link: "#pricing",
-            section: "pricing"
-        },
-
-        {
-            title: "Contact",
-            link: "#Contact",
-            section: "Contact"
-        }
-    ];
 
     // Scroll Lock
     useEffect(() => {
@@ -150,7 +189,10 @@ function Header () {
                         <div className="site-logo">
                             <a
                                 href="#home"
-                                onClick={() => setMobileMenu(false)}
+                                onClick={() => {
+                                    setMobileMenu(false);
+                                    setActiveSection("home");
+                                }}
                             >
                                 <img src={Logo} alt="Logo" />
                             </a>
@@ -163,7 +205,10 @@ function Header () {
                                             <a
                                                 href={item.link}
                                                 className={ activeSection === item.section ? "active" : "" }
-                                                onClick={() => setMobileMenu( false ) }
+                                                onClick={() => {
+                                                    setMobileMenu(false);
+                                                    setActiveSection(item.section);
+                                                }}
                                                 style={{"--delay":`${200 + (index * 50)}ms`}}
                                             >
                                                 {item.title}

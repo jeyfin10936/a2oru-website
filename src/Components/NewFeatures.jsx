@@ -62,8 +62,8 @@ const FeaturesData = [
     {
         id: 7,
         mockup: GroupModuleMockup,
-        title: 'Group Module',
-        desc: 'The Group module in A2ORU enables administrators to create and manage roles (groups) and assign specific rights/permissions to them. These roles are then linked to users, and the system applies Role-Based Access Control (RBAC) to determine what each user can access and perform within the application — ensuring access is governed by role membership rather than being configured individually per user.',
+        title: 'Role Module',
+        desc: 'The Role module in A2ORU enables administrators to create and manage roles and assign specific rights/permissions to them. These roles are then linked to users, and the system applies Role-Based Access Control (RBAC) to determine what each user can access and perform within the application — ensuring access is governed by role membership rather than being configured individually per user.',
     },
 ];
 
@@ -83,7 +83,7 @@ function NewFeatures() {
 
                     <div className="subTitle">
                         <span>
-                            Key Capabilities
+                        Features
                         </span>
                     </div>
 

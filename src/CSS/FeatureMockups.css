@@ -688,6 +688,8 @@
     font-size: 10px;
 
     font-weight: 600;
+
+    box-shadow: 0 0 10px 0 rgb(var(--primary-color-rgb), 0.4);
 }
 
 
@@ -1509,87 +1511,414 @@
 
 
 /* =========================================================
-   GROUP MODULE
+   GROUP MODULE (ROLES)
 ========================================================= */
 
-.fm-group-layout {
-    display: grid;
+.fm-content:has(.fm-roles) {
+    display: flex;
+    flex-direction: column;
 
-    grid-template-columns: 27% 1fr;
-
-    gap: 10px;
+    min-height: 0;
 }
 
-.fm-group-list {
-    min-width: 0;
-
-    padding: 10px;
-
-    border: 1px solid #dce5eb;
-
-    border-radius: 8px;
-
-    background: var(--white-color);
-}
-
-.fm-group-title {
-    min-height: 8px;
-
-    margin-bottom: 9px;
-}
-
-.fm-group-item {
-    min-height: 27px;
+.fm-roles {
+    flex: 1;
 
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
-    padding: 7px;
-
-    margin-bottom: 5px;
-
-    border-radius: 5px;
+    min-height: 0;
 }
 
-.fm-group-item.active {
-    background: rgba(var(--primary-color-rgb), 0.08);
-}
+.fm-roles-table-wrap {
+    flex: 1;
 
-.fm-permission-table {
-    min-width: 0;
+    min-height: 0;
 
     overflow: hidden;
 
-    border: 1px solid #dce5eb;
+    border: 1px solid #dce4e9;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
     background: var(--white-color);
 }
 
-.fm-permission-table .fm-table-header,
-.fm-permission-table .fm-table-row {
-    grid-template-columns:
-        1.5fr
-        repeat(4, 0.55fr);
+.fm-roles-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 7px 9px;
+
+    background: var(--primary-color);
 }
 
-.fm-permission-table .fm-table-row .fm-table-cell {
-    display: flex;
+.fm-roles-toolbar-search {
+    min-width: 0;
+    flex: 1;
 
+    max-width: 58%;
+
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 0 8px;
+
+    border-radius: 4px;
+
+    background: var(--white-color);
+}
+
+.fm-roles-search-icon {
+    flex-shrink: 0;
+
+    color: #8797a4;
+
+    font-size: 9px;
+
+    line-height: 1;
+}
+
+.fm-roles-toolbar-search .fm-input-placeholder {
+    width: 72%;
+    height: 4px;
+}
+
+.fm-roles-toolbar-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    flex-shrink: 0;
+}
+
+.fm-roles-tool-btn {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 4px;
+
+    background: rgba(var(--white-color-rgb), 0.14);
+
+    color: var(--white-color);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+.fm-roles-tool-grid {
+    position: relative;
+
+    font-size: 0;
+}
+
+.fm-roles-tool-grid::before,
+.fm-roles-tool-grid::after {
+    content: "";
+
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border: 1.5px solid rgba(var(--white-color-rgb), 0.9);
+
+    border-radius: 1px;
+}
+
+.fm-roles-tool-grid::before {
+    left: 5px;
+    top: 5px;
+}
+
+.fm-roles-tool-grid::after {
+    right: 5px;
+    bottom: 5px;
+}
+
+.fm-roles-tool-menu {
+    position: relative;
+
+    font-size: 0;
+}
+
+.fm-roles-tool-menu::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: rgba(var(--white-color-rgb), 0.9);
+
+    box-shadow:
+        0 -4px 0 rgba(var(--white-color-rgb), 0.9),
+        0 4px 0 rgba(var(--white-color-rgb), 0.9);
+
+    transform: translate(-50%, -50%);
+}
+
+.fm-roles-table {
+    border: 0;
+
+    border-radius: 0;
+}
+
+.fm-roles-table .fm-roles-cols-header,
+.fm-roles-table .fm-table-row {
+    grid-template-columns:
+        22px
+        0.72fr
+        0.88fr
+        1.15fr
+        0.48fr
+        0.52fr
+        0.62fr;
+}
+
+.fm-roles-cols-header {
+    min-height: 26px;
+
+    background: #eef3f7;
+}
+
+.fm-roles-cols-header .fm-roles-col-bar {
+    margin: 0;
+
+    background: #b8c8d4;
+}
+
+.fm-roles-table .fm-table-row .fm-table-cell {
+    display: flex;
     align-items: center;
 }
 
-.fm-permission-table
+.fm-roles-table
 .fm-table-row
+.fm-table-cell:first-child,
+.fm-roles-cols-header
 .fm-table-cell:first-child {
-    justify-content: flex-start;
+    justify-content: center;
 }
 
-.fm-permission-table
+.fm-roles-table
 .fm-table-row
-.fm-table-cell:not(:first-child) {
+.fm-table-cell:nth-child(n+5):not(:last-child),
+.fm-roles-cols-header
+.fm-table-cell:nth-child(n+5):not(:last-child) {
     justify-content: center;
+}
+
+.fm-roles-table
+.fm-table-row
+.fm-table-cell:last-child,
+.fm-roles-cols-header
+.fm-table-cell:last-child {
+    justify-content: center;
+}
+
+.fm-roles-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+.fm-roles-action-icon {
+    width: 11px;
+    height: 11px;
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    border: 1px solid #c5d0d8;
+
+    border-radius: 2px;
+
+    background: #f7fafc;
+}
+
+.fm-roles-action-icon.edit::before {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    right: 2px;
+    top: 2px;
+
+    height: 5px;
+
+    border: 1px solid #9eb0bd;
+
+    border-top: 0;
+
+    transform: rotate(-35deg);
+
+    transform-origin: left bottom;
+}
+
+.fm-roles-action-icon.delete::before {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    right: 3px;
+    bottom: 2px;
+
+    height: 5px;
+
+    border: 1px solid #9eb0bd;
+
+    border-radius: 0 0 1px 1px;
+}
+
+.fm-roles-action-icon.delete::after {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    right: 4px;
+    top: 3px;
+
+    height: 3px;
+
+    border: 1px solid #9eb0bd;
+
+    border-bottom: 0;
+}
+
+.fm-roles-action-icon.assign::before {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    top: 2px;
+
+    width: 3px;
+    height: 3px;
+
+    border: 1px solid #9eb0bd;
+
+    border-radius: 50%;
+}
+
+.fm-roles-action-icon.assign::after {
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+
+    height: 4px;
+
+    border: 1px solid #9eb0bd;
+
+    border-top: 0;
+
+    border-radius: 2px 2px 0 0;
+}
+
+.fm-roles-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 7px 9px;
+
+    border-top: 1px solid #edf1f4;
+
+    background: var(--white-color);
+}
+
+.fm-roles-pagination-left {
+    min-width: 0;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.fm-roles-pagination-left .fm-skeleton.md {
+    width: 22%;
+}
+
+.fm-roles-pagination-left .fm-skeleton.sm {
+    width: 16%;
+}
+
+.fm-roles-pagination-left .fm-skeleton.lg {
+    width: 28%;
+}
+
+.fm-roles-pagination-nav {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    flex-shrink: 0;
+}
+
+.fm-roles-page-nav-btn {
+    width: 19px;
+    height: 19px;
+
+    border: 1px solid #dce4e9;
+
+    border-radius: 3px;
+
+    background: var(--white-color);
+}
+
+.fm-roles-page-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-top: 8px;
+}
+
+.fm-roles-page-footer .fm-skeleton.sm {
+    width: 32%;
+}
+
+.fm-roles-page-footer .fm-skeleton.xs {
+    width: 18%;
 }
 
 
@@ -1738,11 +2067,11 @@
     /* Application tabs */
 
     .fm-app-tabs {
-        gap: 11px;
+        gap: 7px;
 
-        margin-bottom: 9px;
+        margin-bottom: 8px;
 
-        padding-bottom: 7px;
+        padding-bottom: 6px;
     }
 
     .fm-tab-skeleton.lg {
@@ -1787,6 +2116,27 @@
 
     .fm-policy-grid {
         gap: 7px;
+    }
+
+
+    /* Roles (Group module) */
+
+    .fm-roles-toolbar-search {
+        max-width: 60%;
+        height: 25px;
+    }
+
+    .fm-roles-table .fm-table-row:nth-child(n+7) {
+        display: none;
+    }
+
+    .fm-roles-action-icon {
+        width: 10px;
+        height: 10px;
+    }
+
+    .fm-roles-page-footer {
+        margin-top: 7px;
     }
 
 }
@@ -1945,14 +2295,47 @@
     }
 
 
-    /* Groups */
+    /* Roles (Group module) */
 
-    .fm-group-layout {
-        grid-template-columns: 1fr;
+    .fm-roles-toolbar {
+        padding: 6px 8px;
     }
 
-    .fm-group-list {
-        display: none;
+    .fm-roles-toolbar-search {
+        max-width: 62%;
+        height: 24px;
+    }
+
+    .fm-roles-tool-btn {
+        width: 22px;
+        height: 22px;
+
+        font-size: 9px;
+    }
+
+    .fm-roles-table .fm-roles-cols-header,
+    .fm-roles-table .fm-table-row {
+        grid-template-columns:
+            20px
+            0.68fr
+            0.82fr
+            1fr
+            0.45fr
+            0.48fr
+            0.58fr;
+    }
+
+    .fm-roles-pagination {
+        padding: 6px 8px;
+    }
+
+    .fm-roles-pagination-left {
+        gap: 6px;
+    }
+
+    .fm-roles-page-nav-btn {
+        width: 17px;
+        height: 17px;
     }
 
 
@@ -2490,11 +2873,118 @@
 
 
     /* =====================================================
-       GROUP
+       ROLES (GROUP MODULE)
     ===================================================== */
 
-    .fm-permission-table .fm-table-header,
-    .fm-permission-table .fm-table-row,
+    .fm-roles-table .fm-table-row:nth-child(n+6) {
+        display: none;
+    }
+
+    .fm-roles-toolbar {
+        padding: 5px 6px;
+
+        gap: 5px;
+    }
+
+    .fm-roles-toolbar-search {
+        max-width: 55%;
+        height: 21px;
+
+        padding: 0 6px;
+    }
+
+    .fm-roles-search-icon {
+        font-size: 7px;
+    }
+
+    .fm-roles-tool-btn {
+        width: 19px;
+        height: 19px;
+
+        font-size: 8px;
+    }
+
+    .fm-roles-table .fm-roles-cols-header,
+    .fm-roles-table .fm-table-row {
+        grid-template-columns:
+            16px
+            0.62fr
+            0.72fr
+            0.95fr
+            0.4fr
+            0.42fr
+            0.52fr;
+
+        min-height: 20px;
+
+        padding: 0 5px;
+
+        gap: 3px;
+    }
+
+    .fm-roles-cols-header {
+        min-height: 22px;
+    }
+
+    .fm-roles-actions {
+        gap: 2px;
+    }
+
+    .fm-roles-action-icon {
+        width: 8px;
+        height: 8px;
+    }
+
+    .fm-roles-pagination {
+        flex-wrap: wrap;
+
+        padding: 5px 6px;
+    }
+
+    .fm-roles-pagination-left {
+        gap: 4px;
+
+        flex: 1 1 100%;
+    }
+
+    .fm-roles-pagination-left .fm-skeleton.md {
+        width: 26%;
+    }
+
+    .fm-roles-pagination-left .fm-skeleton.sm {
+        width: 18%;
+    }
+
+    .fm-roles-pagination-left .fm-skeleton.lg {
+        width: 34%;
+    }
+
+    .fm-roles-pagination-nav {
+        margin-left: auto;
+    }
+
+    .fm-roles-page-nav-btn {
+        width: 15px;
+        height: 15px;
+    }
+
+    .fm-roles-page-footer {
+        margin-top: 5px;
+    }
+
+    .fm-roles-page-footer .fm-skeleton.sm {
+        width: 38%;
+    }
+
+    .fm-roles-page-footer .fm-skeleton.xs {
+        width: 22%;
+    }
+
+
+    /* =====================================================
+       TABLE (SECURITY)
+    ===================================================== */
+
     .fm-security-table .fm-table-header,
     .fm-security-table .fm-table-row {
         gap: 4px;
