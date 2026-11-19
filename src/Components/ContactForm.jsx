@@ -8,6 +8,10 @@ const SUCCESS_BODY_FALLBACK =
 const MODAL_TRANSITION_MS = 320;
 const MODAL_AUTO_CLOSE_MS = 3000;
 
+const MAX_MESSAGE_LENGTH = 500;
+
+const PRIVACY_POLICY_URL = "https://www.aithent.com/privacy-policy";
+
 function ContactForm() {
 
     const ContactFromOptions = [
@@ -57,7 +61,9 @@ function ContactForm() {
         phone: "",
         message: "",
         interestedIn: [],
-        website: ""
+        consent: false,
+        website: "",
+        website_verify_hp: ""
     });
 
     const [errors, setErrors] = useState({});
@@ -69,6 +75,8 @@ function ContactForm() {
     const [submitMessage, setSubmitMessage] = useState("");
 
     const [modalVisible, setModalVisible] = useState(false);
+
+    const formLoadedAt = useRef(Date.now());
 
     const lockedScrollY = useRef(0);
     const isScrollLocked = useRef(false);
@@ -136,11 +144,11 @@ function ContactForm() {
 
     const handleChange = (e) => {
 
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
 
         setFormData((prev) => ({
             ...prev,
-            [name]: value
+            [name]: type === "checkbox" ? checked : value
         }));
 
         setErrors((prev) => ({
@@ -190,6 +198,8 @@ function ContactForm() {
         const company = formData.company.trim();
 
         const phone = formData.phone.trim();
+
+        const message = formData.message.trim();
 
 
         // Name validation
@@ -273,6 +283,20 @@ function ContactForm() {
 
         }
 
+        if (message && message.length > MAX_MESSAGE_LENGTH) {
+
+            newErrors.message =
+                "Message is too long.";
+
+        }
+
+        if (!formData.consent) {
+
+            newErrors.consent =
+                "Privacy Policy must be accepted.";
+
+        }
+
 
         setErrors(newErrors);
 
@@ -318,7 +342,10 @@ function ContactForm() {
                         "Content-Type": "application/json"
                     },
 
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        ...formData,
+                        formLoadedAt: formLoadedAt.current
+                    })
                 }
             );
 
@@ -377,8 +404,13 @@ function ContactForm() {
                 company: "",
                 phone: "",
                 message: "",
-                interestedIn: []
+                interestedIn: [],
+                consent: false,
+                website: "",
+                website_verify_hp: ""
             });
+
+            formLoadedAt.current = Date.now();
 
 
             // Clear validation errors
@@ -671,11 +703,11 @@ function ContactForm() {
                                 <input
                                     type="checkbox"
                                     name="interestedIn"
-                                    value={item.labelName}
+                                    value={item.id}
                                     id={item.id}
                                     checked={
                                         formData.interestedIn.includes(
-                                            item.labelName
+                                            item.id
                                         )
                                     }
                                     onChange={
@@ -722,8 +754,48 @@ function ContactForm() {
                     tabIndex="-1"
                     autoComplete="off"
                 />
+
+                <input
+                    id="website_verify_hp"
+                    type="text"
+                    name="website_verify_hp"
+                    value={formData.website_verify_hp}
+                    onChange={handleChange}
+                    tabIndex="-1"
+                    autoComplete="off"
+                />
             </div>
 
+            <div className="consentBlock fullWidth">
+                <label className="consentLabel" htmlFor="consent">
+                    <input
+                        id="consent"
+                        type="checkbox"
+                        name="consent"
+                        checked={formData.consent}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                    />
+                    <span>
+                        I agree to be contacted by email and understand that
+                        my information will be used in accordance with the{" "}
+                        <a
+                            href={PRIVACY_POLICY_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Privacy Policy
+                        </a>
+                        .
+                    </span>
+                </label>
+
+                {errors.consent && (
+                    <span className="errorMessage consentError">
+                        {errors.consent}
+                    </span>
+                )}
+            </div>
 
             {/* Submit */}
 

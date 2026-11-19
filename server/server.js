@@ -3,7 +3,6 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const nodemailer = require("nodemailer");
 // const rateLimit = require("express-rate-limit");
 const { rateLimit, ipKeyGenerator } = require("express-rate-limit");
 require("dotenv").config();
@@ -16,8 +15,6 @@ app.set("trust proxy", 1);
 app.use(helmet());
 
 const PORT = process.env.PORT || 5000;
-
-const currentYear = new Date().getFullYear();
 
 // const contactLimiter = rateLimit({
 //     windowMs: 15 * 60 * 1000,
@@ -34,7 +31,7 @@ const contactLimiter = rateLimit({
 
     windowMs: 15 * 60 * 1000,
 
-    max: 5,
+    max: process.env.NODE_ENV === "production" ? 5 : 100,
 
     keyGenerator: (req) => ipKeyGenerator(req.ip),
 
@@ -69,6 +66,7 @@ const personalEmailDomains = [
 
 const allowedOrigins = [
     "http://localhost:3001",
+    "http://127.0.0.1:3001",
     "http://192.168.193.1:3001",
     "https://uatweb.aithent.com"
 ];
@@ -99,56 +97,216 @@ app.use(express.json({
 }));
 
 
-// --------------------------------------------------
-// SMTP Transporter
-// --------------------------------------------------
+const INTERESTED_IN_LABELS = {
+    productDemo: "Product Demo",
+    technicalDiscussion: "Technical Discussion",
+    Pricing: "Pricing",
+    integration: "Integration",
+    enterpriseDeployment: "Enterprise Deployment",
+};
 
-const transporter = nodemailer.createTransport({
+const VALID_INTERESTED_IN = new Set(Object.keys(INTERESTED_IN_LABELS));
 
-    host: process.env.SMTP_HOST,
+const MAX_MESSAGE_LENGTH = 500;
 
-    port: 465,
+const BOT_MIN_SUBMIT_MS = 1200;
 
-    secure: false,
+function sanitizePlainText(str = "") {
+    return String(str).replace(/[<>]/g, "").trim();
+}
 
-    ignoreTLS: true,
+function respondBotSuccess(res) {
+    return res.status(200).json({
+        success: true,
+        message: "Your message has been sent successfully.",
+    });
+}
 
-    auth: {
-        user: process.env.SMTP_USERNAME,
-        pass: process.env.SMTP_PASSWORD
+function generateReferenceId() {
+    const randomNum = Math.floor(100000 + Math.random() * 900000);
+    return `A2O-${randomNum}`;
+}
+
+const LABEL_TO_INTERESTED_IN_ID = Object.fromEntries(
+    Object.entries(INTERESTED_IN_LABELS).map(([id, label]) => [label, id])
+);
+
+function normalizeInterestedIn(raw) {
+    if (!Array.isArray(raw)) {
+        return null;
     }
 
-});
+    const normalized = [];
 
+    for (const item of raw) {
+        const str = String(item).trim();
 
-// --------------------------------------------------
-// Verify SMTP Connection
-// --------------------------------------------------
+        if (!str) {
+            continue;
+        }
 
-transporter.verify((error) => {
+        if (VALID_INTERESTED_IN.has(str)) {
+            normalized.push(str);
+            continue;
+        }
 
-    if (error) {
+        const byLabel = LABEL_TO_INTERESTED_IN_ID[str];
 
-        console.error("SMTP connection failed:");
-        console.error(error);
+        if (byLabel) {
+            normalized.push(byLabel);
+            continue;
+        }
 
-    } else {
-
-        console.log("SMTP server is ready.");
-
+        return null;
     }
 
-});
+    return normalized;
+}
 
+function mapInterestedInLabels(ids) {
+    return ids.map((id) => INTERESTED_IN_LABELS[id] || String(id));
+}
 
-// Escapr HTMl
-function escapeHtml(value = "") {
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+function getClientIp(req) {
+    const forwarded = req.headers["x-forwarded-for"];
+    let ipAddress = forwarded
+        ? String(forwarded).split(",")[0].trim()
+        : req.ip || "Unknown";
+
+    if (ipAddress.includes(":") && /^\d+\.\d+\.\d+\.\d+:/.test(ipAddress)) {
+        ipAddress = ipAddress.split(":")[0];
+    }
+
+    return ipAddress;
+}
+
+function isPrivateIp(ip) {
+    if (!ip || typeof ip !== "string") {
+        return true;
+    }
+
+    const clean = ip.trim();
+
+    if (
+        clean === "127.0.0.1" ||
+        clean === "::1" ||
+        clean === "localhost" ||
+        clean === "Unknown"
+    ) {
+        return true;
+    }
+
+    return (
+        clean.startsWith("10.") ||
+        clean.startsWith("192.168.") ||
+        /^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(clean)
+    );
+}
+
+async function getLocationFromIP(ipAddress) {
+    if (isPrivateIp(ipAddress)) {
+        return { country: "", state: "", city: "" };
+    }
+
+    try {
+        const fields = "status,country,regionName,city";
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 1800);
+
+        const response = await fetch(
+            `http://ip-api.com/json/${encodeURIComponent(ipAddress)}?fields=${fields}`,
+            { signal: controller.signal }
+        );
+
+        clearTimeout(timeout);
+
+        if (!response.ok) {
+            return { country: "", state: "", city: "" };
+        }
+
+        const data = await response.json();
+
+        if (data.status !== "success") {
+            return { country: "", state: "", city: "" };
+        }
+
+        return {
+            country: data.country || "",
+            state: data.regionName || "",
+            city: data.city || "",
+        };
+    } catch {
+        return { country: "", state: "", city: "" };
+    }
+}
+
+function getStrapiConfig() {
+    const baseUrl = (process.env.STRAPI_API_URL || "").replace(/\/$/, "");
+    const token = process.env.A2ORU_STRAPI_API_TOKEN;
+
+    if (!baseUrl || !token) {
+        return null;
+    }
+
+    return { baseUrl, token };
+}
+
+async function saveA2oruInquiryToStrapi(strapiPayload) {
+    const config = getStrapiConfig();
+
+    if (!config) {
+        throw new Error("Strapi is not configured.");
+    }
+
+    const response = await fetch(`${config.baseUrl}/api/a2oru-inquiries`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${config.token}`,
+        },
+        body: JSON.stringify({ data: strapiPayload }),
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+        throw new Error(
+            `Strapi save failed (${response.status}): ${JSON.stringify(result)}`
+        );
+    }
+
+    return result;
+}
+
+async function sendA2oruStrapiEmails(contact) {
+    const config = getStrapiConfig();
+
+    if (!config) {
+        return;
+    }
+
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${config.token}`,
+    };
+
+    if (process.env.CONTACT_EMAIL_INTERNAL_SECRET) {
+        headers["x-contact-email-secret"] =
+            process.env.CONTACT_EMAIL_INTERNAL_SECRET;
+    }
+
+    const response = await fetch(`${config.baseUrl}/api/a2oru-contact-email`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(contact),
+    });
+
+    if (!response.ok) {
+        const text = await response.text().catch(() => "");
+        throw new Error(
+            `Strapi email trigger failed (${response.status}): ${text}`
+        );
+    }
 }
 
 
@@ -171,21 +329,41 @@ app.post(
             phone,
             message,
             interestedIn,
-            website
+            website,
+            website_verify_hp: websiteVerifyHp,
+            consent,
+            formLoadedAt,
         } = req.body;
 
-        if (website) {
-        return res.status(400).json({
-            success: false,
-            message: "Invalid submission."
-        });
-    }
+        const honeypotFilled =
+            (typeof website === "string" && website.trim()) ||
+            (typeof websiteVerifyHp === "string" && websiteVerifyHp.trim());
+
+        const submissionSpeedMs = formLoadedAt
+            ? Date.now() - Number(formLoadedAt)
+            : BOT_MIN_SUBMIT_MS + 1;
+
+        const isBotTooFast =
+            formLoadedAt && submissionSpeedMs < BOT_MIN_SUBMIT_MS;
+
+        if (honeypotFilled || isBotTooFast) {
+            return respondBotSuccess(res);
+        }
+
+        if (!consent) {
+            return res.status(400).json({
+                success: false,
+                message: "Privacy consent is required to proceed.",
+            });
+        }
 
         // ------------------------------------------
         // Required field validation
         // ------------------------------------------
 
-        if (!name || !email || !company) {
+        const trimmedNameEarly = sanitizePlainText(name);
+
+        if (!trimmedNameEarly || !email || !company) {
 
             return res.status(400).json({
 
@@ -196,6 +374,13 @@ app.post(
 
             });
 
+        }
+
+        if (trimmedNameEarly.length < 2) {
+            return res.status(400).json({
+                success: false,
+                message: "Please enter a valid name.",
+            });
         }
 
         // ------------------------------------------
@@ -260,7 +445,16 @@ app.post(
             });
         }
 
-        if (message && message.length > 3000) {
+        if (phone && !/^[+()\d\s-]{7,20}$/.test(String(phone).trim())) {
+            return res.status(400).json({
+                success: false,
+                message: "Please enter a valid phone number.",
+            });
+        }
+
+        const sanitizedMessage = sanitizePlainText(message || "");
+
+        if (sanitizedMessage.length > MAX_MESSAGE_LENGTH) {
             return res.status(400).json({
                 success: false,
                 message: "Message is too long."
@@ -268,10 +462,12 @@ app.post(
         }
 
 
+        const normalizedInterestedIn = normalizeInterestedIn(interestedIn);
+
         if (
-            !Array.isArray(interestedIn) ||
-            interestedIn.length === 0 ||
-            interestedIn.length > 10
+            !normalizedInterestedIn ||
+            normalizedInterestedIn.length === 0 ||
+            normalizedInterestedIn.length > 10
         ) {
             return res.status(400).json({
                 success: false,
@@ -279,395 +475,59 @@ app.post(
             });
         }
 
-        if (interestedIn.some(item => String(item).length > 100)) {
-            return res.status(400).json({
+        if (!getStrapiConfig()) {
+            console.error("Strapi env missing: STRAPI_API_URL or A2ORU_STRAPI_API_TOKEN");
+            return res.status(503).json({
                 success: false,
-                message: "Invalid selection."
+                message: "Unable to process your request. Please try again later.",
             });
         }
 
-        const safeName = escapeHtml(name);
-        const safeCompany = escapeHtml(company);
-        const safePhone = escapeHtml(phone || "Not provided");
-        const safeMessage = escapeHtml(message || "Not provided");
-
-        const safeInterestedIn = interestedIn
-            .map(item => escapeHtml(item))
-            .join(", ");
-
-
-        // ------------------------------------------
-        // Email
-        // ------------------------------------------
-
-        const mailOptions = {
-
-            from: process.env.EMAIL_FROM,
-
-            to: process.env.ADMIN_EMAIL,
-
-            // cc: process.env.ADMIN_CC,
-
-            replyTo: normalizedEmail,
-
-            subject: `New A2ORU Product Enquiry`,
-
-            html: `
-                <!DOCTYPE html>
-
-                <html>
-
-                <head>
-
-                    <meta charset="UTF-8">
-
-                    <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1.0"
-                    >
-
-                    <title>A2ORU Product Enquiry</title>
-
-                </head>
-
-                <body
-                    style="
-                        margin: 0;
-                        padding: 0;
-                        background-color: #F8F7F8;
-                        font-family: Arial, Helvetica, sans-serif;
-                    "
-                >
-
-                    <div
-                        style="
-                            max-width: 650px;
-                            margin: 30px auto;
-                            background: #ffffff;
-                            border-radius: 8px;
-                            overflow: hidden;
-                            border: 1px solid #E0E0E0;
-                        "
-                    >
-
-                        <!-- Header -->
-
-                        <div
-                            style="
-                                padding: 24px;
-                                background: #123D94;
-                                color: #ffffff;
-                            "
-                        >
-
-                            <h2
-                                style="
-                                    margin: 0;
-                                    font-size: 22px;
-                                    line-height: 1.4;
-                                    font-weight: 600;
-                                "
-                            >
-                                New A2ORU Product Enquiry
-                            </h2>
-
-                            <p
-                                style="
-                                    margin: 8px 0 0;
-                                    font-size: 14px;
-                                    line-height: 1.5;
-                                    color: #ffffff;
-                                    opacity: 0.9;
-                                "
-                            >
-                                A new product enquiry has been submitted
-                                through the A2ORU website.
-                            </p>
-
-                        </div>
-
-
-                        <!-- Contact Details -->
-
-                        <div style="padding: 24px;">
-
-                            <h3
-                                style="
-                                    margin: 0 0 18px;
-                                    color: #1A1A1A;
-                                    font-size: 17px;
-                                    line-height: 1.4;
-                                    font-weight: 600;
-                                "
-                            >
-                                Contact Details:
-                            </h3>
-
-
-                            <table
-                                width="100%"
-                                cellpadding="0"
-                                cellspacing="0"
-                                style="
-                                    width: 100%;
-                                    border-collapse: collapse;
-                                    border: 1px solid #E0E0E0;
-                                    border-radius: 6px;
-                                    overflow: hidden;
-                                    font-size: 14px;
-                                "
-                            >
-
-                                <!-- Name -->
-
-                                <tr>
-
-                                    <td
-                                        style="
-                                            width: 150px;
-                                            padding: 12px 14px;
-                                            background-color: #F8F7F8;
-                                            border-bottom: 1px solid #E0E0E0;
-                                            color: #4A4A4A;
-                                            font-weight: 600;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        Name
-                                    </td>
-
-                                    <td
-                                        style="
-                                            padding: 12px 14px;
-                                            border-bottom: 1px solid #E0E0E0;
-                                            color: #4A4A4A;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        ${safeName}
-                                    </td>
-
-                                </tr>
-
-
-                                <!-- Work Email -->
-
-                                <tr>
-
-                                    <td
-                                        style="
-                                            width: 150px;
-                                            padding: 12px 14px;
-                                            background-color: #F8F7F8;
-                                            border-bottom: 1px solid #E0E0E0;
-                                            color: #4A4A4A;
-                                            font-weight: 600;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        Work Email
-                                    </td>
-
-                                    <td
-                                        style="
-                                            padding: 12px 14px;
-                                            border-bottom: 1px solid #E0E0E0;
-                                            color: #4A4A4A;
-                                            vertical-align: top;
-                                        "
-                                    >
-
-                                        <a
-                                            href="mailto:${normalizedEmail}"
-                                            style="
-                                                color: #0089D3;
-                                                text-decoration: none;
-                                            "
-                                        >
-                                            ${normalizedEmail}
-                                        </a>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <!-- Company -->
-
-                                <tr>
-
-                                    <td
-                                        style="
-                                            width: 150px;
-                                            padding: 12px 14px;
-                                            background-color: #F8F7F8;
-                                            border-bottom: 1px solid #E0E0E0;
-                                            color: #4A4A4A;
-                                            font-weight: 600;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        Company
-                                    </td>
-
-                                    <td
-                                        style="
-                                            padding: 12px 14px;
-                                            border-bottom: 1px solid #E0E0E0;
-                                            color: #4A4A4A;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        ${safeCompany}
-                                    </td>
-
-                                </tr>
-
-
-                                <!-- Phone -->
-
-                                <tr>
-
-                                    <td
-                                        style="
-                                            width: 150px;
-                                            padding: 12px 14px;
-                                            background-color: #F8F7F8;
-                                            color: #4A4A4A;
-                                            font-weight: 600;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        Phone
-                                    </td>
-
-                                    <td
-                                        style="
-                                            padding: 12px 14px;
-                                            color: #4A4A4A;
-                                            vertical-align: top;
-                                        "
-                                    >
-                                        ${safePhone || "Not provided"}
-                                    </td>
-
-                                </tr>
-
-                            </table>
-
-
-                            <!-- Interested In -->
-
-                            <h3
-                                style="
-                                    margin: 20px 0 14px;
-                                    color: #1A1A1A;
-                                    font-size: 17px;
-                                    line-height: 1.4;
-                                    font-weight: 600;
-                                "
-                            >
-                                Interested In:
-                            </h3>
-
-                            <div
-                                style="
-                                    padding: 14px;
-                                    background: #F8F7F8;
-                                    border: 1px solid #E0E0E0;
-                                    border-radius: 6px;
-                                    color: #4A4A4A;
-                                    line-height: 1.5;
-                                    font-size: 14px;
-                                "
-                            >
-                                ${safeInterestedIn}
-                            </div>
-
-
-                            <!-- Message -->
-
-                            <h3
-                                style="
-                                    margin: 20px 0 14px;
-                                    color: #1A1A1A;
-                                    font-size: 17px;
-                                    line-height: 1.4;
-                                    font-weight: 600;
-                                "
-                            >
-                                Message:
-                            </h3>
-
-                            <div
-                                style="
-                                    padding: 16px;
-                                    background: #F8F7F8;
-                                    border: 1px solid #E0E0E0;
-                                    border-radius: 6px;
-                                    color: #4A4A4A;
-                                    line-height: 1.6;
-                                    font-size: 14px;
-                                    white-space: pre-line;
-                                "
-                            >
-                                ${safeMessage || "Not provided"}
-                            </div>
-
-                        </div>
-
-
-                        <!-- Footer -->
-
-                        <div
-                            style="
-                                padding: 14px 24px;
-                                background: #123D94;
-                                border-top: 1px solid #123D94;
-                                color: #ffffff;
-                                font-size: 12px;
-                                line-height: 1.5;
-                                text-align: center;
-                            "
-                        >
-
-                            © ${currentYear}&nbsp;
-
-                            <a
-                                href="https://www.aithent.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style="
-                                    color: #ffffff;
-                                    text-decoration: underline;
-                                "
-                            >
-                                Aithent Inc.
-                            </a>
-
-                            &nbsp;All Rights Reserved.
-
-                        </div>
-
-                    </div>
-
-                </body>
-
-                </html>
-            `
+        const trimmedName = trimmedNameEarly.replace(/\s+/g, " ");
+        const trimmedCompany = sanitizePlainText(company).replace(/\s+/g, " ");
+        const trimmedPhone = (phone || "").trim();
+        const trimmedMessage = sanitizedMessage;
+        const interestedInLabel = mapInterestedInLabels(
+            normalizedInterestedIn
+        ).join(", ");
+        const referenceId = generateReferenceId();
+        const ipAddress = getClientIp(req);
+        const userAgent = req.get("user-agent") || "";
+        const location = await getLocationFromIP(ipAddress);
+        const submittedAt = new Date().toISOString();
+        const category = normalizedInterestedIn.includes("productDemo")
+            ? "Product Demo"
+            : "Enquiry";
+
+        const strapiPayload = {
+            fullName: trimmedName,
+            businessEmail: normalizedEmail,
+            companyName: trimmedCompany,
+            phoneNumber: trimmedPhone || undefined,
+            interestedIn: interestedInLabel,
+            message: trimmedMessage || undefined,
+            privacyConsent: Boolean(consent),
+            submittedAt,
+            ipAddress,
+            userAgent,
+            country: location.country,
+            state: location.state,
+            city: location.city,
+            sourcePage: "/",
+            userStatus: "New",
+            category,
+            referenceId,
         };
 
+        await saveA2oruInquiryToStrapi(strapiPayload);
 
-        // ------------------------------------------
-        // Send Email
-        // ------------------------------------------
+        try {
+            await sendA2oruStrapiEmails(strapiPayload);
+        } catch (emailError) {
+            console.error("A2ORU Strapi email failed after save:", emailError);
+        }
 
-        await transporter.sendMail(mailOptions);
-
-
-        console.log(
-            "Contact form email sent successfully."
-        );
+        console.log("A2ORU inquiry saved successfully.");
 
 
         return res.status(200).json({
@@ -682,7 +542,7 @@ app.post(
     } catch (error) {
 
         console.error(
-            "Email sending error:"
+            "Contact submission error:"
         );
 
         console.error(error);

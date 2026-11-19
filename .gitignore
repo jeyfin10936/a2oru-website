@@ -10,6 +10,7 @@
 .env.production.local
 .env.production
 /server/.env
+/server/.env.production
 
 # testing
 /coverage
